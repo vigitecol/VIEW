@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descuentos Especiales - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header h1 span {
+            color: #FFD700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section {
+            margin-bottom: 5rem;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        /* Banner de descuento principal */
+        .discount-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .discount-banner h3 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        
+        .discount-banner p {
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .discount-percent {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #000;
+            margin: 1rem 0;
+        }
+        
+        /* Estadísticas */
+        .discount-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .stat-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background: #FFD700;
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+        
+        .stat-card:hover .stat-label {
+            color: #000;
+        }
+        
+        /* Tipos de descuentos */
+        .descuentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .descuento-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .descuento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #000);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .descuento-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .descuento-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+        }
+        
+        .descuento-icon {
+            width: 90px;
+            height: 90px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .descuento-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #000;
+            text-align: center;
+        }
+        
+        .descuento-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .descuento-valor {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+            text-align: center;
+        }
+        
+        .descuento-condiciones {
+            font-size: 0.9rem;
+            color: #999;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        /* Programas de fidelidad */
+        .fidelidad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .fidelidad-card {
+            background: #000;
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .fidelidad-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .fidelidad-card .beneficio {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .fidelidad-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .fidelidad-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .fidelidad-card ul li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Paquetes especiales */
+        .paquetes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .paquete-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .paquete-card:hover {
+            border-color: #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .paquete-card.popular {
+            background: #FFD700;
+            transform: scale(1.05);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #000;
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .paquete-nombre {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .paquete-precio {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        
+        .paquete-descuento {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .paquete-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        
+        .paquete-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .paquete-card ul li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .paquete-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .paquete-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        
+        /* Convenios */
+        .convenios-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .convenio-item {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .convenio-item:hover {
+            background: #FFD700;
+            transform: translateY(-5px);
+        }
+        
+        .convenio-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .convenio-descuento {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* Call to Action */
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-box h3 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .discount-stats,
+            .descuentos-grid,
+            .fidelidad-grid,
+            .paquetes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .convenios-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .discount-stats,
+            .descuentos-grid,
+            .fidelidad-grid,
+            .paquetes-grid,
+            .convenios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+            
+            .paquete-card.popular {
+                transform: scale(1);
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+</div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+                
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                   <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="../QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../Servicios/seguridadFisica.html">Seguridad Física</a>
+                    <a href="../Servicios/monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="../Servicios/cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="../Servicios/controlAcceso.html">Control de Acceso</a>
+                    <a href="../Servicios/escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="../Servicios/seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="garantia.html">Garantía de calidad</a>
+                    <a href="soporte.html">Soporte 24/7</a>
+                    <a href="capacitacion.html">Capacitación continua</a>
+                    <a href="actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>Descuentos <span>Especiales</span></h1>
+            <p>En VIGITECOL premiamos su confianza con descuentos exclusivos por fidelidad, convenios corporativos y promociones especiales durante todo el año.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <!-- Banner principal -->
+        <div class="discount-banner">
+            <h3>¡CLIENTE POR PRIMERA VEZ!</h3>
+            <div class="discount-percent">20% OFF</div>
+            <p>En su primer servicio de monitoreo o instalación de CCTV</p>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="discount-stats">
+            <div class="stat-card">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">Máximo descuento</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">+500</div>
+                <div class="stat-label">Clientes beneficiados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Convenios activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Promociones al año</div>
+            </div>
+        </div>
+
+        <!-- Tipos de descuentos -->
+        <div class="section">
+            <h2>Descuentos por Fidelidad</h2>
+            <div class="fidelidad-grid">
+                <div class="fidelidad-card">
+                    <h3>Bronce</h3>
+                    <div class="beneficio">10% DESCUENTO</div>
+                    <ul>
+                        <li>1 año de antigüedad</li>
+                        <li>Descuento en servicios adicionales</li>
+                        <li>Prioridad en soporte</li>
+                    </ul>
+                </div>
+                
+                <div class="fidelidad-card">
+                    <h3>Plata</h3>
+                    <div class="beneficio">15% DESCUENTO</div>
+                    <ul>
+                        <li>3 años de antigüedad</li>
+                        <li>Descuento en todos los servicios</li>
+                        <li>Soporte VIP</li>
+                        <li>2 meses gratis al año</li>
+                    </ul>
+                </div>
+                
+                <div class="fidelidad-card">
+                    <h3>Oro</h3>
+                    <div class="beneficio">20% DESCUENTO</div>
+                    <ul>
+                        <li>5+ años de antigüedad</li>
+                        <li>Descuento máximo garantizado</li>
+                        <li>Soporte prioritario 24/7</li>
+                        <li>3 meses gratis al año</li>
+                        <li>Actualizaciones preferenciales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paquetes especiales -->
+        <div class="section">
+            <h2>Paquetes Especiales</h2>
+            <div class="paquetes-grid">
+                <div class="paquete-card">
+                    <div class="paquete-nombre">Básico</div>
+                    <div class="paquete-precio">$199.900</div>
+                    <div class="paquete-descuento">15% ahorro</div>
+                    <ul>
+                        <li>2 cámaras HD</li>
+                        <li>DVR 1TB</li>
+                        <li>Instalación incluida</li>
+                        <li>App móvil</li>
+                    </ul>
+                    <a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
+                
+                <div class="paquete-card popular">
+                    <div class="popular-tag">MÁS VENDIDO</div>
+                    <div class="paquete-nombre">Profesional</div>
+                    <div class="paquete-precio">$349.900</div>
+                    <div class="paquete-descuento">25% ahorro</div>
+                    <ul>
+                        <li>4 cámaras 4K</li>
+                        <li>NVR 2TB</li>
+                        <li>Instalación profesional</li>
+                        <li>App con IA</li>
+                        <li>Monitoreo 3 meses gratis</li>
+                    </ul>
+                    <a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
+                
+                <div class="paquete-card">
+                    <div class="paquete-nombre">Empresarial</div>
+                    <div class="paquete-precio">$599.900</div>
+                    <div class="paquete-descuento">30% ahorro</div>
+                    <ul>
+                        <li>8 cámaras 4K</li>
+                        <li>NVR 4TB</li>
+                        <li>Control de acceso</li>
+                        <li>Monitoreo 24/7 incluido</li>
+                        <li>6 meses de soporte VIP</li>
+                    </ul>
+                    <a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descuentos por volumen -->
+        <div class="section">
+            <h2>Descuentos por Volumen</h2>
+            <div class="descuentos-grid">
+                <div class="descuento-card">
+                    <div class="descuento-icon">🏢</div>
+                    <h3>Múltiples Sedes</h3>
+                    <p>Descuento progresivo por cada sede adicional que contrate nuestros servicios.</p>
+                    <div class="descuento-valor">Hasta 25%</div>
+                    <div class="descuento-condiciones">Válido para empresas</div>
+                </div>
+                
+                <div class="descuento-card">
+                    <div class="descuento-icon">👥</div>
+                    <h3>Grupos Empresariales</h3>
+                    <p>Descuento especial para grupos económicos que contraten para múltiples empresas.</p>
+                    <div class="descuento-valor">Hasta 30%</div>
+                    <div class="descuento-condiciones">Mínimo 3 empresas</div>
+                </div>
+                
+                <div class="descuento-card">
+                    <div class="descuento-icon">🏘️</div>
+                    <h3>Conjuntos Residenciales</h3>
+                    <p>Tarifas preferenciales para propiedades horizontales y conjuntos cerrados.</p>
+                    <div class="descuento-valor">Hasta 20%</div>
+                    <div class="descuento-condiciones">Por unidad residencial</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Convenios -->
+        <div class="section">
+            <h2>Convenios Especiales</h2>
+            <div class="convenios-grid">
+                <div class="convenio-item">
+                    <h4>Pólizas de Seguro</h4>
+                    <div class="convenio-descuento">15%</div>
+                    <p>Clientes de aseguradoras aliadas</p>
+                </div>
+                
+                <div class="convenio-item">
+                    <h4>Tarjetas de Crédito</h4>
+                    <div class="convenio-descuento">10%</div>
+                    <p>Pago con bancos aliados</p>
+                </div>
+                
+                <div class="convenio-item">
+                    <h4>Cámaras de Comercio</h4>
+                    <div class="convenio-descuento">12%</div>
+                    <p>Afiliados a cámaras</p>
+                </div>
+                
+                <div class="convenio-item">
+                    <h4>Asociaciones</h4>
+                    <div class="convenio-descuento">15%</div>
+                    <p>Miembros de asociaciones</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promociones del mes -->
+        <div class="section">
+            <h2>Promoción del Mes</h2>
+            <div class="discount-banner">
+                <h3>MARZO: MES DE LA SEGURIDAD</h3>
+                <div class="discount-percent">2x1</div>
+                <p>En instalación de alarmas y monitoreo por 6 meses</p>
+                <p style="font-size: 1rem; margin-top: 1rem;">Válido hasta el 31 de marzo de 2026</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>¡Aproveche estos descuentos!</h3>
+            <p>Contáctenos hoy mismo y obtenga el mejor precio en seguridad. Nuestro equipo le asesorará para encontrar el plan que mejor se ajuste a sus necesidades.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar cotización</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script src="../js/menu.js"></script>
+</body>
+</html>

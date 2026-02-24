@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header h1 span {
+            color: #FFD700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .contacto-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .contacto-section {
+            margin-bottom: 5rem;
+        }
+        
+        .contacto-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contacto-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        /* Grid principal */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        /* Tarjetas de información */
+        .info-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
+        }
+        
+        .info-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #000;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 1rem;
+        }
+        
+        /* Tabla de contactos */
+        .contact-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .contact-table tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-table td {
+            padding: 1.2rem 0.5rem;
+            color: #555;
+        }
+        
+        .contact-table td:first-child {
+            font-weight: 600;
+            color: #FFD700;
+            width: 40%;
+        }
+        
+        .contact-table td:last-child {
+            color: #333;
+        }
+        
+        /* Extensiones - Estilo mejorado */
+        .directorio-section {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .directorio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 1rem;
+        }
+        
+        .directorio-header h3 {
+            font-size: 1.8rem;
+            color: #000;
+        }
+        
+        .directorio-header span {
+            background: #FFD700;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .extensiones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .extension-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border-left: 3px solid #FFD700;
+        }
+        
+        .extension-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.15);
+        }
+        
+        .extension-depto {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        
+        .extension-numero {
+            background: #FFD700;
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .extension-total {
+            grid-column: span 3;
+            text-align: right;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #FFD700;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .extension-total strong {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Oficinas cards */
+        .oficinas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .oficina-card {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .oficina-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+        }
+        
+        .oficina-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .oficina-icon {
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .oficina-header h4 {
+            font-size: 1.5rem;
+            color: #000;
+            margin: 0;
+        }
+        
+        .oficina-detalle {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        
+        .oficina-detalle i {
+            color: #FFD700;
+            width: 20px;
+            font-style: normal;
+        }
+        
+        .oficina-detalle span {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .oficina-telefono {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            font-weight: 600;
+            color: #FFD700;
+        }
+        
+        /* Horarios */
+        .horarios-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+        
+        .horario-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .horario-row:last-child {
+            border-bottom: none;
+        }
+        
+        .horario-row .dia {
+            font-weight: 600;
+            color: #FFD700;
+        }
+        
+        .horario-row .hora {
+            color: #333;
+            text-align: right;
+        }
+        
+        .emergencia-badge {
+            background: #FFD700;
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Formulario */
+        .formulario-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #000;
+            color: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mapa */
+        .mapa-container {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+        
+        .mapa-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            border: 2px dashed #FFD700;
+        }
+        
+        /* Redes sociales */
+        .social-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .social-large {
+            width: 60px;
+            height: 60px;
+            background: #f8f8f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-large:hover {
+            background: #FFD700;
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        @media (max-width: 1024px) {
+            .extensiones-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .extension-total {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contacto-grid,
+            .form-grid,
+            .oficinas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .extensiones-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .extension-total {
+                grid-column: span 1;
+            }
+            
+            .directorio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .horario-row {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .horario-row .hora {
+                text-align: left;
+            }
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="index.html">Inicio <span class="arrow"></span></a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="QuienesS/mision.html">Misión</a>
+                    <a href="QuienesS/vision.html">Visión</a>
+                    <a href="QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="Servicios/seguridadFisica.html">Seguridad Física</a>
+                    <a href="Servicios/monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="Servicios/cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="Servicios/controlAcceso.html">Control de Acceso</a>
+                    <a href="Servicios/escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="Servicios/seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>Contacto <span>VIGITECOL</span></h1>
+            <p>Estamos aquí para atenderle. Contamos con múltiples canales de comunicación para resolver todas sus inquietudes.</p>
+        </div>
+    </div>
+
+    <div class="contacto-container">
+        <!-- Oficinas (actualizado con información real) -->
+        <div class="contacto-section">
+            <h2>Nuestras Oficinas</h2>
+            <div class="oficinas-grid">
+                <div class="oficina-card">
+                    <div class="oficina-header">
+                        <div class="oficina-icon">🏛️</div>
+                        <h4>Manizales</h4>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>📍</i>
+                        <span>Carrera 23 N° 43-12</span>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>📞</i>
+                        <span>Línea principal: 881 3121</span>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>✉️</i>
+                        <span>servicioalcliente@vigitecol.com</span>
+                    </div>
+                    <div class="oficina-telefono">
+                        Horario: Lun-Vie 8am-12pm y 2pm-6pm | Sáb 8am-12pm
+                    </div>
+                </div>
+                
+                <div class="oficina-card">
+                    <div class="oficina-header">
+                        <div class="oficina-icon">🏢</div>
+                        <h4>Pereira</h4>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>📍</i>
+                        <span>Carrera 10 N° 44-49</span>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>📞</i>
+                        <span>Línea principal: 336 0378</span>
+                    </div>
+                    <div class="oficina-detalle">
+                        <i>✉️</i>
+                        <span>direccionvigitecolpereira@gmail.com</span>
+                    </div>
+                    <div class="oficina-telefono">
+                        Horario: Lun-Vie 8am-12pm y 2pm-6pm | Sáb 8am-12pm
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Directorio Interno - Extensiones (según la imagen) -->
+        <div class="contacto-section">
+            <h2>Directorio Interno - Extensiones</h2>
+            <div class="directorio-section">
+                <div class="directorio-header">
+                    <h3>📞 Extensiones Telefónicas</h3>
+                    <span>Total: 553T</span>
+                </div>
+                
+                <div class="extensiones-grid">
+                    <!-- Columna 1 -->
+                    <div class="extension-item">
+                        <span class="extension-depto">Gerente general</span>
+                        <span class="extension-numero">1100</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Recepción</span>
+                        <span class="extension-numero">1102-1105</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Sistemas</span>
+                        <span class="extension-numero">1106</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Publicidad</span>
+                        <span class="extension-numero">1107</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Líder Talento Humano</span>
+                        <span class="extension-numero">1108</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Dep. Técnico</span>
+                        <span class="extension-numero">1109</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Nómina</span>
+                        <span class="extension-numero">1110</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Monitoreo Pereira</span>
+                        <span class="extension-numero">1111</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Director Pereira</span>
+                        <span class="extension-numero">1112</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Gerencia Financiera</span>
+                        <span class="extension-numero">1113</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Polígrafo</span>
+                        <span class="extension-numero">1114</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Monitoreo 1</span>
+                        <span class="extension-numero">1115</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Monitoreo 2</span>
+                        <span class="extension-numero">1116</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Gerencia Operativa</span>
+                        <span class="extension-numero">1117</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Cartera</span>
+                        <span class="extension-numero">1118</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Líder Monitoreo</span>
+                        <span class="extension-numero">1121</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Tesorería</span>
+                        <span class="extension-numero">1122</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Facturación</span>
+                        <span class="extension-numero">1123</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Sala de Juntas</span>
+                        <span class="extension-numero">1124</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Auxiliar Talento humano</span>
+                        <span class="extension-numero">1125</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Sistemas de Gestión</span>
+                        <span class="extension-numero">1126</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Auxiliar Operaciones</span>
+                        <span class="extension-numero">1127</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Formando Seguridad Comercial</span>
+                        <span class="extension-numero">1128</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Control Interno</span>
+                        <span class="extension-numero">1130</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Licitaciones</span>
+                        <span class="extension-numero">1131</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Coordinación de operaciones</span>
+                        <span class="extension-numero">1132</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Formando Alturas</span>
+                        <span class="extension-numero">1133</span>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-depto">Líder Servicios</span>
+                        <span class="extension-numero">1134</span>
+                    </div>
+                </div>
+                
+                <div class="extension-total">
+                    Total de extensiones: <strong>553T</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horarios de atención (actualizado) -->
+        <div class="contacto-section">
+            <h2>Horarios de Atención</h2>
+            <div class="horarios-container">
+                <div class="horario-row">
+                    <span class="dia">Lunes a Viernes:</span>
+                    <span class="hora">8:00 am - 12:00 pm y 2:00 pm - 6:00 pm</span>
+                </div>
+                <div class="horario-row">
+                    <span class="dia">Sábados:</span>
+                    <span class="hora">8:00 am - 12:00 pm</span>
+                </div>
+                <div class="horario-row">
+                    <span class="dia">Domingos y festivos:</span>
+                    <span class="hora">Emergencias 24/7 (Monitoreo)</span>
+                </div>
+                <div class="emergencia-badge">
+                    🚨 Línea de emergencias 24/7: monitoreo@vigitecol.com
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de contacto -->
+        <div class="contacto-section">
+            <h2>Envíenos un mensaje</h2>
+            <div class="formulario-container">
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nombre completo *</label>
+                            <input type="text" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Empresa</label>
+                            <input type="text" placeholder="Ej: Empresa S.A.S.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Correo electrónico *</label>
+                            <input type="email" placeholder="Ej: juan@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Teléfono *</label>
+                            <input type="tel" placeholder="Ej: 300 123 4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ciudad</label>
+                            <input type="text" placeholder="Ej: Manizales">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <select>
+                                <option>Seleccione un área</option>
+                                <option>Ventas</option>
+                                <option>Soporte Técnico</option>
+                                <option>Monitoreo</option>
+                                <option>Protección Ejecutiva</option>
+                                <option>Eventos</option>
+                                <option>Facturación</option>
+                                <option>PQR</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Mensaje *</label>
+                            <textarea placeholder="Escriba su mensaje aquí..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mapa -->
+        <div class="contacto-section">
+            <h2>Nuestra ubicación principal</h2>
+            <div class="mapa-container">
+                <div class="mapa-placeholder">
+                    [ESPACIO PARA MAPA DE GOOGLE MAPS]
+                </div>
+            </div>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="contacto-section">
+            <h2>Síganos en redes sociales</h2>
+            <div class="social-grid">
+                <a href="#" class="social-large">in</a>
+                <a href="#" class="social-large">f</a>
+                <a href="#" class="social-large">ig</a>
+                <a href="#" class="social-large">x</a>
+                <a href="#" class="social-large">yt</a>
+            </div>
+        </div>
+    </div>
+
+   <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        if (window.innerWidth <= 768) {
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.dropdown');
+                
+                if (dropdown) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo y Alarmas - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .service-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .service-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-header h1 span {
+            color: #FFD700;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .service-section {
+            margin-bottom: 5rem;
+        }
+        
+        .service-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .monitoring-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background: #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .tech-item:hover p {
+            color: #000;
+        }
+        
+        .tech-item p {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            border: 2px dashed #FFD700;
+        }
+        
+        .alarm-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .alarm-type {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 5px solid #FFD700;
+        }
+        
+        .alarm-type h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        .alarm-type p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-box h3 {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .service-grid,
+            .monitoring-stats,
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .alarm-types {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .service-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-grid,
+            .monitoring-stats,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+</div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+                
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="../QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="seguridadFisica.html">Seguridad Física</a>
+                    <a href="monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="controlAcceso.html">Control de Acceso</a>
+                    <a href="escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="service-header">
+        <div class="service-header-content">
+            <h1>Monitoreo y <span>Alarmas</span></h1>
+            <p>Central de monitoreo 24/7 con tecnología de punta y respuesta inmediata ante cualquier eventualidad. Protegemos su patrimonio mientras usted duerme.</p>
+        </div>
+    </div>
+
+    <div class="service-container">
+        <!-- Estadísticas -->
+        <div class="monitoring-stats">
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Monitoreo continuo</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+5000</div>
+                <div class="stat-label">Sensores activos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">45 seg</div>
+                <div class="stat-label">Tiempo de respuesta</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Cobertura nacional</div>
+            </div>
+        </div>
+
+        <!-- Espacio para imagen -->
+        <div class="image-placeholder">
+            [ESPACIO PARA IMAGEN DE CENTRAL DE MONITOREO]
+        </div>
+
+        <!-- Tipos de alarmas -->
+        <div class="service-section">
+            <h2>Sistemas de Alarma</h2>
+            <div class="alarm-types">
+                <div class="alarm-type">
+                    <h3>Alarmas contra Robo</h3>
+                    <p>Sensores de movimiento, apertura de puertas/ventanas, barreras perimetrales y detectores de vibración para protección antirrobo.</p>
+                    <ul class="features-list" style="margin-top: 1rem;">
+                        <li>Detectores de movimiento por infrarrojo</li>
+                        <li>Contactos magnéticos para puertas</li>
+                        <li>Barreras perimetrales</li>
+                        <li>Sirenas de alta potencia</li>
+                    </ul>
+                </div>
+                
+                <div class="alarm-type">
+                    <h3>Alarmas contra Incendio</h3>
+                    <p>Detección temprana de humo, calor y monóxido de carbono para prevenir emergencias por incendio.</p>
+                    <ul class="features-list" style="margin-top: 1rem;">
+                        <li>Detectores de humo fotoeléctricos</li>
+                        <li>Detectores de temperatura</li>
+                        <li>Estaciones manuales</li>
+                        <li>Sistema de rociadores</li>
+                    </ul>
+                </div>
+                
+                <div class="alarm-type">
+                    <h3>Alarmas de Emergencia Médica</h3>
+                    <p>Botones de pánico y dispositivos de asistencia para emergencias médicas o situaciones de riesgo.</p>
+                    <ul class="features-list" style="margin-top: 1rem;">
+                        <li>Botones de pánico fijos y portátiles</li>
+                        <li>Detección de caídas</li>
+                        <li>Monitoreo de signos vitales</li>
+                        <li>Comunicación bidireccional</li>
+                    </ul>
+                </div>
+                
+                <div class="alarm-type">
+                    <h3>Alarmas Técnicas</h3>
+                    <p>Detección de fugas de gas, inundaciones, variaciones eléctricas y otros riesgos técnicos.</p>
+                    <ul class="features-list" style="margin-top: 1rem;">
+                        <li>Detectores de gas natural</li>
+                        <li>Sensores de inundación</li>
+                        <li>Monitoreo de temperatura</li>
+                        <li>Control de voltaje</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios de monitoreo -->
+        <div class="service-section">
+            <h2>Nuestros Servicios de Monitoreo</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">📡</div>
+                    <h3>Monitoreo 24/7</h3>
+                    <p>Central de monitoreo operada las 24 horas, los 365 días del año por personal altamente capacitado.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h3>Verificación de Alarmas</h3>
+                    <p>Protocolo de verificación antes de activar los planes de respuesta para evitar falsas alarmas.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>App Móvil</h3>
+                    <p>Controle su sistema de alarmas desde su smartphone: active, desactive y reciba notificaciones.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚓</div>
+                    <h3>Respuesta Inmediata</h3>
+                    <p>Unidades de respuesta disponibles para acudir al sitio ante cualquier activación.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Reportes Mensuales</h3>
+                    <p>Informe detallado de actividades, activaciones y tiempos de respuesta.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Mantenimiento</h3>
+                    <p>Revisión periódica de equipos y sistema para garantizar su correcto funcionamiento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espacio para imagen -->
+        <div class="image-placeholder">
+            [ESPACIO PARA IMAGEN DE SISTEMA DE ALARMAS]
+        </div>
+
+        <!-- Tecnologías utilizadas -->
+        <div class="service-section">
+            <h2>Tecnologías de Monitoreo</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <p>Centrales de Alarmas</p>
+                </div>
+                <div class="tech-item">
+                    <p>Sensores Inalámbricos</p>
+                </div>
+                <div class="tech-item">
+                    <p>Comunicación GSM</p>
+                </div>
+                <div class="tech-item">
+                    <p>Red IP</p>
+                </div>
+                <div class="tech-item">
+                    <p>Inteligencia Artificial</p>
+                </div>
+                <div class="tech-item">
+                    <p>Detección de Patrones</p>
+                </div>
+                <div class="tech-item">
+                    <p>Backup Energía</p>
+                </div>
+                <div class="tech-item">
+                    <p>Doble Vía Comunicación</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Características destacadas -->
+        <div class="service-section">
+            <h2>Características Destacadas</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Ventajas de Nuestro Sistema</h3>
+                    <ul class="features-list">
+                        <li>Monitoreo en tiempo real 24/7</li>
+                        <li>Verificación de alarmas por audio/video</li>
+                        <li>Respuesta inmediata de unidades</li>
+                        <li>Coordinación con autoridades</li>
+                        <li>Backup de comunicación</li>
+                        <li>Sistema anti-sabotaje</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Beneficios para el Cliente</h3>
+                    <ul class="features-list">
+                        <li>Tranquilidad y tranquilidad</li>
+                        <li>Reducción de primas de seguro</li>
+                        <li>Protección 24/7 sin interrupción</li>
+                        <li>Detección temprana de riesgos</li>
+                        <li>Ahorro en costos de seguridad</li>
+                        <li>Control desde cualquier lugar</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Protocolos de Actuación</h3>
+                    <ul class="features-list">
+                        <li>Verificación en máximo 30 segundos</li>
+                        <li>Contacto a lista de emergencias</li>
+                        <li>Despacho de unidad de respuesta</li>
+                        <li>Notificación a autoridades</li>
+                        <li>Reporte detallado de incidente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>Proteja su hogar o negocio 24/7</h3>
+            <p>Instale nuestro sistema de alarmas y monitoreo y reciba el primer mes sin costo en la mensualidad de monitoreo.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Cotización</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        if (window.innerWidth <= 768) {
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.dropdown');
+                
+                if (dropdown) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

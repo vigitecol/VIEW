@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIGITECOL LTDA | Seguridad y Vigilancia</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navegación desktop */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-item>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item>a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        /* Dropdown menus */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 10px;
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f5f5f5;
+            color: #FFD700;
+            padding-left: 2rem;
+        }
+
+        /* Flecha indicadora de dropdown */
+        .arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Overlay para móvil */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Carrusel en perspectiva */
+        .carousel-container {
+            margin-top: 80px;
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 45%;
+            max-width: 700px;
+            height: 65%;
+            border-radius: 20px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide[data-position="0"] {
+            transform: translateX(0) scale(1);
+            z-index: 3;
+            opacity: 1;
+            filter: blur(0);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-slide[data-position="1"] {
+            transform: translateX(85%) scale(0.8);
+            z-index: 2;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+
+        .carousel-slide[data-position="-1"] {
+            transform: translateX(-85%) scale(0.8);
+            z-index: 2;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+
+        .carousel-slide[data-position="2"],
+        .carousel-slide[data-position="-2"],
+        .carousel-slide[data-position="3"],
+        .carousel-slide[data-position="-3"] {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-slide.slide-1 {
+            background: linear-gradient(135deg, #1a3a5c 0%, #0f2a44 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .carousel-slide.slide-2 {
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+        }
+
+        .carousel-slide.slide-3 {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+        }
+
+        .slide-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .slide-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            transition: all 0.5s ease;
+        }
+
+        .slide-2 .slide-content h1,
+        .slide-2 .slide-content p {
+            color: #ffffff;
+        }
+
+        .slide-3 .slide-content h1 {
+            color: #000000;
+        }
+
+        .slide-3 .slide-content p {
+            color: #1a1a1a;
+        }
+
+        .slide-content p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #000;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-arrow:hover {
+            background: #FFD700;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .carousel-arrow.prev {
+            left: 15%;
+        }
+
+        .carousel-arrow.next {
+            right: 15%;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #FFD700;
+            transform: scale(1.3);
+            border-color: #000;
+        }
+
+        .dot:hover {
+            background: #FFD700;
+        }
+
+        /* ========== NUEVAS SECCIONES - MÁS ESPACIADAS ========== */
+
+        /* Sección de Información de Interés */
+        .info-interes-section {
+            padding: 8rem 5%;
+            background: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #FFD700;
+        }
+
+        .mini-carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 3rem 0;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .mini-carousel {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+        }
+
+        .info-card {
+            min-width: calc(25% - 1.5rem);
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #000);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card.active {
+            background: #000;
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 40px 70px rgba(255, 215, 0, 0.25);
+            border: 2px solid #FFD700;
+            z-index: 5;
+        }
+
+        .info-card.active .info-icon,
+        .info-card.active h3,
+        .info-card.active p {
+            color: #FFD700;
+        }
+
+        .info-card.active p {
+            color: #fff;
+        }
+
+        .info-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card.active p {
+            color: #fff;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-date i {
+            color: #FFD700;
+        }
+
+        .mini-carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .mini-control {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .mini-control:hover {
+            background: #FFD700;
+            transform: scale(1.1);
+        }
+
+        /* Sección Conozca más + Video */
+        .conozca-section {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+        }
+
+        .conozca-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .conozca-content {
+            padding-right: 2rem;
+        }
+
+        .conozca-content h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .conozca-content h2 span {
+            color: #FFD700;
+            display: block;
+            font-size: 3.2rem;
+        }
+
+        .conozca-content p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+        }
+
+        .stats-mini {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-mini-item {
+            text-align: center;
+        }
+
+        .stat-mini-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .stat-mini-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .play-button {
+            width: 90px;
+            height: 90px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .play-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .play-button span {
+            color: #000;
+            font-size: 2.5rem;
+        }
+
+        .video-placeholder p {
+            font-size: 1.2rem;
+            z-index: 2;
+            color: #FFD700;
+        }
+
+        /* Sección Beneficios alternada */
+        .beneficios-section {
+            padding: 8rem 5%;
+            background: #ffffff;
+        }
+
+        .beneficio-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .beneficio-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .beneficio-item.reverse {
+            direction: rtl;
+        }
+
+        .beneficio-item.reverse .beneficio-content {
+            direction: ltr;
+        }
+
+        .beneficio-content {
+            padding: 2rem;
+        }
+
+        .beneficio-content h3 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .beneficio-content h3 span {
+            color: #FFD700;
+        }
+
+        .beneficio-content p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+        }
+
+        .beneficio-list {
+            list-style: none;
+        }
+
+        .beneficio-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .beneficio-list li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .beneficio-video {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            box-shadow: 0 40px 70px rgba(255, 215, 0, 0.25);
+        }
+
+        .beneficio-video .play-button {
+            background: #000;
+        }
+
+        .beneficio-video .play-button span {
+            color: #FFD700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .cta-content h2 span {
+            color: #FFD700;
+        }
+
+        .cta-content p {
+            color: #ccc;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: #FFD700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            border-color: #FFD700;
+            color: #FFD700;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Convenios / Aliados */
+        .convenios-section {
+            padding: 8rem 5%;
+            background: #f8f8f8;
+        }
+
+        .aliados-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 3rem 0;
+        }
+
+        .aliados-track {
+            display: flex;
+            gap: 4rem;
+            animation: scroll 25s linear infinite;
+            width: fit-content;
+        }
+
+        .aliados-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .aliado-item {
+            min-width: 180px;
+            height: 100px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .aliado-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.25);
+            border: 1px solid #FFD700;
+        }
+
+        .aliado-item span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Footer nuevo */
+        .footer-new {
+            background: #0a0a0a;
+            color: #fff;
+            padding: 5rem 5% 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #FFD700;
+        }
+
+        .footer-col p {
+            color: #bbb;
+            line-height: 2;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-col i {
+            color: #FFD700;
+            width: 20px;
+            font-style: normal;
+        }
+
+        .horario-item {
+            display: flex;
+            justify-content: space-between;
+            color: #bbb;
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .horario-item span:first-child {
+            color: #FFD700;
+        }
+
+        .iso-container {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .iso-badge {
+            width: 70px;
+            height: 70px;
+            background: #222;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            background: #FFD700;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .copyright-new {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive mejorado */
+        @media (max-width: 1200px) {
+            .info-card {
+                min-width: calc(33.333% - 1.33rem);
+            }
+
+            .conozca-grid,
+            .beneficio-item {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .conozca-content h2 {
+                font-size: 2.3rem;
+            }
+
+            .conozca-content h2 span {
+                font-size: 2.8rem;
+            }
+
+            .beneficio-content h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-item>a {
+                font-size: 1.1rem;
+                padding: 0.8rem 0;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-item>a::after {
+                display: none;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                background: #f8f8f8;
+                border-radius: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-item.active .dropdown {
+                max-height: 300px;
+                padding: 0.8rem 0;
+                margin-top: 0.5rem;
+            }
+
+            .nav-overlay.active {
+                display: block;
+            }
+
+            .carousel-container {
+                height: 60vh;
+            }
+
+            .info-card {
+                min-width: calc(50% - 1rem);
+            }
+
+            .conozca-grid,
+            .beneficio-item {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .conozca-content {
+                padding-right: 0;
+            }
+
+            .beneficio-item.reverse {
+                direction: ltr;
+            }
+
+            .video-placeholder,
+            .beneficio-video {
+                height: 300px;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+
+            .footer-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-card {
+                min-width: 100%;
+            }
+
+            .stats-mini {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .video-placeholder,
+            .beneficio-video {
+                height: 250px;
+            }
+
+            .cta-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #000000;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+
+.iso-container {
+    display: flex;
+    justify-content: flex-start; 
+    margin: 2rem 0;
+}
+
+.iso-badge {
+    width: 350px;              
+    height: 350px;
+    background: #000;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: all 0.4s ease;
+}
+
+.iso-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;       
+}
+
+
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .iso-container {
+        justify-content: center;   /* centrada en tablet */
+    }
+
+    .iso-badge {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .iso-badge {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Overlay para móvil -->
+    <div class="nav-overlay"></div>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="/index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+    </div>
+
+
+
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="/index.html">Inicio <span class="arrow"></span></a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="/QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="/QuienesS/mision.html">Misión</a>
+                    <a href="/QuienesS/vision.html">Visión</a>
+                    <a href="/QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="/QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="/QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="/QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="/Servicios/seguridadFisica.html">Seguridad Fisica</a>
+                    <a href="/Servicios/monitoreo.html">Monitoreo y Alarmas </a>
+                    <a href="/Servicios/cctv.html">CCTV (Camaras de Seguridad)</a>
+                    <a href="/Servicios/controlAcceso.html">Control de Acceso </a>
+                    <a href="/Servicios/escoltas.html">Escoltas y Proteccion Personal </a>
+                    <a href="/Servicios/seguridadEventos.html">Seguridad en Eventos </a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="/beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="/beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="/beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="/beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="/beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="/contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrusel principal -->
+    <section id="inicio" class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-slide slide-1" data-position="-1">
+                <div class="slide-content">
+                    <h1>Seguridad Integral</h1>
+                    <p>Protegiendo lo que más importa con tecnología de vanguardia</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2" data-position="0">
+                <div class="slide-content">
+                    <h1>Vigilancia 24/7</h1>
+                    <p>Monitoreo constante y respuesta inmediata para su tranquilidad</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3" data-position="1">
+                <div class="slide-content">
+                    <h1>Más de 10 años</h1>
+                    <p>Experiencia y confianza respaldan nuestros servicios</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-arrow prev" onclick="moveSlide(-1)">←</button>
+        <button class="carousel-arrow next" onclick="moveSlide(1)">→</button>
+
+        <div class="carousel-dots">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 1: Información de Interés - Mini Carrusel INFINITO -->
+    <section class="info-interes-section">
+        <div class="section-subtitle">Mantente informado</div>
+        <h2 class="section-title">Información de Interés</h2>
+
+        <div class="mini-carousel-container">
+            <div class="mini-carousel" id="miniCarousel">
+                <!-- Las tarjetas se duplicarán con JavaScript para efecto infinito -->
+                <div class="info-card">
+                    <div class="info-icon">📹</div>
+                    <h3>Nuevo sistema CCTV</h3>
+                    <p>Lanzamos nuestro sistema de cámaras con inteligencia artificial para detección de intrusiones.
+                    </p>
+                    <div class="card-date">
+                        <i>📅</i> 15 Feb 2026
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🏆</div>
+                    <h3>Premio Seguridad 2026</h3>
+                    <p>Reconocidos como la mejor empresa de vigilancia del año en Colombia.</p>
+                    <div class="card-date">
+                        <i>📅</i> 10 Ene 2026
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🚔</div>
+                    <h3>Alianza con Policía</h3>
+                    <p>Nuevo convenio para respuesta inmediata en tiempo real con las autoridades.</p>
+                    <div class="card-date">
+                        <i>📅</i> 5 Dic 2025
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💡</div>
+                    <h3>Tecnología biométrica</h3>
+                    <p>Implementamos reconocimiento facial en sistemas de control de acceso.</p>
+                    <div class="card-date">
+                        <i>📅</i> 20 Nov 2025
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🌐</div>
+                    <h3>Expansión nacional</h3>
+                    <p>Llegamos a 8 nuevas ciudades con nuestros servicios de vigilancia.</p>
+                    <div class="card-date">
+                        <i>📅</i> 1 Nov 2025
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🔒</div>
+                    <h3>Certificación ISO 27001</h3>
+                    <p>Obtenemos la certificación en seguridad de la información.</p>
+                    <div class="card-date">
+                        <i>📅</i> 15 Oct 2025
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mini-carousel-controls">
+            <button class="mini-control" onclick="moveMiniCarousel(-1)">←</button>
+            <button class="mini-control" onclick="moveMiniCarousel(1)">→</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Conozca más sobre VIGITECOL + Video (texto izquierda, video derecha) -->
+    <section class="conozca-section">
+        <div class="conozca-grid">
+            <div class="conozca-content">
+                <h2>
+                    Conozca más sobre
+                    <span>VIGITECOL LTDA</span>
+                </h2>
+                <p>
+                    <strong>VIGITECOL LTDA</strong> es una empresa especializada en servicios de vigilancia y seguridad
+                    con más de 10 años de experiencia en el mercado colombiano. Contamos con certificación
+                    ISO 9001:2015 en todos nuestros procesos de seguridad electrónica y vigilancia física.
+                </p>
+                <p>
+                    Brindamos no solo excelentes servicios de seguridad, sino que además ofrecemos a nuestros
+                    clientes múltiples beneficios en protección, monitoreo 24/7 y tecnología de punta para
+                    la tranquilidad de su negocio y hogar.
+                </p>
+                <div class="stats-mini">
+                    <div class="stat-mini-item">
+                        <div class="stat-mini-number">+800</div>
+                        <div class="stat-mini-label">Clientes activos</div>
+                    </div>
+                    <div class="stat-mini-item">
+                        <div class="stat-mini-number">+200</div>
+                        <div class="stat-mini-label">Agentes de seguridad</div>
+                    </div>
+                    <div class="stat-mini-item">
+                        <div class="stat-mini-number">12+</div>
+                        <div class="stat-mini-label">Años de experiencia</div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-placeholder">
+                <div class="play-button">
+                    <span>▶</span>
+                </div>
+                <p>Video corporativo - Conozca nuestra historia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Beneficios (texto derecha, video izquierda) -->
+    <section class="beneficios-section">
+        <div class="beneficio-item">
+            <div class="beneficio-video">
+                <div class="play-button">
+                    <span>▶</span>
+                </div>
+                <p style="color: #000;">Beneficios de ser parte</p>
+            </div>
+            <div class="beneficio-content">
+                <h3>Beneficios de ser parte de <span>VIGITECOL LTDA</span></h3>
+                <p>
+                    Ser parte de nuestra familia de clientes te brinda acceso a beneficios exclusivos
+                    que garantizan la máxima protección para tu patrimonio.
+                </p>
+                <ul class="beneficio-list">
+                    <li>Monitoreo en tiempo real 24/7 con respuesta inmediata</li>
+                    <li>Soporte técnico prioritario para sistemas de seguridad</li>
+                    <li>Descuentos especiales en actualización de equipos</li>
+                    <li>Capacitación continua en prevención de riesgos</li>
+                    <li>Seguro de responsabilidad civil incluido</li>
+                    <li>Informes detallados de seguridad mensuales</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: CTA - Haz parte de VIGITECOL -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Haz parte de <span>VIGITECOL</span> ya</h2>
+            <p>
+                Únete a las más de 800 empresas y hogares que ya confían en nosotros para su seguridad.
+                Te ofrecemos soluciones personalizadas y acompañamiento continuo.
+            </p>
+            <a href="#" class="cta-button">Solicita una cotización</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: Convenios / Empresas Aliadas (Carrusel infinito) -->
+    <section class="convenios-section">
+        <div class="section-subtitle">Nuestros Aliados</div>
+        <h2 class="section-title">Convenios y Empresas Aliadas</h2>
+
+        <div class="aliados-carousel">
+            <div class="aliados-track" id="aliadosTrack">
+                <!-- Grupo 1 -->
+                <div class="aliado-item"><span>Monarca</span></div>
+                <div class="aliado-item"><span>Lider Servicios</span></div>
+                <div class="aliado-item"><span>Formando Seguridad</span></div>
+                <div class="aliado-item"><span>Formando Alturas</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+    <footer class="footer-new">
+        <div class="footer-grid">
+            <!-- Oficinas y Horarios -->
+            <div class="footer-col">
+                <h4>Oficinas</h4>
+                <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+                <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+
+                <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+                <div class="horario-item">
+                    <span>Lunes - Viernes:</span>
+                    <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+                </div>
+                <div class="horario-item">
+                    <span>Sábados:</span>
+                    <span>8:00 am - 12:00 pm</span>
+                </div>
+                <div class="horario-item">
+                    <span>Domingos y festivos:</span>
+                    <span>Emergencias 24/7 (Monitoreo)</span>
+                </div>
+            </div>
+
+            <!-- Contacto -->
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+                <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+                <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+                <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+                <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+            </div>
+
+            <!-- <div class="footer-col">
+                <h4>Dirección Principal</h4>
+                <p>Calle 100 #15-80, Piso 8</p>
+                <p>Bogotá D.C., Colombia</p>
+                <p>Código Postal: 110111</p>
+                <p>NIT: 900.123.456-7</p> -->
+
+                <div class="iso-container">
+                    <div class="iso-badge">
+                        <img src="/images/ISO.png" alt="">
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">ig</a>
+                    <a href="#" class="social-link">x</a>
+                    <a href="#" class="social-link">yt</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-new">
+            VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+        </div>
+    </footer>
+
+    <script>
+        // Carrusel principal
+        let currentIndex = 1;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                let position = index - currentIndex;
+                if (position < -1) {
+                    position += totalSlides;
+                } else if (position > 1) {
+                    position -= totalSlides;
+                }
+                slide.setAttribute('data-position', position);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        updateCarousel();
+
+        // Mini carrusel de información INFINITO
+        let miniIndex = 0;
+        const miniCarousel = document.getElementById('miniCarousel');
+        const miniCards = document.querySelectorAll('.info-card');
+        const miniTotalCards = miniCards.length;
+
+        // Determinar cuántas tarjetas mostrar según el ancho
+        function getCardsToShow() {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 768) return 2;
+            if (window.innerWidth <= 1200) return 3;
+            return 4;
+        }
+
+        let cardsToShow = getCardsToShow();
+
+        // Duplicar tarjetas para efecto infinito
+        function setupInfiniteCarousel() {
+            const cards = Array.from(miniCards);
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                miniCarousel.appendChild(clone);
+            });
+
+            // Actualizar la variable global con todas las tarjetas (originales + clones)
+            window.allMiniCards = document.querySelectorAll('.info-card');
+        }
+
+        setupInfiniteCarousel();
+        const allMiniCards = document.querySelectorAll('.info-card');
+        const totalCards = allMiniCards.length;
+
+        function updateMiniCarousel() {
+            const cardWidth = allMiniCards[0].offsetWidth + 32; // width + gap
+            miniCarousel.style.transform = `translateX(-${miniIndex * cardWidth}px)`;
+
+            // Actualizar clase active en la tarjeta central visible
+            const startIndex = miniIndex;
+            const centerIndex = startIndex + Math.floor(cardsToShow / 2);
+
+            allMiniCards.forEach((card, index) => {
+                card.classList.remove('active');
+                if (index === centerIndex) {
+                    card.classList.add('active');
+                }
+            });
+
+            // Reinicio infinito
+            if (miniIndex >= totalCards - cardsToShow) {
+                setTimeout(() => {
+                    miniCarousel.style.transition = 'none';
+                    miniIndex = 0;
+                    miniCarousel.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        miniCarousel.style.transition = 'transform 0.5s ease';
+                    }, 50);
+                }, 500);
+            }
+
+            if (miniIndex < 0) {
+                setTimeout(() => {
+                    miniCarousel.style.transition = 'none';
+                    miniIndex = totalCards - cardsToShow - 1;
+                    miniCarousel.style.transform = `translateX(-${miniIndex * cardWidth}px)`;
+                    setTimeout(() => {
+                        miniCarousel.style.transition = 'transform 0.5s ease';
+                    }, 50);
+                }, 500);
+            }
+        }
+
+        function moveMiniCarousel(direction) {
+            miniIndex += direction;
+
+            // Límites para el efecto infinito
+            if (miniIndex < 0) {
+                miniIndex = totalCards - cardsToShow - 1;
+            }
+            if (miniIndex > totalCards - cardsToShow) {
+                miniIndex = 0;
+            }
+
+            updateMiniCarousel();
+        }
+
+        // Actualizar cardsToShow al redimensionar
+        window.addEventListener('resize', () => {
+            cardsToShow = getCardsToShow();
+            miniIndex = 0;
+            updateMiniCarousel();
+        });
+
+        // Inicializar mini carrusel
+        setTimeout(() => {
+            updateMiniCarousel();
+        }, 100);
+
+        // Mobile menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Mobile dropdown
+        if (window.innerWidth <= 768) {
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.dropdown');
+
+                if (dropdown) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        if (navLinks.classList.contains('active')) {
+                            toggleMenu();
+                        }
+                    }
+                }
+            });
+        });
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

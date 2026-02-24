@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad en Eventos - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .service-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .service-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-header h1 span {
+            color: #FFD700;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .service-section {
+            margin-bottom: 5rem;
+        }
+        
+        .service-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .event-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .event-type {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 5px solid #FFD700;
+        }
+        
+        .event-type h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        .event-type p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            border: 2px dashed #FFD700;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background: #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .tech-item:hover p {
+            color: #000;
+        }
+        
+        .tech-item p {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .phase-item {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .phase-item .phase {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-box h3 {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .service-grid,
+            .event-stats,
+            .tech-grid,
+            .phase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .service-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-grid,
+            .event-stats,
+            .tech-grid,
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+</div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+                
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="../QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="seguridadFisica.html">Seguridad Física</a>
+                    <a href="monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="controlAcceso.html">Control de Acceso</a>
+                    <a href="escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="service-header">
+        <div class="service-header-content">
+            <h1>Seguridad en <span>Eventos</span></h1>
+            <p>Protección integral para conciertos, ferias, eventos empresariales, convenciones y espectáculos públicos con personal especializado en manejo de multitudes.</p>
+        </div>
+    </div>
+
+    <div class="service-container">
+        <!-- Estadísticas -->
+        <div class="event-stats">
+            <div class="stat-item">
+                <div class="stat-number">+300</div>
+                <div class="stat-label">Eventos protegidos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Asistentes seguros</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Incidentes graves</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Planeación</div>
+            </div>
+        </div>
+
+        <!-- Espacio para imagen -->
+        <div class="image-placeholder">
+            [ESPACIO PARA IMAGEN DE SEGURIDAD EN EVENTOS]
+        </div>
+
+        <!-- Tipos de eventos -->
+        <div class="service-section">
+            <h2>Eventos que Cubrimos</h2>
+            <div class="event-grid">
+                <div class="event-type">
+                    <h3>🎵 Conciertos y Festivales</h3>
+                    <p>Seguridad para eventos musicales masivos con manejo de multitudes, control de accesos y prevención de avalanchas.</p>
+                </div>
+                
+                <div class="event-type">
+                    <h3>🏢 Eventos Empresariales</h3>
+                    <p>Convenciones, congresos, lanzamientos de producto y reuniones corporativas con protocolos VIP.</p>
+                </div>
+                
+                <div class="event-type">
+                    <h3>⚽ Eventos Deportivos</h3>
+                    <p>Partidos de fútbol, torneos, maratones y competencias con control de hinchas y barras.</p>
+                </div>
+                
+                <div class="event-type">
+                    <h3>🎪 Ferias y Exposiciones</h3>
+                    <p>Eventos comerciales, ferias empresariales y exposiciones con control de stands y visitantes.</p>
+                </div>
+                
+                <div class="event-type">
+                    <h3>🎉 Eventos Privados</h3>
+                    <p>Fiestas, bodas, celebraciones familiares y reuniones sociales con seguridad discreta.</p>
+                </div>
+                
+                <div class="event-type">
+                    <h3>🗳️ Eventos Políticos</h3>
+                    <p>Mitines, concentraciones y eventos políticos con protocolos especiales de seguridad.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fases de la seguridad en eventos -->
+        <div class="service-section">
+            <h2>Fases de Nuestro Servicio</h2>
+            <div class="phase-grid">
+                <div class="phase-item">
+                    <div class="phase">01</div>
+                    <h3>Planeación</h3>
+                    <p>Análisis de riesgos, diseño de plan de seguridad y coordinación con autoridades.</p>
+                </div>
+                
+                <div class="phase-item">
+                    <div class="phase">02</div>
+                    <h3>Pre-evento</h3>
+                    <p>Revisión de instalaciones, instalación de equipos y despliegue de personal.</p>
+                </div>
+                
+                <div class="phase-item">
+                    <div class="phase">03</div>
+                    <h3>Ejecución</h3>
+                    <p>Control de accesos, monitoreo permanente y manejo de incidentes en tiempo real.</p>
+                </div>
+                
+                <div class="phase-item">
+                    <div class="phase">04</div>
+                    <h3>Post-evento</h3>
+                    <p>Evacuación controlada y reporte final de novedades.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios de seguridad para eventos -->
+        <div class="service-section">
+            <h2>Nuestros Servicios</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚪</div>
+                    <h3>Control de Accesos</h3>
+                    <p>Revisión de ingresos, manejo de listas de invitados, control de boletas y detección de falsificaciones.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Manejo de Multitudes</h3>
+                    <p>Personal capacitado en control de masas, prevención de avalanchas y manejo de pánico.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📡</div>
+                    <h3>Monitoreo en Vivo</h3>
+                    <p>Cámaras temporales y personal de monitoreo para vigilancia en tiempo real del evento.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🆘</div>
+                    <h3>Primeros Auxilios</h3>
+                    <p>Puestos de atención médica, ambulancias y personal paramédico en el lugar.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Protección VIP</h3>
+                    <p>Esquemas especiales para artistas, conferencistas y personalidades presentes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚒</div>
+                    <h3>Plan de Emergencias</h3>
+                    <p>Protocolos de evacuación, rutas de salida y coordinación con bomberos y policía.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espacio para imagen -->
+        <div class="image-placeholder">
+            [ESPACIO PARA IMAGEN DE CONTROL DE ACCESOS]
+        </div>
+
+        <!-- Tecnologías utilizadas -->
+        <div class="service-section">
+            <h2>Tecnologías Aplicadas</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <p>Arcos detectores</p>
+                </div>
+                <div class="tech-item">
+                    <p>Escáner de boletas</p>
+                </div>
+                <div class="tech-item">
+                    <p>Walkie-talkies</p>
+                </div>
+                <div class="tech-item">
+                    <p>Cámaras temporales</p>
+                </div>
+                <div class="tech-item">
+                    <p>Drones de vigilancia</p>
+                </div>
+                <div class="tech-item">
+                    <p>Pulseras RFID</p>
+                </div>
+                <div class="tech-item">
+                    <p>Terminales de control</p>
+                </div>
+                <div class="tech-item">
+                    <p>Software de aforo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal especializado -->
+        <div class="service-section">
+            <h2>Nuestro Personal</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Supervisores</h3>
+                    <ul class="features-list">
+                        <li>Coordinación general del evento</li>
+                        <li>Comunicación con organizadores</li>
+                        <li>Toma de decisiones en tiempo real</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Guardas de Seguridad</h3>
+                    <ul class="features-list">
+                        <li>Control de accesos y perímetros</li>
+                        <li>Manejo de multitudes</li>
+                        <li>Atención al público</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Personal Médico</h3>
+                    <ul class="features-list">
+                        <li>Paramédicos en sitio</li>
+                        <li>Ambulancias disponibles</li>
+                        <li>Atención de emergencias</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>¿Planea un evento?</h3>
+            <p>Solicite una asesoría gratuita para diseñar el plan de seguridad de su evento, sin importar su tamaño o tipo.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Plan de Seguridad</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        if (window.innerWidth <= 768) {
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.dropdown');
+                
+                if (dropdown) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

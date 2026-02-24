@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deberes y Derechos de los Asociados - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .deberes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .deberes-intro {
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            padding: 4rem;
+            border-radius: 30px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .deberes-intro h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .deberes-intro p {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .deberes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .deberes-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .deberes-card h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .deberes-card h3 span {
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .deberes-card.deberes h3 span {
+            background: #000;
+            color: #FFD700;
+        }
+        
+        .deberes-list {
+            list-style: none;
+        }
+        
+        .deberes-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .deberes-list li::before {
+            content: '•';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+        
+        .deberes-list strong {
+            color: #000;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        
+        .importante-card {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .importante-card h4 {
+            font-size: 1.8rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        
+        .importante-card p {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .deberes-video-space {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            border-radius: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .video-container {
+            width: 100%;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            border: 2px dashed #FFD700;
+        }
+        
+        .video-placeholder span {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .video-placeholder p {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .faq-section {
+            margin: 4rem 0;
+        }
+        
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 3rem;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .faq-item {
+            background: #f8f8f8;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .faq-question span {
+            background: #FFD700;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            padding-left: 3rem;
+        }
+        
+        .procedimiento-box {
+            background: #f8f8f8;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            text-align: center;
+        }
+        
+        .procedimiento-box h4 {
+            font-size: 1.8rem;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        
+        .procedimiento-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .deberes-grid,
+            .faq-grid,
+            .procedimiento-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .deberes-intro {
+                padding: 2rem;
+            }
+            
+            .deberes-intro h2 {
+                font-size: 2rem;
+            }
+            
+            .video-container {
+                height: 250px;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="/index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+    </div>
+
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="principios.html">Principios Orientadores</a>
+                    <a href="mision.html">Misión</a>
+                    <a href="vision.html">Visión</a>
+                    <a href="valores.html">Valores de la Organización</a>
+                    <a href="objetivos.html">Objetivos Organizacionales</a>
+                    <a href="deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../Servicios/seguridadFisica.html">Seguridad Física</a>
+                    <a href="../Servicios/monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="../Servicios/cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="../Servicios/controlAcceso.html">Control de Acceso</a>
+                    <a href="../Servicios/escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="../Servicios/seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1 class="page-title">Deberes y Derechos de los Asociados</h1>
+        <p class="page-subtitle">Conoce las responsabilidades y beneficios que tienes como parte de nuestra familia VIGITECOL, según nuestra Política de Tratamiento de Datos y Código de Ética.</p>
+    </div>
+
+    <div class="content-section">
+        <div class="deberes-container">
+            <div class="deberes-intro">
+                <h2>Nuestro Compromiso con los Asociados</h2>
+                <p>En VIGITECOL LTDA creemos en una relación transparente y mutuamente beneficiosa con nuestros asociados, basada en el respeto, la confianza y la corresponsabilidad, en cumplimiento de la Ley 1581 de 2012 y demás normativa aplicable.</p>
+            </div>
+            
+            <div class="deberes-grid">
+                <!-- Derechos basados en la Ley 1581 -->
+                <div class="deberes-card">
+                    <h3>
+                        <span>✓</span>
+                        Derechos de los Titulares
+                    </h3>
+                    <ul class="deberes-list">
+                        <li><strong>Conocer, actualizar y rectificar:</strong> Todos los datos personales que hayan sido objeto de tratamiento por VIGITECOL LTDA.</li>
+                        <li><strong>Solicitar prueba de la autorización:</strong> Exigir demostración de que se cuenta con la autorización para el tratamiento de sus datos.</li>
+                        <li><strong>Ser informado:</strong> Conocer, previa solicitud, el uso que se ha dado a sus datos personales.</li>
+                        <li><strong>Presentar quejas:</strong> Ante la autoridad competente (Superintendencia de Industria y Comercio) por infracciones a la ley.</li>
+                        <li><strong>Revocar autorización:</strong> Solicitar la supresión del dato cuando no exista un deber legal o contractual que obligue a permanecer en la base de datos.</li>
+                        <li><strong>Acceso gratuito:</strong> Acceder en forma gratuita a sus datos personales que hayan sido objeto de tratamiento.</li>
+                        <li><strong>Confidencialidad:</strong> Que sus datos sean tratados con absoluta reserva y discreción.</li>
+                        <li><strong>Seguridad:</strong> Implementación de medidas para proteger los datos contra accesos no autorizados, pérdida o alteración.</li>
+                    </ul>
+                </div>
+                
+                <!-- Deberes basados en el Código de Ética -->
+                <div class="deberes-card deberes">
+                    <h3>
+                        <span>✓</span>
+                        Deberes de los Asociados
+                    </h3>
+                    <ul class="deberes-list">
+                        <li><strong>Aceptación del Código de Ética:</strong> Leer, entender, aceptar y firmar el código de ética y conducta de la organización.</li>
+                        <li><strong>Comportamiento profesional:</strong> Mantener un comportamiento profesional y respetuoso en todo momento.</li>
+                        <li><strong>Confidencialidad:</strong> Mantener la reserva de la información personal y confidencial a la que se tenga acceso.</li>
+                        <li><strong>No corrupción:</strong> No aceptar sobornos y denunciar cualquier acto de fraude, soborno o corrupción.</li>
+                        <li><strong>Informar incidentes:</strong> Reportar cualquier incidente o anomalía que pueda afectar la seguridad o el servicio.</li>
+                        <li><strong>Legalidad:</strong> No tener ningún tipo de relación con grupos al margen de la ley.</li>
+                        <li><strong>Uso adecuado:</strong> Utilizar los servicios y sistemas de acuerdo con las instrucciones y manuales proporcionados.</li>
+                        <li><strong>Pago oportuno:</strong> Cumplir con las obligaciones económicas en los plazos establecidos.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <!-- Procedimiento de atención (basado en la Política de Datos) -->
+            <div class="procedimiento-box">
+                <h4>Procedimiento para Consultas y Reclamos</h4>
+                <div class="procedimiento-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Presentar solicitud en Sede Principal: Carrera 23 Nro. 43-12, Manizales</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>Correo: servicioalcliente@vigitecol.com o sistemasdegestion@vigitecol.com</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Teléfono: (606) 881-31-21</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p>Respuesta: Máximo 10 días hábiles (prórroga de 5 días si es necesario)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Importante con base legal -->
+            <div class="importante-card">
+                <h4>Base Legal</h4>
+                <p>Estos derechos y deberes están respaldados por la legislación colombiana: Constitución Política, Ley 1581 de 2012, Decreto Reglamentario 1377 de 2013, y el Código de Ética de VIGITECOL LTDA. Política de Tratamiento de Datos creada el 24 de septiembre de 2024.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script>
+        // Mismo script corregido
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
+
+            function toggleMenu(force) {
+                const isActive = navLinks.classList.contains('active');
+                
+                if (force !== undefined) {
+                    if (force && !isActive) {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    } else if (!force && isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    }
+                } else {
+                    if (isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    } else {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            overlay.addEventListener('click', function() {
+                toggleMenu(false);
+            });
+
+            if (window.innerWidth <= 768) {
+                navItems.forEach(item => {
+                    const link = item.querySelector('a');
+                    const dropdown = item.querySelector('.dropdown');
+                    
+                    if (dropdown) {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            navItems.forEach(otherItem => {
+                                if (otherItem !== item) {
+                                    otherItem.classList.remove('active');
+                                }
+                            });
+                            
+                            item.classList.toggle('active');
+                        });
+                    }
+                });
+            }
+
+            const dropdownLinks = document.querySelectorAll('.dropdown a');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    setTimeout(() => {
+                        toggleMenu(false);
+                    }, 100);
+                });
+            });
+
+            navLinks.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

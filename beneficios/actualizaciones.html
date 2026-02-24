@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizaciones Gratis - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header h1 span {
+            color: #FFD700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section {
+            margin-bottom: 5rem;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        /* Estadísticas */
+        .updates-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .stat-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background: #FFD700;
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+        
+        .stat-card:hover .stat-label {
+            color: #000;
+        }
+        
+        /* Tipos de actualizaciones */
+        .actualizaciones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .actualizacion-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .actualizacion-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+        
+        .actualizacion-icon {
+            width: 90px;
+            height: 90px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .actualizacion-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #000;
+            text-align: center;
+        }
+        
+        .actualizacion-card p {
+            color: #666;
+            line-height: 1.7;
+            text-align: center;
+        }
+        
+        .update-badge {
+            display: inline-block;
+            background: #000;
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        /* Roadmap de actualizaciones */
+        .roadmap-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .roadmap-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #FFD700;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .timeline-left {
+            width: 45%;
+            text-align: right;
+            padding-right: 2rem;
+        }
+        
+        .timeline-right {
+            width: 45%;
+            padding-left: 2rem;
+        }
+        
+        .timeline-date {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .timeline-content {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+        
+        .timeline-content p {
+            color: #666;
+        }
+        
+        /* Ciclo de actualización */
+        .ciclo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .ciclo-item {
+            text-align: center;
+        }
+        
+        .ciclo-numero {
+            width: 60px;
+            height: 60px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        .ciclo-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ciclo-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Historial de versiones */
+        .versiones-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .version-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .version-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .version-numero {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .version-fecha {
+            color: #999;
+        }
+        
+        .version-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .feature-tag {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+        
+        /* Call to Action */
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-box h3 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .updates-stats,
+            .actualizaciones-grid,
+            .ciclo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .roadmap-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-left,
+            .timeline-right {
+                width: 100%;
+                text-align: left;
+                padding-left: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .updates-stats,
+            .actualizaciones-grid,
+            .ciclo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+   <nav class="navbar">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+</div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="../QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../Servicios/seguridadFisica.html">Seguridad Física</a>
+                    <a href="../Servicios/monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="../Servicios/cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="../Servicios/controlAcceso.html">Control de Acceso</a>
+                    <a href="../Servicios/escoltas.html">Escoltas y Protección Personal</a>
+                   <a href="../Servicios/seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="garantia.html">Garantía de calidad</a>
+                    <a href="soporte.html">Soporte 24/7</a>
+                    <a href="capacitacion.html">Capacitación continua</a>
+                    <a href="actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>Actualizaciones <span>Gratis</span></h1>
+            <p>En VIGITECOL, sus sistemas siempre estarán actualizados sin costo adicional. Garantizamos que su inversión en seguridad esté siempre a la vanguardia tecnológica.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <!-- Estadísticas -->
+        <div class="updates-stats">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Actualizaciones al año</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Sin costo para clientes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">+50</div>
+                <div class="stat-label">Mejoras implementadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Actualizaciones automáticas</div>
+            </div>
+        </div>
+
+        <!-- Tipos de actualizaciones -->
+        <div class="section">
+            <h2>Actualizaciones Incluidas</h2>
+            <div class="actualizaciones-grid">
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">💻</div>
+                    <h3>Software de Monitoreo</h3>
+                    <p>Actualizaciones periódicas de nuestra plataforma de monitoreo con nuevas funcionalidades y mejoras de rendimiento.</p>
+                    <div class="update-badge">Trimestral</div>
+                </div>
+                
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">🤖</div>
+                    <h3>Algoritmos de IA</h3>
+                    <p>Mejoras continuas en los algoritmos de detección, reconocimiento facial y análisis de comportamiento.</p>
+                    <div class="update-badge">Mensual</div>
+                </div>
+                
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">📱</div>
+                    <h3>Aplicaciones Móviles</h3>
+                    <p>Actualizaciones de nuestras apps para iOS y Android con nuevas funcionalidades y mejoras de usabilidad.</p>
+                    <div class="update-badge">Bimestral</div>
+                </div>
+                
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">🔒</div>
+                    <h3>Seguridad y Parches</h3>
+                    <p>Parches de seguridad y actualizaciones críticas para proteger sus sistemas contra nuevas amenazas.</p>
+                    <div class="update-badge">Tiempo real</div>
+                </div>
+                
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">📊</div>
+                    <h3>Reportes y Análisis</h3>
+                    <p>Nuevos formatos de reporte, dashboards personalizados y herramientas de análisis de datos.</p>
+                    <div class="update-badge">Semestral</div>
+                </div>
+                
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">⚙️</div>
+                    <h3>Firmware de Equipos</h3>
+                    <p>Actualizaciones de firmware para cámaras, DVR/NVR y controladores de acceso.</p>
+                    <div class="update-badge">Según fabricante</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ciclo de actualización -->
+        <div class="section">
+            <h2>Ciclo de Actualización Permanente</h2>
+            <div class="ciclo-grid">
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">1</div>
+                    <h4>Detección</h4>
+                    <p>Identificamos oportunidades de mejora</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">2</div>
+                    <h4>Desarrollo</h4>
+                    <p>Creamos las nuevas funcionalidades</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">3</div>
+                    <h4>Pruebas</h4>
+                    <p>Validamos en entornos controlados</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">4</div>
+                    <h4>Implementación</h4>
+                    <p>Actualizamos sin afectar el servicio</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap 2026 -->
+        <div class="section">
+            <h2>Roadmap de Actualizaciones 2026</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q1 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>IA Avanzada</h4>
+                                <p>Nuevos algoritmos de detección de comportamientos anómalos y reconocimiento facial mejorado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q2 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>App Rediseñada</h4>
+                                <p>Nueva versión de nuestra aplicación móvil con interfaz renovada y más funcionalidades.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q3 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>Integración IoT</h4>
+                                <p>Conexión con más dispositivos del hogar inteligente y sensores.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q4 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>Reportes Predictivos</h4>
+                                <p>Análisis predictivo basado en IA para anticipar incidentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial de versiones -->
+        <div class="section">
+            <h2>Últimas Actualizaciones</h2>
+            <div class="versiones-container">
+                <div class="version-item">
+                    <div class="version-header">
+                        <span class="version-numero">Versión 5.2.0</span>
+                        <span class="version-fecha">15 Feb 2026</span>
+                    </div>
+                    <div class="version-features">
+                        <span class="feature-tag">Nuevo dashboard</span>
+                        <span class="feature-tag">Alertas en tiempo real</span>
+                        <span class="feature-tag">Exportación de videos</span>
+                        <span class="feature-tag">Corrección de errores</span>
+                    </div>
+                </div>
+                
+                <div class="version-item">
+                    <div class="version-header">
+                        <span class="version-numero">Versión 5.1.0</span>
+                        <span class="version-fecha">10 Ene 2026</span>
+                    </div>
+                    <div class="version-features">
+                        <span class="feature-tag">Reconocimiento facial</span>
+                        <span class="feature-tag">Mejora en detección</span>
+                        <span class="feature-tag">App iOS actualizada</span>
+                    </div>
+                </div>
+                
+                <div class="version-item">
+                    <div class="version-header">
+                        <span class="version-numero">Versión 5.0.0</span>
+                        <span class="version-fecha">5 Dic 2025</span>
+                    </div>
+                    <div class="version-features">
+                        <span class="feature-tag">Rediseño completo</span>
+                        <span class="feature-tag">Nuevo motor de IA</span>
+                        <span class="feature-tag">Integración en la nube</span>
+                        <span class="feature-tag">App Android nueva</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>Siempre actualizado, siempre protegido</h3>
+            <p>Con VIGITECOL, su sistema de seguridad mejora constantemente sin que usted tenga que pagar un peso adicional.</p>
+            <a href="../contacto.html" class="cta-button">Conozca más</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

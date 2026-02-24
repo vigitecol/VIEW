@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte 24/7 - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header h1 span {
+            color: #FFD700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section {
+            margin-bottom: 5rem;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+        
+        /* Estadísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .stat-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background: #FFD700;
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+        
+        .stat-card:hover .stat-label {
+            color: #000;
+        }
+        
+        /* Canales de soporte */
+        .canales-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .canal-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .canal-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+        }
+        
+        .canal-icon {
+            width: 90px;
+            height: 90px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .canal-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        .canal-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .canal-info {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        /* Niveles de soporte */
+        .niveles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .nivel-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            border-top: 5px solid #FFD700;
+        }
+        
+        .nivel-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        .nivel-tiempo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 1rem 0;
+        }
+        
+        .nivel-card ul {
+            list-style: none;
+        }
+        
+        .nivel-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .nivel-card ul li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* SLA */
+        .sla-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .sla-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .sla-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .sla-item .concepto {
+            font-weight: 600;
+            color: #000;
+        }
+        
+        .sla-item .valor {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        /* Equipo de soporte */
+        .equipo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .tecnico-card {
+            text-align: center;
+        }
+        
+        .tecnico-avatar {
+            width: 120px;
+            height: 120px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tecnico-card:hover .tecnico-avatar {
+            border-color: #000;
+            transform: scale(1.05);
+        }
+        
+        .tecnico-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .tecnico-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-box h3 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 1024px) {
+            .stats-grid,
+            .canales-grid,
+            .niveles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .equipo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid,
+            .canales-grid,
+            .niveles-grid,
+            .equipo-grid,
+            .sla-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
+.footer-new {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 4rem 5% 2rem;
+    margin-top: auto;
+    border-top: 3px solid #FFD700;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-col h4 {
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-col i {
+    color: #FFD700;
+    width: 20px;
+    font-style: normal;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horario-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.horario-item:last-child {
+    border-bottom: none;
+}
+
+.horario-item span:first-child {
+    color: #FFD700;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.horario-item span:last-child {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Certificaciones */
+.iso-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.iso-badge {
+    width: 65px;
+    height: 65px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.iso-badge:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background: #FFD700;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Copyright */
+.copyright-new {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Línea de Supervigilados */
+.footer-col p:last-of-type {
+    margin-top: 1rem;
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-left: 3px solid #FFD700;
+    padding-left: 1rem;
+}
+
+/* ========== RESPONSIVE DEL FOOTER ========== */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-new {
+        padding: 3rem 5% 2rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .horario-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .horario-item span:first-child {
+        margin-bottom: 0;
+        width: 40%;
+    }
+    
+    .horario-item span:last-child {
+        width: 60%;
+        text-align: right;
+    }
+    
+    .iso-container {
+        justify-content: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 1.5rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .horario-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .horario-item span:first-child,
+    .horario-item span:last-child {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .iso-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 0.7rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
+            <span class="logo-text">VIGITECOL LTDA</span>
+        </a>
+</div>
+        
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio <span class="arrow"></span></a>
+                
+            </div>
+
+            <div class="nav-item">
+                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos Organizacionales</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="../QuienesS/directivos.html">Directivos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../Servicios/seguridadFisica.html">Seguridad Física</a>
+                    <a href="../Servicios/monitoreo.html">Monitoreo y Alarmas</a>
+                    <a href="../Servicios/cctv.html">CCTV (Cámaras de Seguridad)</a>
+                    <a href="../Servicios/controlAcceso.html">Control de Acceso</a>
+                    <a href="../Servicios/escoltas.html">Escoltas y Protección Personal</a>
+                    <a href="../Servicios/seguridadEventos.html">Seguridad en Eventos</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="garantia.html">Garantía de calidad</a>
+                    <a href="soporte.html">Soporte 24/7</a>
+                    <a href="capacitacion.html">Capacitación continua</a>
+                    <a href="actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>Soporte <span>24/7</span></h1>
+            <p>Estamos disponibles para usted todos los días del año, las 24 horas. Nuestro equipo de soporte técnico está siempre listo para atender cualquier eventualidad.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <!-- Estadísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Disponibilidad</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">45"</div>
+                <div class="stat-label">Tiempo de respuesta</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2h</div>
+                <div class="stat-label">Solución promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Satisfacción</div>
+            </div>
+        </div>
+
+        <!-- Canales de soporte -->
+        <div class="section">
+            <h2>Canales de Soporte</h2>
+            <div class="canales-grid">
+                <div class="canal-card">
+                    <div class="canal-icon">📞</div>
+                    <h3>Teléfono</h3>
+                    <p>Línea exclusiva para soporte técnico</p>
+                    <div class="canal-info">01-8000-999-888</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Opción 1: Soporte técnico<br>Opción 2: Emergencias</p>
+                </div>
+                
+                <div class="canal-card">
+                    <div class="canal-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <p>Atención inmediata por mensajería</p>
+                    <div class="canal-info">+57 315 123 4567</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Respuesta en menos de 5 minutos</p>
+                </div>
+                
+                <div class="canal-card">
+                    <div class="canal-icon">✉️</div>
+                    <h3>Correo</h3>
+                    <p>Para casos no urgentes</p>
+                    <div class="canal-info">soporte@vigitecol.com</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Respuesta en máximo 2 horas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Niveles de soporte -->
+        <div class="section">
+            <h2>Niveles de Soporte</h2>
+            <div class="niveles-grid">
+                <div class="nivel-card">
+                    <h3>Nivel 1</h3>
+                    <div class="nivel-tiempo">&lt; 15 min</div>
+                    <ul>
+                        <li>Atención inicial</li>
+                        <li>Diagnóstico remoto</li>
+                        <li>Solución de problemas básicos</li>
+                        <li>Disponible 24/7</li>
+                    </ul>
+                </div>
+                
+                <div class="nivel-card">
+                    <h3>Nivel 2</h3>
+                    <div class="nivel-tiempo">&lt; 2 horas</div>
+                    <ul>
+                        <li>Soporte especializado</li>
+                        <li>Análisis técnico profundo</li>
+                        <li>Configuraciones avanzadas</li>
+                        <li>Escalamiento a N3</li>
+                    </ul>
+                </div>
+                
+                <div class="nivel-card">
+                    <h3>Nivel 3</h3>
+                    <div class="nivel-tiempo">&lt; 24 horas</div>
+                    <ul>
+                        <li>Ingenieros certificados</li>
+                        <li>Solución de fallas complejas</li>
+                        <li>Actualizaciones de firmware</li>
+                        <li>Reemplazo de equipos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLA -->
+        <div class="section">
+            <h2>Acuerdos de Nivel de Servicio (SLA)</h2>
+            <div class="sla-container">
+                <div class="sla-grid">
+                    <div class="sla-item">
+                        <span class="concepto">Tiempo de respuesta inicial:</span>
+                        <span class="valor">45 segundos máximo</span>
+                    </div>
+                    <div class="sla-item">
+                        <span class="concepto">Tiempo de solución N1:</span>
+                        <span class="valor">15 minutos</span>
+                    </div>
+                    <div class="sla-item">
+                        <span class="concepto">Tiempo de solución N2:</span>
+                        <span class="valor">2 horas</span>
+                    </div>
+                    <div class="sla-item">
+                        <span class="concepto">Tiempo de solución N3:</span>
+                        <span class="valor">24 horas</span>
+                    </div>
+                    <div class="sla-item">
+                        <span class="concepto">Reemplazo de equipos:</span>
+                        <span class="valor">48 horas máximo</span>
+                    </div>
+                    <div class="sla-item">
+                        <span class="concepto">Disponibilidad:</span>
+                        <span class="valor">99.9%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipo de soporte -->
+        <div class="section">
+            <h2>Nuestro Equipo de Soporte</h2>
+            <div class="equipo-grid">
+                <div class="tecnico-card">
+                    <div class="tecnico-avatar">👨‍💻</div>
+                    <h4>Carlos Rodríguez</h4>
+                    <p>Coordinador de Soporte</p>
+                </div>
+                <div class="tecnico-card">
+                    <div class="tecnico-avatar">👩‍💻</div>
+                    <h4>Ana Martínez</h4>
+                    <p>Ingeniera Senior</p>
+                </div>
+                <div class="tecnico-card">
+                    <div class="tecnico-avatar">👨‍💻</div>
+                    <h4>Juan Pérez</h4>
+                    <p>Técnico Especialista</p>
+                </div>
+                <div class="tecnico-card">
+                    <div class="tecnico-avatar">👩‍💻</div>
+                    <h4>Laura Sánchez</h4>
+                    <p>Soporte en Campo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>¿Necesita soporte ahora?</h3>
+            <p>Nuestro equipo está listo para atenderle. Contáctenos por cualquiera de nuestros canales y reciba atención inmediata.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Soporte</a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
+<footer class="footer-new">
+    <div class="footer-grid">
+        <!-- Oficinas y Horarios -->
+        <div class="footer-col">
+            <h4>Oficinas</h4>
+            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
+            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
+
+            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
+            <div class="horario-item">
+                <span>Lunes - Viernes:</span>
+                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Sábados:</span>
+                <span>8:00 am - 12:00 pm</span>
+            </div>
+            <div class="horario-item">
+                <span>Domingos y festivos:</span>
+                <span>Emergencias 24/7 (Monitoreo)</span>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
+            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
+            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
+            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
+            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="footer-col">
+            <h4>Certificaciones</h4>
+            <div class="iso-container">
+                <div class="iso-badge">ISO 9001</div>
+                <div class="iso-badge">ISO 27001</div>
+                <div class="iso-badge">ISO 14001</div>
+            </div>
+            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
+            
+            <!-- Redes Sociales -->
+            <h4 style="margin-top: 2rem;">Síguenos</h4>
+            <div class="social-links">
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">x</a>
+                <a href="#" class="social-link">yt</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-new">
+        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
+    </div>
+</footer>
+
+    <script src="../js/menu.js"></script>
+</body>
+</html>
