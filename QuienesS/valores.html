@@ -187,7 +187,7 @@
 
 /* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
 .footer-new {
-    background: #0a0a0a;
+    background: #000000;
     color: #fff;
     padding: 4rem 5% 2rem;
     margin-top: auto;
@@ -281,29 +281,91 @@
     flex-wrap: wrap;
 }
 
+.iso-container {
+    display: flex;
+    justify-content: flex-start; 
+    margin: 2rem 0;
+}
+
 .iso-badge {
-    width: 65px;
-    height: 65px;
-    background: #222;
-    border-radius: 10px;
+    width: 350px;              
+    height: 350px;
+    background: #000;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    color: #FFD700;
-    border: 1px solid #FFD700;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.2;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
+    padding: 15px;
+    transition: all 0.4s ease;
 }
 
-.iso-badge:hover {
-    background: #FFD700;
-    color: #000;
-    transform: translateY(-3px);
+.iso-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;       
 }
+
+
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .iso-container {
+        justify-content: center;   /* centrada en tablet */
+    }
+
+    .iso-badge {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .iso-badge {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Ajustar el tamaño del ISO */
+.iso-container {
+    display: flex;
+    justify-content: flex-start; 
+    margin: 0 0 1.5rem 0; /* Reducido el margen */
+}
+
+.iso-badge {
+    width: 292px; /* Reducido de 350px */
+    height: 290px; /* Reducido de 350px */
+    background: #000;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: all 0.4s ease;
+}
+
+/* Responsive del ISO */
+@media (max-width: 768px) {
+    .iso-container {
+        justify-content: center;
+    }
+
+    .iso-badge {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .iso-badge {
+        width: 130px;
+        height: 130px;
+    }
+}
+
 
 /* Redes Sociales */
 .social-links {
@@ -588,66 +650,7 @@
         </div>
     </div>
 
-    <!-- SECCIÓN 6: Footer nuevo con toda la información -->
-<footer class="footer-new">
-    <div class="footer-grid">
-        <!-- Oficinas y Horarios -->
-        <div class="footer-col">
-            <h4>Oficinas</h4>
-            <p><i>📍</i> Manizales: Carrera 23 N° 43-12</p>
-            <p><i>📍</i> Pereira: Carrera 10 N° 44-49</p>
-
-            <h4 style="margin-top: 2.5rem;">Horario de Atención</h4>
-            <div class="horario-item">
-                <span>Lunes - Viernes:</span>
-                <span>8:00 am - 12:00 pm y de 2:00 pm - 6:00 pm</span>
-            </div>
-            <div class="horario-item">
-                <span>Sábados:</span>
-                <span>8:00 am - 12:00 pm</span>
-            </div>
-            <div class="horario-item">
-                <span>Domingos y festivos:</span>
-                <span>Emergencias 24/7 (Monitoreo)</span>
-            </div>
-        </div>
-
-        <!-- Contacto -->
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <p><i>📞</i> Línea principal Manizales: 881 3121</p>
-            <p><i>📱</i> Línea principal Pereira: 336 0378</p>
-            <p><i>✉️</i> Email Manizales: servicioalcliente@vigitecol.com</p>
-            <p><i>✉️</i> Email Pereira: direccionvigitecolpereira@gmail.com</p>
-            <p><i>✉️</i> Soporte 24/7: monitoreo@vigitecol.com</p>
-        </div>
-
-        <!-- Certificaciones -->
-        <div class="footer-col">
-            <h4>Certificaciones</h4>
-            <div class="iso-container">
-                <div class="iso-badge">ISO 9001</div>
-                <div class="iso-badge">ISO 27001</div>
-                <div class="iso-badge">ISO 14001</div>
-            </div>
-            <p style="margin-top: 1rem; color: #FFD700;">Supervigilados por la Superintendencia de Vigilancia</p>
-            
-            <!-- Redes Sociales -->
-            <h4 style="margin-top: 2rem;">Síguenos</h4>
-            <div class="social-links">
-                <a href="#" class="social-link">in</a>
-                <a href="#" class="social-link">f</a>
-                <a href="#" class="social-link">ig</a>
-                <a href="#" class="social-link">x</a>
-                <a href="#" class="social-link">yt</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright-new">
-        VIGILADO Super Vigilancia R 20184100113017 de 28/12/2018
-    </div>
-</footer>
+<div id="footer"></div>
 
     <script>
         // Mismo script corregido
@@ -761,6 +764,12 @@
                 }
             });
         });
+
+        fetch("/footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
     </script>
 </body>
 </html>
