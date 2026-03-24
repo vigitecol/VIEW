@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigilancia Humana Armada - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        .service-header { margin-top: 100px; padding: 4rem 5%; background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%); color: white; position: relative; overflow: hidden; }
+        .service-header::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .service-header-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+        .service-header h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        .service-header h1 span { color: #FFD700; }
+        .service-header p { font-size: 1.2rem; color: #ccc; max-width: 800px; line-height: 1.8; }
+        .service-container { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
+        .service-section { margin-bottom: 5rem; }
+        .service-section h2 { font-size: 2.5rem; margin-bottom: 2rem; position: relative; display: inline-block; }
+        .service-section h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 4px; background: #FFD700; }
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .service-card { background: #f8f8f8; border-radius: 20px; padding: 2rem; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15); border-color: #FFD700; }
+        .service-icon { width: 70px; height: 70px; background: #FFD700; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 2rem; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: #666; line-height: 1.7; }
+        .features-list { list-style: none; margin: 2rem 0; }
+        .features-list li { margin-bottom: 1rem; padding-left: 2rem; position: relative; color: #555; }
+        .features-list li::before { content: '✓'; color: #FFD700; font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
+        .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 4rem 0; text-align: center; }
+        .stat-item { padding: 2rem; background: #f8f8f8; border-radius: 15px; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #FFD700; }
+        .stat-label { color: #666; margin-top: 0.5rem; }
+        .image-placeholder { width: 100%; height: 400px; background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%); border-radius: 20px; margin: 3rem 0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2rem; border: 2px dashed #FFD700; }
+        .cta-box { background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); border-radius: 30px; padding: 4rem; text-align: center; margin-top: 4rem; }
+        .cta-box h3 { font-size: 2rem; color: #000; margin-bottom: 1.5rem; }
+        .cta-box p { color: #333; font-size: 1.2rem; margin-bottom: 2rem; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #000; color: #FFD700; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
+        .cta-button:hover { background: #333; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .certification-badge { background: #f8f8f8; border-radius: 15px; padding: 2rem; text-align: center; margin: 2rem 0; border-left: 5px solid #FFD700; }
+        .certification-badge p { color: #333; font-weight: 600; margin: 0.5rem 0; }
+        .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        @media (max-width: 1024px) { .service-grid, .stats-container, .two-column-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .service-header h1 { font-size: 2.5rem; } .service-grid, .stats-container, .two-column-grid { grid-template-columns: 1fr; } .cta-box { padding: 2rem; } }
+        .logo-container a { text-decoration: none; display: flex; align-items: center; gap: 1rem; }
+        .navbar { background: rgba(255, 255, 255, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .logo-img { height: 50px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #000; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: #000; margin: 3px 0; transition: 0.3s; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-item { position: relative; }
+        .nav-item > a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+        .nav-item > a:hover { color: #FFD700; }
+        .dropdown { position: absolute; top: 100%; left: 0; background: white; min-width: 250px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; }
+        .dropdown a { display: block; padding: 0.8rem 1.5rem; text-decoration: none; color: #333; transition: all 0.3s; }
+        .dropdown a:hover { background: #FFD700; color: #000; padding-left: 2rem; }
+        .nav-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        @media (max-width: 768px) { .menu-toggle { display: flex; } .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100%; background: white; flex-direction: column; padding: 80px 2rem 2rem; transition: 0.3s; z-index: 1000; } .nav-links.active { right: 0; } .dropdown { position: static; opacity: 1; visibility: visible; box-shadow: none; display: none; } .nav-item.active .dropdown { display: block; } .nav-overlay.active { display: block; } }
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+        <div class="nav-links">
+            <div class="nav-item"><a href="../index.html">Inicio</a></div>
+            <div class="nav-item">
+                <a href="#">Quienes Somos ▼</a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Servicios ▼</a>
+                <div class="dropdown">
+                    <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Beneficios ▼</a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
+        </div>
+    </nav>
+
+    <div class="service-header">
+        <div class="service-header-content">
+            <h1>Vigilancia <span>Humana Armada</span></h1>
+            <p>Seguridad física en modalidades fija, móvil y armada. Personal altamente capacitado bajo los estándares de la Superintendencia de Vigilancia y Seguridad Privada, respaldado por las normas NTC ISO 9001, ISO 28000 e ISO 45001.</p>
+        </div>
+    </div>
+
+    <div class="service-container">
+        <div class="certification-badge">
+            <p>✓ Proceso certificado bajo las normas NTC ISO 9001, ISO 28000 e ISO 45001</p>
+            <p>✓ Personal seleccionado bajo estrictos parámetros de calidad y seguridad</p>
+            <p>✓ Capacitación en programas de inducción aprobados por la Superintendencia de Vigilancia y Seguridad Privada</p>
+            <p>✓ Cumplimiento riguroso del Decreto 356 del 11 de febrero de 1994</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item"><div class="stat-number">+350</div><div class="stat-label">Guardas certificados</div></div>
+            <div class="stat-item"><div class="stat-number">+180</div><div class="stat-label">Empresas protegidas</div></div>
+            <div class="stat-item"><div class="stat-number">24/7/365</div><div class="stat-label">Cobertura continua</div></div>
+            <div class="stat-item"><div class="stat-number">99%</div><div class="stat-label">Efectividad operativa</div></div>
+        </div>
+
+        <div class="image-placeholder">[ESPACIO PARA IMAGEN DE VIGILANCIA HUMANA ARMADA - GUARDAS EN INSTALACIONES]</div>
+
+        <div class="service-section">
+            <h2>Modalidades de Vigilancia Humana</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Vigilancia Fija</h3>
+                    <p>Guardas de seguridad ubicados en puntos estratégicos de sus instalaciones para garantizar protección continua y control de accesos.</p>
+                    <ul class="features-list">
+                        <li>Control riguroso de ingresos y salidas de personal, vehículos y mercancías</li>
+                        <li>Inspección minuciosa mediante arcos detectores de metal y equipos de rayos X</li>
+                        <li>Rondas perimetrales programadas y aleatorias</li>
+                        <li>Atención profesional a visitantes y proveedores</li>
+                        <li>Registro detallado de novedades en bitácoras digitales</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Vigilancia Móvil</h3>
+                    <p>Patrullajes en vehículos y motocicletas para cobertura de áreas extensas, múltiples ubicaciones o zonas de difícil acceso.</p>
+                    <ul class="features-list">
+                        <li>Patrullaje programado y aleatorio con sistemas de control GPS</li>
+                        <li>Cobertura simultánea de múltiples sedes y puntos de atención</li>
+                        <li>Supervisión en tiempo real desde nuestra central de monitoreo</li>
+                        <li>Comunicación directa con central vía radiofrecuencia digital</li>
+                        <li>Respuesta ágil ante eventos inesperados</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔫</div>
+                    <h3>Vigilancia Armada</h3>
+                    <p>Personal con entrenamiento táctico especializado y porte de armas autorizado para entornos de alto riesgo y protección de valores.</p>
+                    <ul class="features-list">
+                        <li>Protección de valores, caudales y bienes críticos</li>
+                        <li>Seguridad en zonas de alto riesgo geográfico o industrial</li>
+                        <li>Personal con certificación de porte de armas vigente y renovación periódica</li>
+                        <li>Protocolos de actuación táctica en situaciones de crisis</li>
+                        <li>Coordinación directa con fuerzas militares y policiales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Proceso de Selección y Formación</h2>
+            <div class="two-column-grid">
+                <div class="service-card">
+                    <h3>Selección Exigente</h3>
+                    <ul class="features-list">
+                        <li><strong>Evaluación psicotécnica:</strong> Pruebas de personalidad, inteligencia emocional y estabilidad psicológica</li>
+                        <li><strong>Estudio de confianza:</strong> Verificación de antecedentes judiciales, disciplinarios y fiscales</li>
+                        <li><strong>Exámenes médicos ocupacionales:</strong> Aptitud física, audiometría, visión y condiciones de salud integral</li>
+                        <li><strong>Perfilación profesional:</strong> Competencias actitudinales y aptitudinales alineadas con el perfil del cliente</li>
+                        <li><strong>Pruebas de polígrafo:</strong> Verificación de honestidad e integridad moral</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Capacitación Continua Certificada</h3>
+                    <ul class="features-list">
+                        <li><strong>Inducción Supervigilada:</strong> Programas de formación aprobados por la Superintendencia de Vigilancia y Seguridad Privada</li>
+                        <li><strong>Actualización normativa:</strong> Formación permanente en Decreto 356 y disposiciones legales vigentes</li>
+                        <li><strong>Entrenamiento en técnicas de vigilancia:</strong> Control de accesos, manejo de multitudes y resolución de conflictos</li>
+                        <li><strong>Manejo de crisis:</strong> Protocolos de actuación ante emergencias, atracos, incendios y desastres naturales</li>
+                        <li><strong>Primeros auxilios:</strong> Atención prehospitalaria básica y avanzada con certificación en soporte vital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Entrenamiento Táctico Especializado</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🥋</div>
+                    <h3>Manejo Defensivo y Ofensivo</h3>
+                    <ul class="features-list">
+                        <li>Técnicas de defensa personal sin armas</li>
+                        <li>Manejo de elementos disuasivos no letales</li>
+                        <li>Reducción y control de personas en situación de riesgo</li>
+                        <li>Protocolos de inmovilización y esposamiento</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔫</div>
+                    <h3>Entrenamiento en Tiro y Armamento</h3>
+                    <ul class="features-list">
+                        <li>Manejo seguro de armas de fuego (pistolas, revólveres, escopetas)</li>
+                        <li>Prácticas periódicas en polígono autorizado</li>
+                        <li>Simulacros de enfrentamiento armado</li>
+                        <li>Mantenimiento y custodia responsable de armamento</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h3>Coordinación con Autoridades</h3>
+                    <ul class="features-list">
+                        <li>Protocolos de articulación con Policía Nacional y Fuerzas Militares</li>
+                        <li>Comunicación efectiva en emergencias conjuntas</li>
+                        <li>Reportes oficiales y cadena de custodia de evidencias</li>
+                        <li>Apoyo en operativos especiales de seguridad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Certificaciones y Cumplimiento Normativo</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">📜</div>
+                    <h3>Decreto 356 de 1994</h3>
+                    <p>Cumplimiento integral de la normativa emanada de la Superintendencia de Vigilancia y Seguridad Privada y los requerimientos del Ministerio de Defensa Nacional.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏅</div>
+                    <h3>ISO 9001:2015</h3>
+                    <p>Sistema de Gestión de Calidad certificado que garantiza procesos estandarizados, mejora continua y satisfacción del cliente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>ISO 28000:2022</h3>
+                    <p>Certificación en Gestión de Seguridad de la Cadena de Suministro, asegurando protección integral de bienes y personas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>ISO 45001:2018</h3>
+                    <p>Sistema de Gestión de Seguridad y Salud en el Trabajo, protegiendo a nuestros colaboradores y reduciendo riesgos laborales.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Sectores que Atendemos</h2>
+            <div class="service-grid">
+                <div class="service-card"><div class="service-icon">🏢</div><h3>Empresarial</h3><p>Oficinas corporativas, sedes administrativas, centros empresariales y parques tecnológicos.</p></div>
+                <div class="service-card"><div class="service-icon">🏭</div><h3>Industrial</h3><p>Fábricas, plantas de producción, bodegas logísticas, zonas francas y centros de distribución.</p></div>
+                <div class="service-card"><div class="service-icon">🏘️</div><h3>Residencial</h3><p>Conjuntos cerrados, condominios, urbanizaciones, edificios de apartamentos y viviendas unifamiliares.</p></div>
+                <div class="service-card"><div class="service-icon">🏪</div><h3>Comercial</h3><p>Centros comerciales, grandes superficies, locales comerciales, franquicias y almacenes de cadena.</p></div>
+                <div class="service-card"><div class="service-icon">🏥</div><h3>Institucional</h3><p>Hospitales, clínicas, centros de salud, universidades, colegios y centros educativos.</p></div>
+                <div class="service-card"><div class="service-icon">🏛️</div><h3>Gubernamental</h3><p>Entidades públicas, sedes gubernamentales, embajadas, consulados y organismos internacionales.</p></div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Valor Agregado de Nuestro Servicio</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Supervisión Permanente</h3>
+                    <ul class="features-list">
+                        <li>Supervisores de campo con visitas no anunciadas</li>
+                        <li>Control de asistencia biométrico y georreferenciado</li>
+                        <li>Auditorías internas mensuales de calidad operativa</li>
+                        <li>Evaluación de desempeño trimestral del personal</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Tecnología Aplicada</h3>
+                    <ul class="features-list">
+                        <li>Control de rondas mediante sistema GPS y códigos QR</li>
+                        <li>Reportes digitales en tiempo real desde dispositivo móvil</li>
+                        <li>Comunicación vía radiofrecuencia digital encriptada</li>
+                        <li>Integración con sistemas de videovigilancia y alarmas</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Responsabilidad Social</h3>
+                    <ul class="features-list">
+                        <li>Vinculación laboral formal con todas las prestaciones de ley</li>
+                        <li>Programas de bienestar y crecimiento profesional</li>
+                        <li>Contratación de personal en situación de vulnerabilidad</li>
+                        <li>Compromiso con la paz y la convivencia ciudadana</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h3>Proteja su empresa con el mejor personal de seguridad</h3>
+            <p>Solicite una evaluación de seguridad gratuita y conozca nuestro plan de vigilancia humana personalizado. Nuestros asesores comerciales atenderán su requerimiento en menos de 24 horas.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Asesoría Especializada</a>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+        function toggleMenu() { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); overlay.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; }
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
+        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
+        fetch("/footer.html").then(response => response.text()).then(data => { if(data) document.getElementById("footer").innerHTML = data; });
+    </script>
+</body>
+</html>

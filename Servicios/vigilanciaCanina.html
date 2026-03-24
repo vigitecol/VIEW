@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigilancia Canina - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .service-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .service-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-header h1 span {
+            color: #FFD700;
+        }
+
+        .service-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .service-section {
+            margin-bottom: 5rem;
+        }
+
+        .service-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            border: 2px dashed #FFD700;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box h3 {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .certification-badge {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-left: 5px solid #FFD700;
+        }
+
+        .certification-badge p {
+            color: #333;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .breed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .breed-item {
+            background: white;
+            border-radius: 10px;
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .breed-item:hover {
+            background: #FFD700;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 1024px) {
+
+            .service-grid,
+            .stats-container,
+            .two-column-grid,
+            .breed-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-grid,
+            .stats-container,
+            .two-column-grid,
+            .breed-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .dropdown a:hover {
+            background: #FFD700;
+            color: #000;
+            padding-left: 2rem;
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 80px 2rem 2rem;
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                display: none;
+            }
+
+            .nav-item.active .dropdown {
+                display: block;
+            }
+
+            .nav-overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-overlay"></div>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+        <div class="nav-links">
+            <div class="nav-item"><a href="../index.html">Inicio</a></div>
+            <div class="nav-item">
+                <a href="#">Quienes Somos ▼</a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Servicios ▼</a>
+                <div class="dropdown">
+                    <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Beneficios ▼</a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
+        </div>
+    </nav>
+
+    <div class="service-header">
+        <div class="service-header-content">
+            <h1>Vigilancia <span>Canina</span></h1>
+            <p>Servicio altamente especializado con perros adiestrados en Defensa Controlada, Detección de Explosivos,
+                Detección de Narcóticos y Búsqueda y Localización de Personas. Contamos con criadero propio, centro de
+                entrenamiento profesional e instalaciones especializadas para el cuidado integral de nuestras unidades
+                caninas.</p>
+        </div>
+    </div>
+
+    <div class="service-container">
+        <div class="certification-badge">
+            <p>✓ Proceso certificado bajo las normas NTC ISO 9001, ISO 28000 e ISO 45001</p>
+            <p>✓ Amplia experiencia en el área canina con conocimiento técnico especializado</p>
+            <p>✓ Criadero de propiedad y centro de entrenamiento profesional a cargo de expertos</p>
+            <p>✓ Instalaciones adecuadas y especializadas para el cuidado integral de unidades caninas</p>
+            <p>✓ Compromiso con el bienestar animal y la excelencia operativa</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">+85</div>
+                <div class="stat-label">Unidades caninas activas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Razas especializadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Efectividad comprobada</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+ años</div>
+                <div class="stat-label">Experiencia canina</div>
+            </div>
+        </div>
+
+        <div class="image-placeholder">[ESPACIO PARA IMAGEN DE UNIDADES CANINAS EN ENTRENAMIENTO]</div>
+
+        <div class="service-section">
+            <h2>Especialidades Caninas Certificadas</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Defensa Controlada</h3>
+                    <p>Perros entrenados para protección de personas e instalaciones con respuesta inmediata ante
+                        amenazas y control absoluto por parte del guía especializado.</p>
+                    <ul class="features-list">
+                        <li><strong>Protección de perímetros:</strong> Disuasión efectiva de intrusos en instalaciones
+                            industriales, residenciales y comerciales</li>
+                        <li><strong>Apoyo táctico:</strong> Refuerzo a guardas de seguridad en situaciones de alto
+                            riesgo</li>
+                        <li><strong>Control absoluto:</strong> Obediencia rigurosa con comandos de voz y silbato,
+                            liberación y recuperación inmediata</li>
+                        <li><strong>Respuesta selectiva:</strong> Capacidad de distinguir entre amenaza real y situación
+                            controlada</li>
+                        <li><strong>Entrenamiento en agresividad controlada:</strong> Activación y desactivación bajo
+                            mando del guía certificado</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💣</div>
+                    <h3>Detección de Explosivos</h3>
+                    <p>Unidades especializadas en identificación de materiales explosivos, ideal para eventos masivos,
+                        aeropuertos, infraestructura crítica y zonas de alto riesgo.</p>
+                    <ul class="features-list">
+                        <li><strong>Detección de explosivos plásticos:</strong> C-4, Semtex, TNT, dinamita y explosivos
+                            militares</li>
+                        <li><strong>Inspección vehicular:</strong> Revisión de automóviles, camiones, contenedores y
+                            carga pesada</li>
+                        <li><strong>Barrido de áreas:</strong> Inspección de edificios, estadios, centros comerciales y
+                            sedes gubernamentales</li>
+                        <li><strong>Protocolos antiterrorismo:</strong> Certificación en estándares internacionales de
+                            seguridad</li>
+                        <li><strong>Certificación anual:</strong> Evaluación periódica con muestras reales de explosivos
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❄️</div>
+                    <h3>Detección de Narcóticos</h3>
+                    <p>Perros entrenados para la detección de estupefacientes en instalaciones, bodegas, vehículos,
+                        paquetería y zonas logísticas.</p>
+                    <ul class="features-list">
+                        <li><strong>Detección de sustancias:</strong> Cocaína, marihuana, heroína, éxtasis,
+                            metanfetaminas y derivados</li>
+                        <li><strong>Inspección de carga:</strong> Revisión de envíos nacionales e internacionales en
+                            centros logísticos</li>
+                        <li><strong>Control en zonas francas:</strong> Operativos de prevención en áreas de
+                            almacenamiento y tránsito</li>
+                        <li><strong>Apoyo a investigaciones:</strong> Colaboración con autoridades judiciales en
+                            operativos especiales</li>
+                        <li><strong>Discreción operativa:</strong> Capacidad de trabajo en entornos de alta concurrencia
+                            sin alterar operaciones</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Búsqueda y Localización de Personas</h3>
+                    <p>Perros entrenados en rastreo y localización de personas desaparecidas, extraviadas o en
+                        situaciones de emergencia.</p>
+                    <ul class="features-list">
+                        <li><strong>Rastreo en terreno abierto:</strong> Búsqueda en zonas rurales, bosques, montañas y
+                            áreas extensas</li>
+                        <li><strong>Búsqueda en estructuras colapsadas:</strong> Localización de víctimas en derrumbes,
+                            terremotos y desastres naturales</li>
+                        <li><strong>Localización de personas extraviadas:</strong> Especialidad en rastreo de adultos
+                            mayores, niños y personas con condiciones especiales</li>
+                        <li><strong>Apoyo en emergencias:</strong> Coordinación con unidades de rescate, bomberos y
+                            defensa civil</li>
+                        <li><strong>Capacidad de rastreo post-mortem:</strong> Localización de cuerpos en escenarios de
+                            desastre</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Infraestructura Canina de Propiedad</h2>
+            <div class="two-column-grid">
+                <div class="service-card">
+                    <h3>🏡 Criadero Canino Especializado</h3>
+                    <ul class="features-list">
+                        <li><strong>Instalaciones de propiedad:</strong> Más de 2,000 m² de área construida con
+                            condiciones óptimas de bienestar</li>
+                        <li><strong>Programa de cría selectiva:</strong> Reproducción controlada de razas pastor alemán,
+                            belga malinois, rottweiler y labrador</li>
+                        <li><strong>Veterinarios especializados:</strong> Atención médica preventiva 24/7 con plan de
+                            vacunación y desparasitación riguroso</li>
+                        <li><strong>Nutrición balanceada:</strong> Dietas personalizadas según etapa de desarrollo y
+                            exigencia operativa</li>
+                        <li><strong>Control genealógico:</strong> Registro de linajes para garantizar temperamento,
+                            salud y aptitudes laborales</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>🏋️ Centro de Entrenamiento Profesional</h3>
+                    <ul class="features-list">
+                        <li><strong>Instalaciones especializadas:</strong> Pistas de obstáculos, áreas de simulación
+                            urbana, terrenos de rastreo y zonas de agilidad</li>
+                        <li><strong>Instructores certificados:</strong> Personal con formación en técnicas modernas de
+                            adiestramiento canino</li>
+                        <li><strong>Entrenamiento desde cachorros:</strong> Programa de imprinting y socialización
+                            temprana</li>
+                        <li><strong>Evaluación periódica:</strong> Certificaciones semestrales de rendimiento operativo
+                        </li>
+                        <li><strong>Actualización constante:</strong> Capacitación continua en nuevas técnicas de
+                            detección y defensa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Razas Especializadas</h2>
+            <div class="breed-grid">
+                <div class="breed-item"><strong>Pastor Alemán</strong><br>Versatilidad, inteligencia, lealtad</div>
+                <div class="breed-item"><strong>Belga Malinois</strong><br>Agilidad, velocidad, alta motivación</div>
+                <div class="breed-item"><strong>Rottweiler</strong><br>Fuerza, potencia, defensa controlada</div>
+                <div class="breed-item"><strong>Labrador Retriever</strong><br>Detección de narcóticos, olfato
+                    excepcional</div>
+                <div class="breed-item"><strong>Golden Retriever</strong><br>Búsqueda de personas, temperamento dócil
+                </div>
+                <div class="breed-item"><strong>Doberman</strong><br>Velocidad, reacción, protección</div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Programa de Entrenamiento y Certificación</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Fase 1: Socialización (2-4 meses)</h3>
+                    <ul class="features-list">
+                        <li>Exposición controlada a entornos, personas y estímulos diversos</li>
+                        <li>Desarrollo de confianza y manejo de estrés ambiental</li>
+                        <li>Juego estructurado para desarrollar presa y motivación</li>
+                        <li>Evaluación de temperamento y aptitudes tempranas</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Fase 2: Entrenamiento Básico (4-12 meses)</h3>
+                    <ul class="features-list">
+                        <li>Obediencia básica: sentado, echado, quieto, junto, ven</li>
+                        <li>Control de impulsos y respuesta a comandos verbales</li>
+                        <li>Introducción a olfatos específicos según especialidad</li>
+                        <li>Desarrollo de agilidad y capacidad física</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Fase 3: Especialización (12-24 meses)</h3>
+                    <ul class="features-list">
+                        <li>Entrenamiento intensivo en especialidad asignada</li>
+                        <li>Simulacros con escenarios reales y distractores</li>
+                        <li>Certificación con estándares internacionales</li>
+                        <li>Evaluación de desempeño con guía asignado</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Fase 4: Mantenimiento Continuo</h3>
+                    <ul class="features-list">
+                        <li>Entrenamiento diario de 2 horas mínimo</li>
+                        <li>Recertificación semestral obligatoria</li>
+                        <li>Evaluaciones sorpresa de calidad operativa</li>
+                        <li>Actualización en técnicas y procedimientos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>El Binomio Humano - Canino</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">👤</div>
+                    <h3>Guías Especializados</h3>
+                    <ul class="features-list">
+                        <li>Certificación en manejo canino por entidad reconocida</li>
+                        <li>Experiencia mínima de 3 años en operaciones de campo</li>
+                        <li>Capacitación continua en primeros auxilios caninos</li>
+                        <li>Vínculo afectivo profesional con la unidad asignada</li>
+                        <li>Evaluaciones psicológicas periódicas de idoneidad</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🐕</div>
+                    <h3>Cuidados y Bienestar Animal</h3>
+                    <ul class="features-list">
+                        <li>Descanso programado de 8 horas diarias en instalaciones climatizadas</li>
+                        <li>Control veterinario semanal con registros detallados</li>
+                        <li>Plan de vacunación completo y desparasitación trimestral</li>
+                        <li>Evaluación de estrés y fatiga operativa</li>
+                        <li>Jubilación anticipada con hogar de retiro garantizado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Aplicaciones por Sector</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏭</div>
+                    <h3>Sector Industrial</h3>
+                    <p>Protección de bodegas, plantas de producción, zonas de almacenamiento de alto valor, patrullaje
+                        nocturno en perímetros extensos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏘️</div>
+                    <h3>Conjuntos Residenciales</h3>
+                    <p>Seguridad perimetral con patrullaje canino nocturno, disuasión de intrusos, rondas en zonas
+                        comunes y áreas verdes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎵</div>
+                    <h3>Eventos Masivos</h3>
+                    <p>Conciertos, festivales, eventos deportivos: detección de explosivos, control de accesos, manejo
+                        de multitudes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Transporte y Logística</h3>
+                    <p>Aeropuertos, puertos, terminales terrestres: inspección de carga, paquetería, equipaje y zonas de
+                        tránsito.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏦</div>
+                    <h3>Entidades Financieras</h3>
+                    <p>Protección de valores en tránsito, seguridad perimetral en sedes bancarias, detección de
+                        elementos sospechosos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Sector Público</h3>
+                    <p>Seguridad en sedes gubernamentales, palacios de justicia, embajadas, espacios públicos de alta
+                        concurrencia.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Ventajas Competitivas</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Propiedad de Activos</h3>
+                    <ul class="features-list">
+                        <li>Criadero canino de propiedad, no subcontratado</li>
+                        <li>Centro de entrenamiento exclusivo con infraestructura propia</li>
+                        <li>Control total de la cadena de valor operativa</li>
+                        <li>Garantía de continuidad y calidad del servicio</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Excelencia Operativa</h3>
+                    <ul class="features-list">
+                        <li>Certificaciones ISO 9001, ISO 28000 e ISO 45001</li>
+                        <li>Protocolos de seguridad avalados por la Superintendencia</li>
+                        <li>Personal altamente calificado y en formación continua</li>
+                        <li>Actualización tecnológica en equipos de comunicación</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Bienestar Animal</h3>
+                    <ul class="features-list">
+                        <li>Instalaciones con estándares internacionales de bienestar</li>
+                        <li>Programa de retiro y adopción responsable</li>
+                        <li>Atención veterinaria 24/7 con especialistas</li>
+                        <li>Política de ética animal institucional</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h3>Seguridad con el mejor aliado: el perro entrenado</h3>
+            <p>Contamos con el mejor centro canino del país. Solicite una demostración de nuestras unidades caninas en
+                sus instalaciones sin costo. Nuestros especialistas evaluarán sus necesidades y diseñarán la solución
+                canina más efectiva para su protección.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Asesoría Canina Especializada</a>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+        function toggleMenu() { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); overlay.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; }
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
+        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
+        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; });
+    </script>
+</body>
+
+</html>

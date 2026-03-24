@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio Técnico en Seguridad - VIGITECOL LTDA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        .service-header { margin-top: 100px; padding: 4rem 5%; background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%); color: white; position: relative; overflow: hidden; }
+        .service-header::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .service-header-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+        .service-header h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        .service-header h1 span { color: #FFD700; }
+        .service-header p { font-size: 1.2rem; color: #ccc; max-width: 800px; line-height: 1.8; }
+        .service-container { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
+        .service-section { margin-bottom: 5rem; }
+        .service-section h2 { font-size: 2.5rem; margin-bottom: 2rem; position: relative; display: inline-block; }
+        .service-section h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 4px; background: #FFD700; }
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .service-card { background: #f8f8f8; border-radius: 20px; padding: 2rem; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15); border-color: #FFD700; }
+        .service-icon { width: 70px; height: 70px; background: #FFD700; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 2rem; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: #666; line-height: 1.7; }
+        .features-list { list-style: none; margin: 2rem 0; }
+        .features-list li { margin-bottom: 1rem; padding-left: 2rem; position: relative; color: #555; line-height: 1.6; }
+        .features-list li::before { content: '✓'; color: #FFD700; font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
+        .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 4rem 0; text-align: center; }
+        .stat-item { padding: 2rem; background: #f8f8f8; border-radius: 15px; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #FFD700; }
+        .stat-label { color: #666; margin-top: 0.5rem; }
+        .image-placeholder { width: 100%; height: 400px; background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%); border-radius: 20px; margin: 3rem 0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2rem; border: 2px dashed #FFD700; }
+        .cta-box { background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); border-radius: 30px; padding: 4rem; text-align: center; margin-top: 4rem; }
+        .cta-box h3 { font-size: 2rem; color: #000; margin-bottom: 1.5rem; }
+        .cta-box p { color: #333; font-size: 1.2rem; margin-bottom: 2rem; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #000; color: #FFD700; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
+        .cta-button:hover { background: #333; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .certification-badge { background: #f8f8f8; border-radius: 15px; padding: 2rem; text-align: center; margin: 2rem 0; border-left: 5px solid #FFD700; }
+        .certification-badge p { color: #333; font-weight: 600; margin: 0.5rem 0; }
+        .methodology-step { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: white; border-radius: 12px; transition: all 0.3s; }
+        .methodology-step:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .step-number { width: 50px; height: 50px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: #000; flex-shrink: 0; }
+        .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .risk-matrix { background: white; border-radius: 15px; padding: 1.5rem; margin-top: 1rem; }
+        .risk-level { display: flex; justify-content: space-between; margin-bottom: 1rem; padding: 0.5rem; border-radius: 8px; }
+        @media (max-width: 1024px) { .service-grid, .stats-container, .two-column-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .service-header h1 { font-size: 2.5rem; } .service-grid, .stats-container, .two-column-grid { grid-template-columns: 1fr; } .cta-box { padding: 2rem; } }
+        .logo-container a { text-decoration: none; display: flex; align-items: center; gap: 1rem; }
+        .navbar { background: rgba(255, 255, 255, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .logo-img { height: 50px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #000; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: #000; margin: 3px 0; transition: 0.3s; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-item { position: relative; }
+        .nav-item > a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+        .nav-item > a:hover { color: #FFD700; }
+        .dropdown { position: absolute; top: 100%; left: 0; background: white; min-width: 250px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; }
+        .dropdown a { display: block; padding: 0.8rem 1.5rem; text-decoration: none; color: #333; transition: all 0.3s; }
+        .dropdown a:hover { background: #FFD700; color: #000; padding-left: 2rem; }
+        .nav-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        @media (max-width: 768px) { .menu-toggle { display: flex; } .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100%; background: white; flex-direction: column; padding: 80px 2rem 2rem; transition: 0.3s; z-index: 1000; } .nav-links.active { right: 0; } .dropdown { position: static; opacity: 1; visibility: visible; box-shadow: none; display: none; } .nav-item.active .dropdown { display: block; } .nav-overlay.active { display: block; } }
+    </style>
+</head>
+<body>
+    <div class="nav-overlay"></div>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+        <div class="nav-links">
+            <div class="nav-item"><a href="../index.html">Inicio</a></div>
+            <div class="nav-item">
+                <a href="#">Quienes Somos ▼</a>
+                <div class="dropdown">
+                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="../QuienesS/mision.html">Misión</a>
+                    <a href="../QuienesS/vision.html">Visión</a>
+                    <a href="../QuienesS/valores.html">Valores</a>
+                    <a href="../QuienesS/objetivos.html">Objetivos</a>
+                    <a href="../QuienesS/deberes.html">Deberes y Derechos</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Servicios ▼</a>
+                <div class="dropdown">
+                    <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Beneficios ▼</a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
+        </div>
+    </nav>
+
+    <div class="service-header">
+        <div class="service-header-content">
+            <h1>Estudio Técnico en <span>Seguridad</span></h1>
+            <p>Análisis integral de vulnerabilidades, evaluación de riesgos y diseño de planes de seguridad personalizados. Realizamos estudios técnicos de seguridad de acuerdo al contexto de su organización, identificando amenazas y proponiendo soluciones efectivas para la protección óptima de sus instalaciones, bienes y personal.</p>
+        </div>
+    </div>
+
+    <div class="service-container">
+        <div class="certification-badge">
+            <p>✓ Proceso certificado bajo las normas NTC ISO 9001, ISO 28000 e ISO 45001</p>
+            <p>✓ Profesionales especializados en seguridad integral y análisis de riesgos</p>
+            <p>✓ Metodología basada en estándares internacionales y normativa colombiana</p>
+            <p>✓ Análisis de vulnerabilidades, nivel de riesgo y sistemas de protección</p>
+            <p>✓ Cumplimiento del Decreto 356 de 1994 y requisitos de la Superintendencia de Vigilancia</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item"><div class="stat-number">+350</div><div class="stat-label">Estudios realizados</div></div>
+            <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Clientes satisfechos</div></div>
+            <div class="stat-item"><div class="stat-number">ISO</div><div class="stat-label">Metodología certificada</div></div>
+            <div class="stat-item"><div class="stat-number">18 años</div><div class="stat-label">Experiencia</div></div>
+        </div>
+
+        <div class="image-placeholder">[ESPACIO PARA IMAGEN DE ESTUDIO TÉCNICO EN SEGURIDAD - ANÁLISIS DE RIESGOS]</div>
+
+        <div class="service-section">
+            <h2>Nuestros Servicios de Consultoría en Seguridad</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Análisis de Vulnerabilidades</h3>
+                    <p>Evaluación exhaustiva de sus instalaciones para identificar puntos débiles, fallas en los sistemas de seguridad existentes y riesgos potenciales.</p>
+                    <ul class="features-list">
+                        <li><strong>Inspección de perímetros:</strong> Evaluación de cercas, muros, puertas, barreras físicas y puntos de acceso no controlado</li>
+                        <li><strong>Evaluación de accesos:</strong> Análisis de puntos de ingreso, controles existentes y flujos de personal/vehículos</li>
+                        <li><strong>Análisis de riesgos operativos:</strong> Identificación de procesos críticos que pueden ser blanco de amenazas</li>
+                        <li><strong>Identificación de amenazas:</strong> Evaluación del entorno, índices delictivos, antecedentes y contexto de la organización</li>
+                        <li><strong>Evaluación de sistemas existentes:</strong> Diagnóstico de equipos de seguridad, su estado y efectividad</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Diseño de Planes de Seguridad</h3>
+                    <p>Desarrollo de planes de seguridad personalizados según las necesidades específicas de su empresa, residencia o institución.</p>
+                    <ul class="features-list">
+                        <li><strong>Plan de seguridad física:</strong> Diseño de barreras, controles de acceso, rutas de evacuación y puntos de concentración</li>
+                        <li><strong>Plan de seguridad electrónica:</strong> Especificación técnica de sistemas CCTV, alarmas, control de acceso y monitoreo</li>
+                        <li><strong>Protocolos de emergencia:</strong> Procedimientos para atención de incendios, atracos, amenazas de bomba y desastres naturales</li>
+                        <li><strong>Planes de evacuación:</strong> Diseño de rutas, señalización, puntos de encuentro y simulacros programados</li>
+                        <li><strong>Plan de continuidad del negocio:</strong> Estrategias para mantener operaciones ante incidentes de seguridad</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Evaluación de Riesgos</h3>
+                    <p>Identificación, análisis y cuantificación de riesgos para priorizar las inversiones en seguridad y optimizar recursos.</p>
+                    <ul class="features-list">
+                        <li><strong>Matriz de riesgos:</strong> Identificación de amenazas, probabilidad de ocurrencia e impacto potencial</li>
+                        <li><strong>Valoración de amenazas:</strong> Análisis de amenazas externas e internas según perfil de la organización</li>
+                        <li><strong>Análisis de impacto:</strong> Cuantificación de pérdidas potenciales en términos financieros y reputacionales</li>
+                        <li><strong>Recomendaciones priorizadas:</strong> Plan de acción con niveles de criticidad y plazos de implementación</li>
+                        <li><strong>Riesgos de operación:</strong> Evaluación de riesgos en procesos productivos y logísticos</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Asesoría en Normativa y Cumplimiento</h3>
+                    <p>Orientación especializada sobre cumplimiento de normativas de seguridad vigentes según Decreto 356 y requisitos de la Superintendencia de Vigilancia y Seguridad Privada.</p>
+                    <ul class="features-list">
+                        <li><strong>Actualización normativa:</strong> Análisis de cambios en la legislación de seguridad privada</li>
+                        <li><strong>Requisitos legales:</strong> Verificación de cumplimiento de obligaciones ante Superintendencia</li>
+                        <li><strong>Certificaciones requeridas:</strong> Asesoría para obtención de certificaciones ISO 9001, ISO 28000 e ISO 45001</li>
+                        <li><strong>Documentación necesaria:</strong> Elaboración de manuales de seguridad, procedimientos y políticas</li>
+                        <li><strong>Auditorías de cumplimiento:</strong> Verificación periódica del cumplimiento normativo</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Capacitación y Formación</h3>
+                    <p>Programas de entrenamiento para personal de seguridad y colaboradores en temas de prevención, respuesta y cultura de seguridad.</p>
+                    <ul class="features-list">
+                        <li><strong>Capacitación a guardas:</strong> Entrenamiento en técnicas de vigilancia, manejo de crisis y uso de equipos</li>
+                        <li><strong>Charlas a colaboradores:</strong> Sensibilización en seguridad personal, prevención de riesgos y respuesta ante emergencias</li>
+                        <li><strong>Simulacros de emergencia:</strong> Ejercicios prácticos de evacuación, atención de incendios y respuesta ante atracos</li>
+                        <li><strong>Entrenamiento específico:</strong> Capacitación según sector: industrial, comercial, residencial, institucional</li>
+                        <li><strong>Programas de cultura de seguridad:</strong> Desarrollo de competencias en prevención y autocuidado</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Auditorías de Seguridad</h3>
+                    <p>Verificación periódica del cumplimiento de los planes de seguridad y efectividad de las medidas implementadas.</p>
+                    <ul class="features-list">
+                        <li><strong>Auditorías programadas:</strong> Evaluaciones semestrales y anuales de los sistemas de seguridad</li>
+                        <li><strong>Verificación de cumplimiento:</strong> Comprobación de la ejecución de recomendaciones previas</li>
+                        <li><strong>Informes de gestión:</strong> Reportes detallados con indicadores de efectividad y áreas de mejora</li>
+                        <li><strong>Recomendaciones de mejora:</strong> Actualización de planes basada en cambios del entorno y la organización</li>
+                        <li><strong>Pruebas de penetración:</strong> Evaluación de efectividad mediante simulaciones de intentos de intrusión</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Metodología de Trabajo Certificada</h2>
+            <div class="two-column-grid">
+                <div class="service-card">
+                    <h3>📋 Proceso Metodológico</h3>
+                    <div class="methodology-step"><div class="step-number">1</div><div><strong>Diagnóstico Inicial</strong><br>Reunión de información, inspección de instalaciones, levantamiento de datos históricos de incidentes y entrevistas con personal clave.</div></div>
+                    <div class="methodology-step"><div class="step-number">2</div><div><strong>Análisis de Riesgos</strong><br>Identificación de amenazas, evaluación de vulnerabilidades, análisis de impacto y cuantificación de riesgos con metodología Magerit.</div></div>
+                    <div class="methodology-step"><div class="step-number">3</div><div><strong>Diseño de Soluciones</strong><br>Propuesta de medidas de seguridad personalizadas: físicas, electrónicas, humanas y procedimentales con priorización por criticidad.</div></div>
+                    <div class="methodology-step"><div class="step-number">4</div><div><strong>Implementación</strong><br>Acompañamiento en la ejecución de las medidas propuestas, gestión de proveedores y supervisión de instalaciones.</div></div>
+                    <div class="methodology-step"><div class="step-number">5</div><div><strong>Seguimiento y Mejora Continua</strong><br>Evaluación de resultados, ajustes periódicos, actualización de planes según cambios del entorno y retroalimentación del cliente.</div></div>
+                </div>
+                <div class="service-card">
+                    <h3>📄 Entregables</h3>
+                    <ul class="features-list">
+                        <li><strong>Informe ejecutivo de diagnóstico:</strong> Resumen ejecutivo con hallazgos clave y conclusiones</li>
+                        <li><strong>Matriz de riesgos y vulnerabilidades:</strong> Identificación detallada de amenazas, probabilidad e impacto</li>
+                        <li><strong>Plan de seguridad personalizado:</strong> Documento completo con medidas de seguridad por área y prioridad</li>
+                        <li><strong>Presupuesto de implementación:</strong> Detalle de inversiones necesarias con costos estimados</li>
+                        <li><strong>Cronograma de actividades:</strong> Plan de acción con fechas y responsables</li>
+                        <li><strong>Informes de seguimiento:</strong> Reportes periódicos de avance y efectividad</li>
+                        <li><strong>Manuales y procedimientos:</strong> Documentación operativa para personal de seguridad y colaboradores</li>
+                    </ul>
+                    <h3 style="margin-top: 1.5rem;">⏱️ Plazos de Entrega</h3>
+                    <ul class="features-list">
+                        <li><strong>Estudio básico:</strong> 5 - 8 días hábiles (instalaciones pequeñas, residencial)</li>
+                        <li><strong>Estudio integral:</strong> 10 - 15 días hábiles (empresas medianas, industria)</li>
+                        <li><strong>Estudio corporativo:</strong> 20 - 30 días hábiles (múltiples sedes, gran escala)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Áreas de Especialización</h2>
+            <div class="service-grid">
+                <div class="service-card"><div class="service-icon">🏢</div><h3>Seguridad Corporativa</h3><p>Empresas, oficinas corporativas, sedes administrativas, centros empresariales, parques tecnológicos.</p></div>
+                <div class="service-card"><div class="service-icon">🏭</div><h3>Seguridad Industrial</h3><p>Plantas de producción, bodegas logísticas, zonas francas, centros de distribución, minería, energía.</p></div>
+                <div class="service-card"><div class="service-icon">🏘️</div><h3>Seguridad Residencial</h3><p>Conjuntos cerrados, condominios, urbanizaciones, edificios de apartamentos, viviendas unifamiliares.</p></div>
+                <div class="service-card"><div class="service-icon">🏪</div><h3>Seguridad Comercial</h3><p>Centros comerciales, grandes superficies, retail, locales comerciales, franquicias.</p></div>
+                <div class="service-card"><div class="service-icon">🏥</div><h3>Seguridad Institucional</h3><p>Hospitales, clínicas, centros de salud, universidades, colegios, instituciones educativas.</p></div>
+                <div class="service-card"><div class="service-icon">🏛️</div><h3>Seguridad Gubernamental</h3><p>Entidades públicas, sedes gubernamentales, embajadas, consulados, infraestructura crítica.</p></div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Componentes del Estudio Técnico</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>🔒 Seguridad Física</h3>
+                    <ul class="features-list">
+                        <li>Análisis de perímetros y barreras físicas</li>
+                        <li>Evaluación de cerramientos, puertas y accesos</li>
+                        <li>Análisis de iluminación y zonas oscuras</li>
+                        <li>Evaluación de puntos de control y casetas de vigilancia</li>
+                        <li>Diseño de rutas de evacuación y señalización</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>📡 Seguridad Electrónica</h3>
+                    <ul class="features-list">
+                        <li>Diseño de sistemas CCTV y ubicación de cámaras</li>
+                        <li>Especificación de sistemas de alarma y sensores</li>
+                        <li>Control de accesos biométrico y tarjetas de proximidad</li>
+                        <li>Sistemas de detección temprana (humo, gas, incendio)</li>
+                        <li>Central de monitoreo y protocolos de respuesta</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>👥 Seguridad Humana</h3>
+                    <ul class="features-list">
+                        <li>Determinación de número de guardas requeridos</li>
+                        <li>Perfilación de personal según necesidades</li>
+                        <li>Horarios y turnos óptimos por sector</li>
+                        <li>Protocolos de actuación y rondas</li>
+                        <li>Capacitación específica por tipo de instalación</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>📋 Seguridad Procedimental</h3>
+                    <ul class="features-list">
+                        <li>Diseño de políticas y procedimientos de seguridad</li>
+                        <li>Protocolos de atención de emergencias</li>
+                        <li>Planes de continuidad del negocio</li>
+                        <li>Manuales de seguridad para colaboradores</li>
+                        <li>Programas de inducción y capacitación</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>🔥 Protección contra Incendios</h3>
+                    <ul class="features-list">
+                        <li>Análisis de riesgos en sistemas de protección contra incendios</li>
+                        <li>Evaluación de detectores, rociadores y extintores</li>
+                        <li>Diseño de rutas de evacuación y puntos de encuentro</li>
+                        <li>Simulacros y capacitación en manejo de emergencias</li>
+                        <li>Cumplimiento de normativa RETIE y NSR-10</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>📊 Matriz de Riesgos</h3>
+                    <ul class="features-list">
+                        <li>Identificación de amenazas externas e internas</li>
+                        <li>Evaluación de probabilidad y severidad</li>
+                        <li>Clasificación de riesgos por nivel de criticidad</li>
+                        <li>Plan de tratamiento de riesgos priorizado</li>
+                        <li>Indicadores de gestión de riesgos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-section">
+            <h2>Beneficios de Realizar un Estudio Técnico</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Identificación Proactiva</h3>
+                    <ul class="features-list">
+                        <li>Detección de vulnerabilidades antes de que sean explotadas</li>
+                        <li>Anticipación a amenazas emergentes</li>
+                        <li>Reducción de incidentes de seguridad hasta en un 75%</li>
+                        <li>Protección de activos críticos e información sensible</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Optimización de Inversiones</h3>
+                    <ul class="features-list">
+                        <li>Inversiones focalizadas en riesgos reales</li>
+                        <li>Reducción de costos operativos en seguridad hasta 30%</li>
+                        <li>Evitación de inversiones innecesarias o sobredimensionadas</li>
+                        <li>Mejor relación costo-beneficio en medidas de seguridad</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Cumplimiento Normativo</h3>
+                    <ul class="features-list">
+                        <li>Acreditación ante Superintendencia de Vigilancia</li>
+                        <li>Cumplimiento de requisitos legales y evitación de sanciones</li>
+                        <li>Certificación en normas ISO 9001, ISO 28000 e ISO 45001</li>
+                        <li>Reducción de responsabilidad civil y penal</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">😌</div>
+                    <h3>Tranquilidad para Directivos</h3>
+                    <ul class="features-list">
+                        <li>Conocimiento real del estado de seguridad</li>
+                        <li>Plan de acción claro y priorizado</li>
+                        <li>Respaldos técnicos para toma de decisiones</li>
+                        <li>Mayor confianza de inversores y stakeholders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h3>Conozca el estado real de su seguridad</h3>
+            <p>Solicite un estudio técnico gratuito y reciba un diagnóstico inicial de las vulnerabilidades de sus instalaciones. Nuestros especialistas evaluarán sus necesidades y presentarán una propuesta de plan de seguridad personalizado sin compromiso.</p>
+            <a href="../contacto.html" class="cta-button">Solicitar Estudio Técnico Gratuito</a>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.nav-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+        function toggleMenu() { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); overlay.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; }
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
+        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
+        fetch("/footer.html").then(response => response.text()).then(data => { if(data) document.getElementById("footer").innerHTML = data; });
+    </script>
+</body>
+</html>

@@ -214,7 +214,7 @@
             position: absolute;
             width: 45%;
             max-width: 700px;
-            height: 65%;
+            height: 80%;
             border-radius: 20px;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
@@ -222,6 +222,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide:hover img {
+            transform: scale(1.1);
         }
 
         .carousel-slide[data-position="0"] {
@@ -254,49 +265,30 @@
             pointer-events: none;
         }
 
-        .carousel-slide.slide-1 {
-            background: linear-gradient(135deg, #1a3a5c 0%, #0f2a44 100%);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .carousel-slide.slide-2 {
-            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
-        }
-
-        .carousel-slide.slide-3 {
-            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
-        }
-
         .slide-content {
-            text-align: center;
-            z-index: 2;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
             padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide:hover .slide-content {
+            transform: translateY(0);
         }
 
         .slide-content h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            transition: all 0.5s ease;
-        }
-
-        .slide-2 .slide-content h1,
-        .slide-2 .slide-content p {
-            color: #ffffff;
-        }
-
-        .slide-3 .slide-content h1 {
-            color: #000000;
-        }
-
-        .slide-3 .slide-content p {
-            color: #1a1a1a;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .slide-content p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
+            font-size: 1rem;
+            opacity: 0.9;
         }
 
         .carousel-arrow {
@@ -345,7 +337,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -363,7 +355,7 @@
 
         /* ========== NUEVAS SECCIONES - MÁS ESPACIADAS ========== */
 
-        /* Sección de Información de Interés */
+        /* Sección de Información de Interés - TEXTO */
         .info-interes-section {
             padding: 8rem 5%;
             background: #ffffff;
@@ -418,6 +410,8 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .info-card::before {
@@ -530,7 +524,7 @@
             transform: scale(1.1);
         }
 
-        /* Sección Conozca más + Video */
+        /* Sección Conozca más + Video mejorado */
         .conozca-section {
             padding: 8rem 5%;
             background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
@@ -588,74 +582,46 @@
             color: #666;
         }
 
-        .video-placeholder {
-            background: linear-gradient(135deg, #0a1a2a 0%, #1a2a3a 100%);
+        /* VIDEO DE INSTAGRAM - MEJORADO */
+        .video-instagram-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
             border-radius: 20px;
-            padding: 3rem;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
             overflow: hidden;
             box-shadow: 0 40px 70px rgba(0, 0, 0, 0.25);
-        }
-
-        .video-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .play-button {
-            width: 90px;
-            height: 90px;
-            background: #FFD700;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
+            background: #000;
             position: relative;
-            z-index: 2;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .play-button:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+        .video-instagram-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.25);
         }
 
-        .play-button span {
-            color: #000;
-            font-size: 2.5rem;
+        .video-instagram-container video {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        .video-placeholder p {
-            font-size: 1.2rem;
-            z-index: 2;
-            color: #FFD700;
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: transparent;
+            cursor: pointer;
         }
 
-        /* Sección Beneficios alternada */
+        /* Sección Beneficios alternada con IMAGEN */
         .beneficios-section {
             padding: 8rem 5%;
             background: #ffffff;
@@ -723,25 +689,39 @@
             font-size: 1.3rem;
         }
 
-        .beneficio-video {
-            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+        /* ESPACIO PARA IMAGEN EN BENEFICIOS */
+        .beneficio-imagen {
+            width: 700px;
+            height: 500px;
             border-radius: 20px;
-            padding: 3rem;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #000;
+            overflow: hidden;
             box-shadow: 0 40px 70px rgba(255, 215, 0, 0.25);
+            position: relative;
         }
 
-        .beneficio-video .play-button {
-            background: #000;
+        .beneficio-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .beneficio-video .play-button span {
+        .beneficio-imagen .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             color: #FFD700;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .beneficio-imagen:hover .image-caption {
+            transform: translateY(0);
         }
 
         /* CTA Section */
@@ -795,7 +775,7 @@
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
         }
 
-        /* Convenios / Aliados */
+        /* Convenios / Aliados con imágenes - MEJORADO */
         .convenios-section {
             padding: 8rem 5%;
             background: #f8f8f8;
@@ -811,50 +791,45 @@
         .aliados-track {
             display: flex;
             gap: 4rem;
-            animation: scroll 25s linear infinite;
             width: fit-content;
+            animation: none; /* Desactivamos la animación CSS para usar JS */
         }
 
-        .aliados-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
+        /* Estilo mejorado para los items de aliados */
         .aliado-item {
-            min-width: 180px;
-            height: 100px;
-            background: white;
+            min-width: 250px;
+            height: 150px;
             border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            background: white; /* Fondo blanco para imágenes con transparencia */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
+            padding: 15px; /* Espacio interior para que la imagen no quede pegada */
         }
 
         .aliado-item:hover {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.25);
-            border: 1px solid #FFD700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
         }
 
-        .aliado-item span {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
+        .aliado-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Cambiado a contain para que la imagen no se desborde */
+            transition: transform 0.3s ease;
         }
 
-        
+        .aliado-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .empresa {
+            max-width: 100%;
+            max-height: 100%;
+        }
 
         /* Responsive mejorado */
         @media (max-width: 1200px) {
@@ -961,6 +936,18 @@
                 height: 60vh;
             }
 
+            .carousel-slide {
+                width: 70%;
+            }
+
+            .carousel-arrow.prev {
+                left: 5%;
+            }
+
+            .carousel-arrow.next {
+                right: 5%;
+            }
+
             .info-card {
                 min-width: calc(50% - 1rem);
             }
@@ -979,9 +966,13 @@
                 direction: ltr;
             }
 
-            .video-placeholder,
-            .beneficio-video {
-                height: 300px;
+            .video-instagram-container,
+            .beneficio-imagen {
+                height: 400px;
+            }
+
+            .stats-mini {
+                justify-content: center;
             }
 
             .cta-content h2 {
@@ -990,10 +981,6 @@
 
             .cta-content p {
                 font-size: 1.1rem;
-            }
-
-            .footer-grid {
-                gap: 3rem;
             }
         }
 
@@ -1007,26 +994,32 @@
                 gap: 1.5rem;
             }
 
-            .video-placeholder,
-            .beneficio-video {
-                height: 250px;
+            .video-instagram-container,
+            .beneficio-imagen {
+                height: 350px;
             }
 
             .cta-button {
                 padding: 1.2rem 2.5rem;
                 font-size: 1.1rem;
             }
+
+            .aliado-item {
+                min-width: 180px;
+                height: 120px;
+            }
         }
 
         .logo-container a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-
-
+        .imgo {
+            height: 300px;
+        }
     </style>
 </head>
 
@@ -1036,14 +1029,12 @@
 
     <!-- Navegación -->
     <nav class="navbar">
-    <div class="logo-container">
-        <a href="/index.html">
-            <img src="/images/descarga.png" alt="Logo VIGITECOL" class="logo-img">
-            <span class="logo-text">VIGITECOL LTDA</span>
-        </a>
-    </div>
-
-
+        <div class="logo-container">
+            <a href="/index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
 
         <div class="menu-toggle">
             <span></span>
@@ -1065,19 +1056,17 @@
                     <a href="/QuienesS/valores.html">Valores de la Organización</a>
                     <a href="/QuienesS/objetivos.html">Objetivos Organizacionales</a>
                     <a href="/QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
-                    <a href="/QuienesS/directivos.html">Directivos</a>
                 </div>
             </div>
 
             <div class="nav-item">
                 <a href="#servicios">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="/Servicios/seguridadFisica.html">Seguridad Fisica</a>
-                    <a href="/Servicios/monitoreo.html">Monitoreo y Alarmas </a>
-                    <a href="/Servicios/cctv.html">CCTV (Camaras de Seguridad)</a>
-                    <a href="/Servicios/controlAcceso.html">Control de Acceso </a>
-                    <a href="/Servicios/escoltas.html">Escoltas y Proteccion Personal </a>
-                    <a href="/Servicios/seguridadEventos.html">Seguridad en Eventos </a>
+                    <a href="/Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="/Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="/Servicios/vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="/Servicios/vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="/Servicios/estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
                 </div>
             </div>
 
@@ -1098,25 +1087,31 @@
         </div>
     </nav>
 
-    <!-- Carrusel principal -->
+    <!-- Carrusel principal con 3 imágenes -->
     <section id="inicio" class="carousel-container">
         <div class="carousel" id="carousel">
-            <div class="carousel-slide slide-1" data-position="-1">
+            <!-- IMAGEN 1 - Reemplaza la URL -->
+            <div class="carousel-slide" data-position="-1">
+                <img src="https://drive.google.com/thumbnail?id=1v0QmbZdSpsiFNJxemkKMHCg8upSms771&sz=w1000" alt="Seguridad Física">
                 <div class="slide-content">
-                    <h1>Seguridad Integral</h1>
-                    <p>Protegiendo lo que más importa con tecnología de vanguardia</p>
+                    <h1>Seguridad Física</h1>
+                    <p>Personal altamente capacitado para proteger sus instalaciones</p>
                 </div>
             </div>
-            <div class="carousel-slide slide-2" data-position="0">
+            <!-- IMAGEN 2 - Reemplaza la URL -->
+            <div class="carousel-slide" data-position="0">
+                <img src="https://drive.google.com/thumbnail?id=1dYvqY7l5IxbvZ7S2yxm2RFMsIoVE03WM&sz=w1000" alt="Manejador Canino">
                 <div class="slide-content">
-                    <h1>Vigilancia 24/7</h1>
-                    <p>Monitoreo constante y respuesta inmediata para su tranquilidad</p>
+                    <h1>Manejadores Caninos</h1>
+                    <p>Unidad K9 especializada en detección y disuasión</p>
                 </div>
             </div>
-            <div class="carousel-slide slide-3" data-position="1">
+            <!-- IMAGEN 3 - Reemplaza la URL -->
+            <div class="carousel-slide" data-position="1">
+                <img src="https://drive.google.com/thumbnail?id=1Jasi0XBxg_bns90AZzdQ9VMUkfpdmxqI&sz=w1000" alt="CCTV">
                 <div class="slide-content">
-                    <h1>Más de 10 años</h1>
-                    <p>Experiencia y confianza respaldan nuestros servicios</p>
+                    <h1>Sistemas CCTV</h1>
+                    <p>Vigilancia electrónica con tecnología de punta</p>
                 </div>
             </div>
         </div>
@@ -1131,14 +1126,14 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 1: Información de Interés - Mini Carrusel INFINITO -->
+    <!-- SECCIÓN 1: Información de Interés - TEXTO (SIN IMÁGENES) -->
     <section class="info-interes-section">
         <div class="section-subtitle">Mantente informado</div>
         <h2 class="section-title">Información de Interés</h2>
 
         <div class="mini-carousel-container">
             <div class="mini-carousel" id="miniCarousel">
-                <!-- Las tarjetas se duplicarán con JavaScript para efecto infinito -->
+                <!-- Tarjetas de texto (sin imágenes) -->
                 <div class="info-card">
                     <div class="info-icon">📹</div>
                     <h3>Nuevo sistema CCTV</h3>
@@ -1197,7 +1192,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: Conozca más sobre VIGITECOL + Video (texto izquierda, video derecha) -->
+    <!-- SECCIÓN 2: Conozca más sobre VIGITECOL + Video de Instagram (MEJORADO) -->
     <section class="conozca-section">
         <div class="conozca-grid">
             <div class="conozca-content">
@@ -1230,24 +1225,30 @@
                     </div>
                 </div>
             </div>
-            <div class="video-placeholder">
-                <div class="play-button">
-                    <span>▶</span>
-                </div>
-                <p>Video corporativo - Conozca nuestra historia</p>
+
+            <div class="video-instagram-container" id="videoContainer">
+                <video 
+                    src="https://drive.google.com/file/d/1M_M34clfUxZ42pHgFzGlgZ3elq65RQfZ/preview?autoplay=1&loop=1" 
+                    width="100%" 
+                    height="100%" 
+                    style="border: none; position: absolute; top: 0; left: 0;"
+                    allow="autoplay"
+                    allowfullscreen>
+                </video>
+                <div class="video-overlay"></div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN 3: Beneficios (texto derecha, video izquierda) -->
+    <!-- SECCIÓN 3: Beneficios con imagen -->
     <section class="beneficios-section">
         <div class="beneficio-item">
-            <div class="beneficio-video">
-                <div class="play-button">
-                    <span>▶</span>
-                </div>
-                <p style="color: #000;">Beneficios de ser parte</p>
+            <!-- IMAGEN DE BENEFICIOS - Reemplaza la URL -->
+            <div class="beneficio-imagen">
+               <img src="https://drive.google.com/thumbnail?id=1Yg7VDKql5eK0qcLcfDCa-z1QWSapF4Bb&sz=w1000" alt="Beneficios VIGITECOL">
+                <div class="image-caption">Nuestros beneficios exclusivos</div>
             </div>
+
             <div class="beneficio-content">
                 <h3>Beneficios de ser parte de <span>VIGITECOL LTDA</span></h3>
                 <p>
@@ -1266,7 +1267,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 4: CTA - Haz parte de VIGITECOL -->
+    <!-- SECCIÓN 4: CTA -->
     <section class="cta-section">
         <div class="cta-content">
             <h2>Haz parte de <span>VIGITECOL</span> ya</h2>
@@ -1278,26 +1279,42 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 5: Convenios / Empresas Aliadas (Carrusel infinito) -->
+    <!-- SECCIÓN 5: Convenios / Empresas Aliadas con 6 imágenes - MEJORADO -->
     <section class="convenios-section">
         <div class="section-subtitle">Nuestros Aliados</div>
         <h2 class="section-title">Convenios y Empresas Aliadas</h2>
 
-        <div class="aliados-carousel">
+        <div class="aliados-carousel" id="aliadosCarousel">
             <div class="aliados-track" id="aliadosTrack">
-                <!-- Grupo 1 -->
-                <div class="aliado-item"><span>Monarca</span></div>
-                <div class="aliado-item"><span>Lider Servicios</span></div>
-                <div class="aliado-item"><span>Formando Seguridad</span></div>
-                <div class="aliado-item"><span>Formando Alturas</span></div>
+                <!-- 6 IMÁGENES DE ALIADOS - Reemplaza las URLs -->
+                <div class="aliado-item"><img src="/images/liderservicios.png" alt="Lider Servicios" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/allproduction.webp" alt="All Production" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/formandoalturas.webp" alt="Formando Alturas" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/formandosegurida.png" alt="Formando Seguridad" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/villantonia.webp" alt="Villantonia" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/mineria.webp" alt="Minería" class="empresa"></div>
             </div>
         </div>
     </section>
 
-<div id="footer"></div>
+    <div id="footer"></div>
 
     <script>
-        // Carrusel principal
+        // Script para pausar/reproducir al hacer clic en el video
+        const container = document.getElementById('videoContainer');
+        const video = document.querySelector('#videoContainer video');
+        
+        if (video) {
+            container.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        }
+
+        // ========== CARRUSEL PRINCIPAL ==========
         let currentIndex = 1;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -1335,7 +1352,7 @@
 
         updateCarousel();
 
-        // Mini carrusel de información INFINITO
+        // ========== MINI CARRUSEL INFINITO ==========
         let miniIndex = 0;
         const miniCarousel = document.getElementById('miniCarousel');
         const miniCards = document.querySelectorAll('.info-card');
@@ -1432,7 +1449,54 @@
             updateMiniCarousel();
         }, 100);
 
-        // Mobile menu
+        // ========== CARRUSEL DE ALIADOS (CONSTANTE E INFINITO) ==========
+        function initAliadosCarousel() {
+            const track = document.getElementById('aliadosTrack');
+            const items = Array.from(track.children);
+            
+            // Clonar todos los items para crear el efecto infinito
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                track.appendChild(clone);
+            });
+
+            let position = 0;
+            const itemWidth = items[0].offsetWidth + 64; // width + gap (4rem = 64px)
+            const totalWidth = itemWidth * items.length;
+            
+            // Configurar la animación
+            function moveCarousel() {
+                position -= 0.5; // Velocidad constante (ajusta este valor para más o menos velocidad)
+                
+                // Reset cuando llegue a la mitad (donde empiezan los clones)
+                if (Math.abs(position) >= totalWidth) {
+                    position = 0;
+                }
+                
+                track.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(moveCarousel);
+            }
+
+            // Iniciar la animación
+            moveCarousel();
+
+            // Pausar al hacer hover
+            track.addEventListener('mouseenter', () => {
+                // No necesitamos pausar realmente, pero podemos mantener la funcionalidad
+                // Si quieres pausar, necesitarías una bandera, pero por ahora lo dejamos así
+            });
+
+            track.addEventListener('mouseleave', () => {
+                // Continúa automáticamente
+            });
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            initAliadosCarousel();
+        });
+
+        // ========== MENÚ MÓVIL ==========
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const overlay = document.querySelector('.nav-overlay');
@@ -1510,11 +1574,12 @@
             }
         });
 
-fetch("/footer.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("footer").innerHTML = data;
-  });
+        // Cargar footer
+        fetch("/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            });
     </script>
 </body>
 
