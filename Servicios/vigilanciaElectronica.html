@@ -1,70 +1,479 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vigilancia Electrónica - VIGITECOL LTDA</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
-        .service-header { margin-top: 100px; padding: 4rem 5%; background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%); color: white; position: relative; overflow: hidden; }
-        .service-header::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .service-header-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
-        .service-header h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
-        .service-header h1 span { color: #FFD700; }
-        .service-header p { font-size: 1.2rem; color: #ccc; max-width: 800px; line-height: 1.8; }
-        .service-container { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
-        .service-section { margin-bottom: 5rem; }
-        .service-section h2 { font-size: 2.5rem; margin-bottom: 2rem; position: relative; display: inline-block; }
-        .service-section h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 80px; height: 4px; background: #FFD700; }
-        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .service-card { background: #f8f8f8; border-radius: 20px; padding: 2rem; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.05); }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15); border-color: #FFD700; }
-        .service-icon { width: 70px; height: 70px; background: #FFD700; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 2rem; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .service-card p { color: #666; line-height: 1.7; }
-        .features-list { list-style: none; margin: 2rem 0; }
-        .features-list li { margin-bottom: 1rem; padding-left: 2rem; position: relative; color: #555; line-height: 1.6; }
-        .features-list li::before { content: '✓'; color: #FFD700; font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
-        .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 4rem 0; text-align: center; }
-        .stat-item { padding: 2rem; background: #f8f8f8; border-radius: 15px; }
-        .stat-number { font-size: 2.5rem; font-weight: 700; color: #FFD700; }
-        .stat-label { color: #666; margin-top: 0.5rem; }
-        .image-placeholder { width: 100%; height: 400px; background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%); border-radius: 20px; margin: 3rem 0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2rem; border: 2px dashed #FFD700; }
-        .cta-box { background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); border-radius: 30px; padding: 4rem; text-align: center; margin-top: 4rem; }
-        .cta-box h3 { font-size: 2rem; color: #000; margin-bottom: 1.5rem; }
-        .cta-box p { color: #333; font-size: 1.2rem; margin-bottom: 2rem; }
-        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: #000; color: #FFD700; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
-        .cta-button:hover { background: #333; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-        .certification-badge { background: #f8f8f8; border-radius: 15px; padding: 2rem; text-align: center; margin: 2rem 0; border-left: 5px solid #FFD700; }
-        .certification-badge p { color: #333; font-weight: 600; margin: 0.5rem 0; }
-        .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
-        .tech-item { background: #f8f8f8; border-radius: 10px; padding: 1rem; text-align: center; transition: all 0.3s ease; }
-        .tech-item:hover { background: #FFD700; transform: scale(1.05); }
-        .tech-item p { color: #333; font-weight: 600; margin: 0; }
-        .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        @media (max-width: 1024px) { .service-grid, .stats-container, .tech-grid, .two-column-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .service-header h1 { font-size: 2.5rem; } .service-grid, .stats-container, .tech-grid, .two-column-grid { grid-template-columns: 1fr; } .cta-box { padding: 2rem; } }
-        .logo-container a { text-decoration: none; display: flex; align-items: center; gap: 1rem; }
-        .navbar { background: rgba(255, 255, 255, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
-        .logo-img { height: 50px; }
-        .logo-text { font-size: 1.5rem; font-weight: 700; color: #000; }
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
-        .menu-toggle span { width: 25px; height: 3px; background: #000; margin: 3px 0; transition: 0.3s; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-item { position: relative; }
-        .nav-item > a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
-        .nav-item > a:hover { color: #FFD700; }
-        .dropdown { position: absolute; top: 100%; left: 0; background: white; min-width: 250px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 100; }
-        .nav-item:hover .dropdown { opacity: 1; visibility: visible; }
-        .dropdown a { display: block; padding: 0.8rem 1.5rem; text-decoration: none; color: #333; transition: all 0.3s; }
-        .dropdown a:hover { background: #FFD700; color: #000; padding-left: 2rem; }
-        .nav-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
-        @media (max-width: 768px) { .menu-toggle { display: flex; } .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100%; background: white; flex-direction: column; padding: 80px 2rem 2rem; transition: 0.3s; z-index: 1000; } .nav-links.active { right: 0; } .dropdown { position: static; opacity: 1; visibility: visible; box-shadow: none; display: none; } .nav-item.active .dropdown { display: block; } .nav-overlay.active { display: block; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .service-header {
+            margin-top: 100px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .service-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-header h1 span {
+            color: #FFD700;
+        }
+
+        .service-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .service-section {
+            margin-bottom: 5rem;
+        }
+
+        .service-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #FFD700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            border: 2px dashed #FFD700;
+        }
+
+        .image{
+              width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-box h3 {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #000;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .certification-badge {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-left: 5px solid #FFD700;
+        }
+
+        .certification-badge p {
+            color: #333;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: #FFD700;
+            transform: scale(1.05);
+        }
+
+        .tech-item p {
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+
+            .service-grid,
+            .stats-container,
+            .tech-grid,
+            .two-column-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-grid,
+            .stats-container,
+            .tech-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                padding: 2rem;
+            }
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .dropdown a:hover {
+            background: #FFD700;
+            color: #000;
+            padding-left: 2rem;
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 80px 2rem 2rem;
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                display: none;
+            }
+
+            .nav-item.active .dropdown {
+                display: block;
+            }
+
+            .nav-overlay.active {
+                display: block;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="nav-overlay"></div>
     <nav class="navbar">
@@ -84,7 +493,6 @@
                     <a href="../QuienesS/mision.html">Misión</a>
                     <a href="../QuienesS/vision.html">Visión</a>
                     <a href="../QuienesS/valores.html">Valores</a>
-                    <a href="../QuienesS/objetivos.html">Objetivos</a>
                     <a href="../QuienesS/deberes.html">Deberes y Derechos</a>
                 </div>
             </div>
@@ -115,7 +523,9 @@
     <div class="service-header">
         <div class="service-header-content">
             <h1>Vigilancia <span>Electrónica</span></h1>
-            <p>Sistemas de seguridad electrónica de última tecnología con Central de Monitoreo tipo BUNKER. Ofrecemos monitoreo de alarmas, rastreo satelital GPS, circuito cerrado de televisión, control de accesos y sistemas integrados con la mejor tecnología del mercado.</p>
+            <p>Sistemas de seguridad electrónica de última tecnología con Central de Monitoreo tipo BUNKER. Ofrecemos
+                monitoreo de alarmas, rastreo satelital GPS, circuito cerrado de televisión, control de accesos y
+                sistemas integrados con la mejor tecnología del mercado.</p>
         </div>
     </div>
 
@@ -129,13 +539,27 @@
         </div>
 
         <div class="stats-container">
-            <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Monitoreo continuo</div></div>
-            <div class="stat-item"><div class="stat-number">+5,200</div><div class="stat-label">Cámaras instaladas</div></div>
-            <div class="stat-item"><div class="stat-number">45 seg</div><div class="stat-label">Tiempo de respuesta</div></div>
-            <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Efectividad operativa</div></div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Monitoreo continuo</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+5,200</div>
+                <div class="stat-label">Cámaras instaladas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">45 seg</div>
+                <div class="stat-label">Tiempo de respuesta</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Efectividad operativa</div>
+            </div>
         </div>
 
-        <div class="image-placeholder">[ESPACIO PARA IMAGEN DE CENTRAL DE MONITOREO TIPO BUNKER]</div>
+        <div class="image-placeholder">
+            <img src="https://drive.google.com/thumbnail?id=1Rwg6FOUUeC8LLQqlywNuu3vhAsxzD5k8&sz=w1000" class="image">
+        </div>
 
         <div class="service-section">
             <h2>Servicios de Vigilancia Electrónica</h2>
@@ -143,71 +567,105 @@
                 <div class="service-card">
                     <div class="service-icon">📡</div>
                     <h3>Central de Monitoreo Tipo BUNKER</h3>
-                    <p>Estación central de monitoreo con infraestructura blindada y sistemas de respaldo para operación ininterrumpida 24 horas, 7 días a la semana, 365 días al año.</p>
+                    <p>Estación central de monitoreo con infraestructura blindada y sistemas de respaldo para operación
+                        ininterrumpida 24 horas, 7 días a la semana, 365 días al año.</p>
                     <ul class="features-list">
-                        <li><strong>Infraestructura blindada:</strong> Construcción tipo BUNKER con protección balística y sistemas anti-intrusión</li>
-                        <li><strong>Monitoreo multicanal:</strong> Recepción de alarmas vía radio, GPRS, IP, telefonía fija y GSM</li>
-                        <li><strong>Operadores certificados:</strong> Personal con formación en manejo de crisis y protocolos de emergencia</li>
-                        <li><strong>Sistemas de respaldo:</strong> Plantas eléctricas, UPS, redundancia de comunicaciones y almacenamiento</li>
-                        <li><strong>Verificación de alarmas:</strong> Protocolo de verificación previa al despacho de unidades de reacción</li>
+                        <li><strong>Infraestructura blindada:</strong> Construcción tipo BUNKER con protección balística
+                            y sistemas anti-intrusión</li>
+                        <li><strong>Monitoreo multicanal:</strong> Recepción de alarmas vía radio, GPRS, IP, telefonía
+                            fija y GSM</li>
+                        <li><strong>Operadores certificados:</strong> Personal con formación en manejo de crisis y
+                            protocolos de emergencia</li>
+                        <li><strong>Sistemas de respaldo:</strong> Plantas eléctricas, UPS, redundancia de
+                            comunicaciones y almacenamiento</li>
+                        <li><strong>Verificación de alarmas:</strong> Protocolo de verificación previa al despacho de
+                            unidades de reacción</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📹</div>
                     <h3>CCTV - Circuito Cerrado de Televisión</h3>
-                    <p>Sistemas de videovigilancia con tecnología de punta: cámaras IP 4K, analítica de video con inteligencia artificial, almacenamiento en nube y visualización remota.</p>
+                    <p>Sistemas de videovigilancia con tecnología de punta: cámaras IP 4K, analítica de video con
+                        inteligencia artificial, almacenamiento en nube y visualización remota.</p>
                     <ul class="features-list">
-                        <li><strong>Cámaras de última generación:</strong> Domo, bala, PTZ, térmicas, 360°, 4K Ultra HD, visión nocturna infrarroja</li>
-                        <li><strong>Analítica de video con IA:</strong> Detección de intrusión, seguimiento automático, conteo de personas, reconocimiento de placas (LPR)</li>
-                        <li><strong>Almacenamiento redundante:</strong> Grabación en NVR con respaldo en nube, retención de hasta 90 días</li>
-                        <li><strong>Visualización remota:</strong> Acceso desde cualquier dispositivo con app móvil y plataforma web</li>
-                        <li><strong>Integración con alarmas:</strong> Activación de grabación por eventos y alertas en tiempo real</li>
+                        <li><strong>Cámaras de última generación:</strong> Domo, bala, PTZ, térmicas, 360°, 4K Ultra HD,
+                            visión nocturna infrarroja</li>
+                        <li><strong>Analítica de video con IA:</strong> Detección de intrusión, seguimiento automático,
+                            conteo de personas, reconocimiento de placas (LPR)</li>
+                        <li><strong>Almacenamiento redundante:</strong> Grabación en NVR con respaldo en nube, retención
+                            de hasta 90 días</li>
+                        <li><strong>Visualización remota:</strong> Acceso desde cualquier dispositivo con app móvil y
+                            plataforma web</li>
+                        <li><strong>Integración con alarmas:</strong> Activación de grabación por eventos y alertas en
+                            tiempo real</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🚪</div>
                     <h3>Control de Acceso Biométrico</h3>
-                    <p>Sistemas de gestión de ingresos con tecnología biométrica de huella digital, reconocimiento facial y tarjetas de proximidad para control total de accesos.</p>
+                    <p>Sistemas de gestión de ingresos con tecnología biométrica de huella digital, reconocimiento
+                        facial y tarjetas de proximidad para control total de accesos.</p>
                     <ul class="features-list">
-                        <li><strong>Biometría avanzada:</strong> Lectores de huella dactilar con alta precisión y anti-spoofing</li>
-                        <li><strong>Reconocimiento facial:</strong> Identificación con tecnología 3D, incluso con mascarillas</li>
-                        <li><strong>Tarjetas de proximidad:</strong> RFID, MIFARE, tecnología sin contacto con diferentes niveles de acceso</li>
-                        <li><strong>Gestión horaria:</strong> Control de horarios por persona, zonas restringidas y niveles de autorización</li>
-                        <li><strong>Integración con nómina:</strong> Reportes de asistencia para procesos de recursos humanos</li>
+                        <li><strong>Biometría avanzada:</strong> Lectores de huella dactilar con alta precisión y
+                            anti-spoofing</li>
+                        <li><strong>Reconocimiento facial:</strong> Identificación con tecnología 3D, incluso con
+                            mascarillas</li>
+                        <li><strong>Tarjetas de proximidad:</strong> RFID, MIFARE, tecnología sin contacto con
+                            diferentes niveles de acceso</li>
+                        <li><strong>Gestión horaria:</strong> Control de horarios por persona, zonas restringidas y
+                            niveles de autorización</li>
+                        <li><strong>Integración con nómina:</strong> Reportes de asistencia para procesos de recursos
+                            humanos</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🚨</div>
                     <h3>Sistemas de Alarma</h3>
-                    <p>Sensores de movimiento, magnéticos de puerta, detectores de rotura de vidrio, detectores de humo, botones de pánico y barreras perimetrales conectados a nuestra central.</p>
+                    <p>Sensores de movimiento, magnéticos de puerta, detectores de rotura de vidrio, detectores de humo,
+                        botones de pánico y barreras perimetrales conectados a nuestra central.</p>
                     <ul class="features-list">
-                        <li><strong>Sensores de movimiento:</strong> Infrarrojos dual-tecnología, microondas, cortinas infrarrojas</li>
-                        <li><strong>Sensores perimetrales:</strong> Barreras infrarrojas, sensores de vibración en cercas, detectores de rotura de vidrio</li>
-                        <li><strong>Detección temprana:</strong> Detectores de humo, gas, monóxido de carbono, inundación</li>
-                        <li><strong>Botones de pánico:</strong> Fijos y portátiles con comunicación inalámbrica, activación silenciosa o audible</li>
-                        <li><strong>Comunicación redundante:</strong> Transmisión de alarmas vía GPRS, IP y telefonía con respaldo automático</li>
+                        <li><strong>Sensores de movimiento:</strong> Infrarrojos dual-tecnología, microondas, cortinas
+                            infrarrojas</li>
+                        <li><strong>Sensores perimetrales:</strong> Barreras infrarrojas, sensores de vibración en
+                            cercas, detectores de rotura de vidrio</li>
+                        <li><strong>Detección temprana:</strong> Detectores de humo, gas, monóxido de carbono,
+                            inundación</li>
+                        <li><strong>Botones de pánico:</strong> Fijos y portátiles con comunicación inalámbrica,
+                            activación silenciosa o audible</li>
+                        <li><strong>Comunicación redundante:</strong> Transmisión de alarmas vía GPRS, IP y telefonía
+                            con respaldo automático</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📍</div>
                     <h3>Rastreo Satelital GPS</h3>
-                    <p>Tecnología GPS para determinar la ubicación precisa de vehículos y personas en tiempo real, con geocercas y alertas automáticas.</p>
+                    <p>Tecnología GPS para determinar la ubicación precisa de vehículos y personas en tiempo real, con
+                        geocercas y alertas automáticas.</p>
                     <ul class="features-list">
-                        <li><strong>Localización en tiempo real:</strong> Actualización de posición cada 5 segundos en plataforma web y app móvil</li>
-                        <li><strong>Geocercas virtuales:</strong> Alertas automáticas al ingresar o salir de zonas predefinidas</li>
-                        <li><strong>Historial de rutas:</strong> Reproducción de trayectorias con fechas, horarios y velocidades</li>
-                        <li><strong>Alertas de comportamiento:</strong> Excesos de velocidad, paradas prolongadas, encendido/apagado</li>
-                        <li><strong>Botón de pánico vehicular:</strong> Activación de alerta desde el vehículo ante emergencias</li>
+                        <li><strong>Localización en tiempo real:</strong> Actualización de posición cada 5 segundos en
+                            plataforma web y app móvil</li>
+                        <li><strong>Geocercas virtuales:</strong> Alertas automáticas al ingresar o salir de zonas
+                            predefinidas</li>
+                        <li><strong>Historial de rutas:</strong> Reproducción de trayectorias con fechas, horarios y
+                            velocidades</li>
+                        <li><strong>Alertas de comportamiento:</strong> Excesos de velocidad, paradas prolongadas,
+                            encendido/apagado</li>
+                        <li><strong>Botón de pánico vehicular:</strong> Activación de alerta desde el vehículo ante
+                            emergencias</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔄</div>
                     <h3>Integración Total de Sistemas</h3>
-                    <p>Plataforma unificada que integra CCTV, control de acceso, alarmas y GPS en una sola interfaz para gestión centralizada.</p>
+                    <p>Plataforma unificada que integra CCTV, control de acceso, alarmas y GPS en una sola interfaz para
+                        gestión centralizada.</p>
                     <ul class="features-list">
-                        <li><strong>Gestión centralizada:</strong> Control de todos los sistemas desde una única plataforma</li>
-                        <li><strong>Automatización de eventos:</strong> Reglas que activan acciones automáticas (ej. alarma activa CCTV)</li>
-                        <li><strong>Reportes consolidados:</strong> Informes de gestión con datos de todos los sistemas integrados</li>
+                        <li><strong>Gestión centralizada:</strong> Control de todos los sistemas desde una única
+                            plataforma</li>
+                        <li><strong>Automatización de eventos:</strong> Reglas que activan acciones automáticas (ej.
+                            alarma activa CCTV)</li>
+                        <li><strong>Reportes consolidados:</strong> Informes de gestión con datos de todos los sistemas
+                            integrados</li>
                         <li><strong>API abierta:</strong> Posibilidad de integración con sistemas corporativos</li>
                         <li><strong>Escalabilidad:</strong> Capacidad de crecimiento modular según necesidades</li>
                     </ul>
@@ -218,18 +676,42 @@
         <div class="service-section">
             <h2>Tecnologías de Comunicación Avanzadas</h2>
             <div class="tech-grid">
-                <div class="tech-item"><p>📡 Monitoreo vía Radio</p></div>
-                <div class="tech-item"><p>📱 Monitoreo GPRS/4G/5G</p></div>
-                <div class="tech-item"><p>🌐 Monitoreo IP / Internet</p></div>
-                <div class="tech-item"><p>📞 Telefonía Fija / GSM</p></div>
-                <div class="tech-item"><p>📡 Sistema Paradox</p></div>
-                <div class="tech-item"><p>📡 Sistema Sistem III</p></div>
-                <div class="tech-item"><p>📱 App móvil iOS/Android</p></div>
-                <div class="tech-item"><p>☁️ Almacenamiento en Nube</p></div>
-                <div class="tech-item"><p>🎥 Cámaras IP 4K Ultra HD</p></div>
-                <div class="tech-item"><p>👤 Reconocimiento Facial 3D</p></div>
-                <div class="tech-item"><p>🖐️ Biometría Avanzada</p></div>
-                <div class="tech-item"><p>🛰️ Rastreo GPS Satelital</p></div>
+                <div class="tech-item">
+                    <p>📡 Monitoreo vía Radio</p>
+                </div>
+                <div class="tech-item">
+                    <p>📱 Monitoreo GPRS/4G/5G</p>
+                </div>
+                <div class="tech-item">
+                    <p>🌐 Monitoreo IP / Internet</p>
+                </div>
+                <div class="tech-item">
+                    <p>📞 Telefonía Fija / GSM</p>
+                </div>
+                <div class="tech-item">
+                    <p>📡 Sistema Paradox</p>
+                </div>
+                <div class="tech-item">
+                    <p>📡 Sistema Sistem III</p>
+                </div>
+                <div class="tech-item">
+                    <p>📱 App móvil iOS/Android</p>
+                </div>
+                <div class="tech-item">
+                    <p>☁️ Almacenamiento en Nube</p>
+                </div>
+                <div class="tech-item">
+                    <p>🎥 Cámaras IP 4K Ultra HD</p>
+                </div>
+                <div class="tech-item">
+                    <p>👤 Reconocimiento Facial 3D</p>
+                </div>
+                <div class="tech-item">
+                    <p>🖐️ Biometría Avanzada</p>
+                </div>
+                <div class="tech-item">
+                    <p>🛰️ Rastreo GPS Satelital</p>
+                </div>
             </div>
         </div>
 
@@ -239,21 +721,31 @@
                 <div class="service-card">
                     <h3>Análisis de Vulnerabilidades</h3>
                     <ul class="features-list">
-                        <li><strong>Evaluación de perímetros:</strong> Identificación de puntos débiles en cercas, muros, accesos y zonas de ingreso no controlado</li>
-                        <li><strong>Análisis de riesgos:</strong> Identificación de amenazas potenciales según ubicación geográfica y sector económico</li>
-                        <li><strong>Evaluación de sistemas existentes:</strong> Diagnóstico de equipos actuales, obsolescencia y necesidades de actualización</li>
-                        <li><strong>Nivel de riesgo:</strong> Clasificación del nivel de riesgo de acuerdo al contexto de la organización</li>
-                        <li><strong>Recomendaciones priorizadas:</strong> Plan de inversión en seguridad con priorización por criticidad</li>
+                        <li><strong>Evaluación de perímetros:</strong> Identificación de puntos débiles en cercas,
+                            muros, accesos y zonas de ingreso no controlado</li>
+                        <li><strong>Análisis de riesgos:</strong> Identificación de amenazas potenciales según ubicación
+                            geográfica y sector económico</li>
+                        <li><strong>Evaluación de sistemas existentes:</strong> Diagnóstico de equipos actuales,
+                            obsolescencia y necesidades de actualización</li>
+                        <li><strong>Nivel de riesgo:</strong> Clasificación del nivel de riesgo de acuerdo al contexto
+                            de la organización</li>
+                        <li><strong>Recomendaciones priorizadas:</strong> Plan de inversión en seguridad con
+                            priorización por criticidad</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>Diseño de Soluciones Personalizadas</h3>
                     <ul class="features-list">
-                        <li><strong>Seguridad perimetral:</strong> Diseño de barreras físicas y electrónicas según nivel de riesgo</li>
-                        <li><strong>Sistemas de detección temprana:</strong> Sensores de intrusión, detección de incendios y condiciones de riesgo</li>
-                        <li><strong>Control de accesos:</strong> Diseño de flujos de ingreso con niveles de autorización</li>
-                        <li><strong>Circuito cerrado de televisión:</strong> Ubicación estratégica de cámaras, cobertura de puntos ciegos</li>
-                        <li><strong>Sistemas contra incendios:</strong> Análisis de riesgos en sistemas de protección contra incendios</li>
+                        <li><strong>Seguridad perimetral:</strong> Diseño de barreras físicas y electrónicas según nivel
+                            de riesgo</li>
+                        <li><strong>Sistemas de detección temprana:</strong> Sensores de intrusión, detección de
+                            incendios y condiciones de riesgo</li>
+                        <li><strong>Control de accesos:</strong> Diseño de flujos de ingreso con niveles de autorización
+                        </li>
+                        <li><strong>Circuito cerrado de televisión:</strong> Ubicación estratégica de cámaras, cobertura
+                            de puntos ciegos</li>
+                        <li><strong>Sistemas contra incendios:</strong> Análisis de riesgos en sistemas de protección
+                            contra incendios</li>
                     </ul>
                 </div>
             </div>
@@ -333,7 +825,9 @@
 
         <div class="cta-box">
             <h3>Tecnología al servicio de su seguridad</h3>
-            <p>Solicite una evaluación gratuita de sus instalaciones. Nuestros ingenieros especialistas realizarán un diagnóstico completo de vulnerabilidades y diseñarán la solución electrónica más adecuada para sus necesidades, con presupuesto sin compromiso.</p>
+            <p>Solicite una evaluación gratuita de sus instalaciones. Nuestros ingenieros especialistas realizarán un
+                diagnóstico completo de vulnerabilidades y diseñarán la solución electrónica más adecuada para sus
+                necesidades, con presupuesto sin compromiso.</p>
             <a href="../contacto.html" class="cta-button">Solicitar Asesoría en Seguridad Electrónica</a>
         </div>
     </div>
@@ -349,7 +843,8 @@
         overlay.addEventListener('click', toggleMenu);
         if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
         window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
-        fetch("/footer.html").then(response => response.text()).then(data => { if(data) document.getElementById("footer").innerHTML = data; });
+        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; });
     </script>
 </body>
+
 </html>
