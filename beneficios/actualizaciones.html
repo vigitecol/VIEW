@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -217,13 +218,18 @@
             right: -50%;
             width: 100%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .page-header-content {
@@ -479,7 +485,8 @@
             flex-wrap: wrap;
         }
 
-        .timeline-left, .timeline-right {
+        .timeline-left,
+        .timeline-right {
             width: 45%;
         }
 
@@ -502,7 +509,7 @@
             background: white;
             border-radius: 15px;
             padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .timeline-content h4 {
@@ -535,7 +542,7 @@
 
         .version-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .version-header {
@@ -706,10 +713,23 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .navbar { padding: 0.6rem 5%; }
-            .logo-img { width: 40px; height: 40px; }
-            .logo-text { font-size: 1rem; }
-            .menu-toggle { display: flex; }
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
                 display: flex;
                 position: fixed;
@@ -727,15 +747,26 @@
                 z-index: 999;
                 overflow-y: auto;
             }
-            .nav-links.active { right: 0; }
-            .nav-item { width: 100%; }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
             .nav-item>a {
                 font-size: 1rem;
                 padding: 0.8rem 0;
                 justify-content: space-between;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
-            .nav-item>a::after { display: none; }
+
+            .nav-item>a::after {
+                display: none;
+            }
+
             .dropdown {
                 position: static;
                 opacity: 1;
@@ -751,45 +782,133 @@
                 transition: max-height 0.4s ease;
                 width: 100%;
             }
+
             .nav-item.active .dropdown {
                 max-height: 500px;
                 padding: 0.8rem 0;
                 margin-top: 0.5rem;
             }
-            .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
-            .page-header { margin-top: 60px; padding: 3rem 5%; }
-            .content-container { padding: 2rem 5%; }
-            .section { margin-bottom: 3rem; }
-            .roadmap-timeline::before { left: 20px; }
-            .timeline-item { flex-direction: column; }
-            .timeline-left, .timeline-right { width: 100%; text-align: left; padding-left: 40px; margin-bottom: 1rem; }
-            .timeline-left { text-align: left; }
-            .timeline-right { padding-left: 40px; }
-            .actualizacion-card, .ciclo-item { padding: 1.5rem; }
-            .cta-box { padding: 2rem; }
-            .footer-grid { gap: 2rem; }
+
+            .dropdown a {
+                padding: 0.7rem 1rem 0.7rem 2rem;
+            }
+
+            .page-header {
+                margin-top: 60px;
+                padding: 3rem 5%;
+            }
+
+            .content-container {
+                padding: 2rem 5%;
+            }
+
+            .section {
+                margin-bottom: 3rem;
+            }
+
+            .roadmap-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-left,
+            .timeline-right {
+                width: 100%;
+                text-align: left;
+                padding-left: 40px;
+                margin-bottom: 1rem;
+            }
+
+            .timeline-left {
+                text-align: left;
+            }
+
+            .timeline-right {
+                padding-left: 40px;
+            }
+
+            .actualizacion-card,
+            .ciclo-item {
+                padding: 1.5rem;
+            }
+
+            .cta-box {
+                padding: 2rem;
+            }
+
+            .footer-grid {
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .logo-img { width: 35px; height: 35px; }
-            .logo-text { font-size: 0.85rem; }
-            .page-header h1 { font-size: 1.8rem; }
-            .page-header p { font-size: 0.9rem; }
-            .stat-number { font-size: 2rem; }
-            .actualizacion-card h3 { font-size: 1.2rem; }
-            .timeline-date { font-size: 1.1rem; }
-            .version-header { flex-direction: column; }
-            .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
-            .footer-col h4 { font-size: 1rem; }
-            .footer-col p { font-size: 0.85rem; }
-            .social-link { width: 38px; height: 38px; font-size: 1rem; }
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 0.85rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .actualizacion-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .timeline-date {
+                font-size: 1.1rem;
+            }
+
+            .version-header {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-col h4 {
+                font-size: 1rem;
+            }
+
+            .footer-col p {
+                font-size: 0.85rem;
+            }
+
+            .social-link {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 360px) {
-            .updates-stats, .actualizaciones-grid, .ciclo-grid { grid-template-columns: 1fr; }
+
+            .updates-stats,
+            .actualizaciones-grid,
+            .ciclo-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="nav-overlay"></div>
 
@@ -838,35 +957,79 @@
                 </div>
             </div>
             <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
+            <div class="nav-item"><a href="../envia.html">Trabaja con Nosotros</a></div>
         </div>
     </nav>
 
     <div class="page-header">
         <div class="page-header-content">
             <h1>Actualizaciones <span>Gratis</span></h1>
-            <p>En VIGITECOL, sus sistemas siempre estarán actualizados sin costo adicional. Garantizamos que su inversión en seguridad esté siempre a la vanguardia tecnológica.</p>
+            <p>En VIGITECOL, sus sistemas siempre estarán actualizados sin costo adicional. Garantizamos que su
+                inversión en seguridad esté siempre a la vanguardia tecnológica.</p>
         </div>
     </div>
 
     <div class="content-container">
         <!-- Estadísticas -->
         <div class="updates-stats">
-            <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Actualizaciones al año</div></div>
-            <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Sin costo para clientes</div></div>
-            <div class="stat-card"><div class="stat-number">+50</div><div class="stat-label">Mejoras implementadas</div></div>
-            <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Actualizaciones automáticas</div></div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Actualizaciones al año</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Sin costo para clientes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">+50</div>
+                <div class="stat-label">Mejoras implementadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Actualizaciones automáticas</div>
+            </div>
         </div>
 
         <!-- Tipos de actualizaciones -->
         <div class="section">
             <h2>Actualizaciones Incluidas</h2>
             <div class="actualizaciones-grid">
-                <div class="actualizacion-card"><div class="actualizacion-icon">💻</div><h3>Software de Monitoreo</h3><p>Actualizaciones periódicas de nuestra plataforma con nuevas funcionalidades.</p><div class="update-badge">Trimestral</div></div>
-                <div class="actualizacion-card"><div class="actualizacion-icon">🤖</div><h3>Algoritmos de IA</h3><p>Mejoras continuas en detección, reconocimiento facial y análisis.</p><div class="update-badge">Mensual</div></div>
-                <div class="actualizacion-card"><div class="actualizacion-icon">📱</div><h3>Aplicaciones Móviles</h3><p>Actualizaciones de apps iOS y Android con nuevas funcionalidades.</p><div class="update-badge">Bimestral</div></div>
-                <div class="actualizacion-card"><div class="actualizacion-icon">🔒</div><h3>Seguridad y Parches</h3><p>Parches de seguridad críticos contra nuevas amenazas.</p><div class="update-badge">Tiempo real</div></div>
-                <div class="actualizacion-card"><div class="actualizacion-icon">📊</div><h3>Reportes y Análisis</h3><p>Nuevos formatos de reporte y dashboards personalizados.</p><div class="update-badge">Semestral</div></div>
-                <div class="actualizacion-card"><div class="actualizacion-icon">⚙️</div><h3>Firmware de Equipos</h3><p>Actualizaciones para cámaras, DVR/NVR y controladores.</p><div class="update-badge">Según fabricante</div></div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">💻</div>
+                    <h3>Software de Monitoreo</h3>
+                    <p>Actualizaciones periódicas de nuestra plataforma con nuevas funcionalidades.</p>
+                    <div class="update-badge">Trimestral</div>
+                </div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">🤖</div>
+                    <h3>Algoritmos de IA</h3>
+                    <p>Mejoras continuas en detección, reconocimiento facial y análisis.</p>
+                    <div class="update-badge">Mensual</div>
+                </div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">📱</div>
+                    <h3>Aplicaciones Móviles</h3>
+                    <p>Actualizaciones de apps iOS y Android con nuevas funcionalidades.</p>
+                    <div class="update-badge">Bimestral</div>
+                </div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">🔒</div>
+                    <h3>Seguridad y Parches</h3>
+                    <p>Parches de seguridad críticos contra nuevas amenazas.</p>
+                    <div class="update-badge">Tiempo real</div>
+                </div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">📊</div>
+                    <h3>Reportes y Análisis</h3>
+                    <p>Nuevos formatos de reporte y dashboards personalizados.</p>
+                    <div class="update-badge">Semestral</div>
+                </div>
+                <div class="actualizacion-card">
+                    <div class="actualizacion-icon">⚙️</div>
+                    <h3>Firmware de Equipos</h3>
+                    <p>Actualizaciones para cámaras, DVR/NVR y controladores.</p>
+                    <div class="update-badge">Según fabricante</div>
+                </div>
             </div>
         </div>
 
@@ -874,10 +1037,26 @@
         <div class="section">
             <h2>Ciclo de Actualización Permanente</h2>
             <div class="ciclo-grid">
-                <div class="ciclo-item"><div class="ciclo-numero">1</div><h4>Detección</h4><p>Identificamos oportunidades de mejora</p></div>
-                <div class="ciclo-item"><div class="ciclo-numero">2</div><h4>Desarrollo</h4><p>Creamos las nuevas funcionalidades</p></div>
-                <div class="ciclo-item"><div class="ciclo-numero">3</div><h4>Pruebas</h4><p>Validamos en entornos controlados</p></div>
-                <div class="ciclo-item"><div class="ciclo-numero">4</div><h4>Implementación</h4><p>Actualizamos sin afectar el servicio</p></div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">1</div>
+                    <h4>Detección</h4>
+                    <p>Identificamos oportunidades de mejora</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">2</div>
+                    <h4>Desarrollo</h4>
+                    <p>Creamos las nuevas funcionalidades</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">3</div>
+                    <h4>Pruebas</h4>
+                    <p>Validamos en entornos controlados</p>
+                </div>
+                <div class="ciclo-item">
+                    <div class="ciclo-numero">4</div>
+                    <h4>Implementación</h4>
+                    <p>Actualizamos sin afectar el servicio</p>
+                </div>
             </div>
         </div>
 
@@ -886,10 +1065,51 @@
             <h2>Roadmap de Actualizaciones 2026</h2>
             <div class="roadmap-container">
                 <div class="roadmap-timeline">
-                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q1 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>IA Avanzada</h4><p>Nuevos algoritmos de detección de comportamientos anómalos y reconocimiento facial mejorado.</p></div></div></div>
-                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q2 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>App Rediseñada</h4><p>Nueva versión de nuestra aplicación móvil con interfaz renovada.</p></div></div></div>
-                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q3 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>Integración IoT</h4><p>Conexión con más dispositivos del hogar inteligente y sensores.</p></div></div></div>
-                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q4 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>Reportes Predictivos</h4><p>Análisis predictivo basado en IA para anticipar incidentes.</p></div></div></div>
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q1 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>IA Avanzada</h4>
+                                <p>Nuevos algoritmos de detección de comportamientos anómalos y reconocimiento facial
+                                    mejorado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q2 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>App Rediseñada</h4>
+                                <p>Nueva versión de nuestra aplicación móvil con interfaz renovada.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q3 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>Integración IoT</h4>
+                                <p>Conexión con más dispositivos del hogar inteligente y sensores.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-left">
+                            <div class="timeline-date">Q4 2026</div>
+                        </div>
+                        <div class="timeline-right">
+                            <div class="timeline-content">
+                                <h4>Reportes Predictivos</h4>
+                                <p>Análisis predictivo basado en IA para anticipar incidentes.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -898,16 +1118,35 @@
         <div class="section">
             <h2>Últimas Actualizaciones</h2>
             <div class="versiones-container">
-                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.2.0</span><span class="version-fecha">15 Feb 2026</span></div><div class="version-features"><span class="feature-tag">Nuevo dashboard</span><span class="feature-tag">Alertas en tiempo real</span><span class="feature-tag">Exportación de videos</span><span class="feature-tag">Corrección de errores</span></div></div>
-                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.1.0</span><span class="version-fecha">10 Ene 2026</span></div><div class="version-features"><span class="feature-tag">Reconocimiento facial</span><span class="feature-tag">Mejora en detección</span><span class="feature-tag">App iOS actualizada</span></div></div>
-                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.0.0</span><span class="version-fecha">5 Dic 2025</span></div><div class="version-features"><span class="feature-tag">Rediseño completo</span><span class="feature-tag">Nuevo motor de IA</span><span class="feature-tag">Integración en la nube</span><span class="feature-tag">App Android nueva</span></div></div>
+                <div class="version-item">
+                    <div class="version-header"><span class="version-numero">Versión 5.2.0</span><span
+                            class="version-fecha">15 Feb 2026</span></div>
+                    <div class="version-features"><span class="feature-tag">Nuevo dashboard</span><span
+                            class="feature-tag">Alertas en tiempo real</span><span class="feature-tag">Exportación de
+                            videos</span><span class="feature-tag">Corrección de errores</span></div>
+                </div>
+                <div class="version-item">
+                    <div class="version-header"><span class="version-numero">Versión 5.1.0</span><span
+                            class="version-fecha">10 Ene 2026</span></div>
+                    <div class="version-features"><span class="feature-tag">Reconocimiento facial</span><span
+                            class="feature-tag">Mejora en detección</span><span class="feature-tag">App iOS
+                            actualizada</span></div>
+                </div>
+                <div class="version-item">
+                    <div class="version-header"><span class="version-numero">Versión 5.0.0</span><span
+                            class="version-fecha">5 Dic 2025</span></div>
+                    <div class="version-features"><span class="feature-tag">Rediseño completo</span><span
+                            class="feature-tag">Nuevo motor de IA</span><span class="feature-tag">Integración en la
+                            nube</span><span class="feature-tag">App Android nueva</span></div>
+                </div>
             </div>
         </div>
 
         <!-- Call to Action -->
         <div class="cta-box">
             <h3>Siempre actualizado, siempre protegido</h3>
-            <p>Con VIGITECOL, su sistema de seguridad mejora constantemente sin que usted tenga que pagar un peso adicional.</p>
+            <p>Con VIGITECOL, su sistema de seguridad mejora constantemente sin que usted tenga que pagar un peso
+                adicional.</p>
             <a href="../contacto.html" class="cta-button">Conozca más</a>
         </div>
     </div>
@@ -915,7 +1154,7 @@
     <div id="footer"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             const overlay = document.querySelector('.nav-overlay');
@@ -961,4 +1200,5 @@
         fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
+
 </html>

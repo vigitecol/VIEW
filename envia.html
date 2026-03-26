@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Vigilancia Canina - VIGITECOL LTDA</title>
+    <title>Trabaja con Nosotros - VIGITECOL LTDA</title>
     <style>
-        /* ========== MISMO ESTILO QUE EL ANTERIOR ========== */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +17,7 @@
             background: #ffffff;
         }
 
-        /* Navbar (mismo código que en vigilanciaHumanaArmada.html) */
+        /* ========== NAVBAR ========== */
         .navbar {
             position: fixed;
             top: 0;
@@ -202,8 +200,8 @@
             opacity: 1;
         }
 
-        /* Service Header */
-        .service-header {
+        /* ========== PAGE HEADER ========== */
+        .page-header {
             margin-top: 70px;
             padding: 4rem 5%;
             background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
@@ -212,14 +210,14 @@
             overflow: hidden;
         }
 
-        .service-header::before {
+        .page-header::before {
             content: '';
             position: absolute;
             top: -50%;
             right: -50%;
             width: 100%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
 
@@ -228,193 +226,342 @@
             to { transform: rotate(360deg); }
         }
 
-        .service-header-content {
+        .page-header-content {
             position: relative;
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .service-header h1 {
+        .page-header h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
         }
 
-        .service-header h1 span {
+        .page-header h1 span {
             color: #FFD700;
         }
 
-        .service-header p {
+        .page-header p {
             font-size: clamp(1rem, 3vw, 1.2rem);
             color: #ccc;
             max-width: 800px;
             line-height: 1.8;
+            margin: 0 auto;
         }
 
-        .service-container {
+        /* ========== CONTENIDO PRINCIPAL ========== */
+        .content-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 5%;
         }
 
-        .service-section {
-            margin-bottom: 5rem;
+        /* Sección de bienvenida */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
-        .service-section h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
+        .welcome-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #000;
+            margin-bottom: 1.5rem;
         }
 
-        .service-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: #FFD700;
+        .welcome-section h2 span {
+            color: #FFD700;
         }
 
-        .service-grid {
+        .welcome-section p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Beneficios de trabajar con nosotros */
+        .beneficios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin: 3rem 0 4rem;
         }
 
-        .service-card {
+        .beneficio-card {
             background: #f8f8f8;
             border-radius: 20px;
             padding: 2rem;
+            text-align: center;
             transition: all 0.4s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            height: 100%;
         }
 
-        .service-card:hover {
+        .beneficio-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
             border-color: #FFD700;
         }
 
-        .service-icon {
-            width: 70px;
-            height: 70px;
+        .beneficio-icon {
+            width: 80px;
+            height: 80px;
             background: #FFD700;
-            border-radius: 15px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
+        .beneficio-card h3 {
+            font-size: 1.3rem;
             margin-bottom: 1rem;
+            color: #000;
         }
 
-        .service-card p {
+        .beneficio-card p {
             color: #666;
-            line-height: 1.7;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .features-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.8rem;
-            position: relative;
-            color: #555;
             line-height: 1.6;
             font-size: 0.95rem;
         }
 
-        .features-list li::before {
-            content: '✓';
-            color: #FFD700;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1rem;
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 2rem;
-            background: #f8f8f8;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #FFD700;
-        }
-
-        .stat-label {
-            color: #666;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .image-placeholder {
+        /* Imagen destacada */
+        .feature-image {
             width: 100%;
             height: auto;
-            min-height: 400px;
-            border-radius: 20px;
-            margin: 3rem 0;
+            border-radius: 30px;
             overflow: hidden;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .image-placeholder img {
+        .feature-image img {
             width: 100%;
             height: auto;
             object-fit: cover;
-            border-radius: 20px;
             transition: transform 0.5s ease;
         }
 
-        .image-placeholder img:hover {
+        .feature-image img:hover {
             transform: scale(1.02);
         }
 
-        .cta-box {
-            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+        /* Sección de requisitos y vacantes */
+        .vacantes-section {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
             border-radius: 30px;
-            padding: clamp(2rem, 5vw, 4rem);
-            text-align: center;
-            margin-top: 4rem;
+            padding: 3rem;
+            margin: 4rem 0;
         }
 
-        .cta-box h3 {
+        .vacantes-section h3 {
             font-size: clamp(1.5rem, 4vw, 2rem);
             color: #000;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .cta-box p {
+        .vacantes-section h3 span {
+            color: #FFD700;
+        }
+
+        .vacantes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .vacante-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border-left: 4px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+
+        .vacante-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .vacante-card h4 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .vacante-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vacante-tag {
+            display: inline-block;
+            background: #FFD700;
+            color: #000;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Requisitos */
+        .requisitos-container {
+            background: #f8f8f8;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .requisitos-container h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #000;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .requisitos-container h3 span {
+            color: #FFD700;
+        }
+
+        .requisitos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .requisito-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .requisito-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .requisito-icon {
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .requisito-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .requisito-text p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        /* Canales de contacto */
+        .canales-section {
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .canales-section h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #FFD700;
+            margin-bottom: 2rem;
+        }
+
+        .canales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .canal-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .canal-card:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .canal-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: #000;
+        }
+
+        .canal-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .canal-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .canal-card .detalle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: white;
+        }
+
+        /* CTA Final */
+        .cta-final {
+            background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-final h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .cta-final p {
             color: #333;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
@@ -439,50 +586,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .certification-badge {
-            background: #f8f8f8;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
-            border-left: 5px solid #FFD700;
-        }
-
-        .certification-badge p {
-            color: #333;
-            font-weight: 500;
-            margin: 0.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        .two-column-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .breed-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .breed-item {
-            background: white;
-            border-radius: 10px;
-            padding: 0.8rem;
-            text-align: center;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s;
-        }
-
-        .breed-item:hover {
-            background: #FFD700;
-            transform: scale(1.02);
-        }
-
-        /* Footer (mismo código) */
+        /* Footer */
         .footer-new {
             background: #000000;
             color: #fff;
@@ -625,45 +729,31 @@
                 margin-top: 0.5rem;
             }
             .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
-            .service-header { margin-top: 60px; padding: 3rem 5%; }
-            .service-container { padding: 2rem 5%; }
-            .service-section { margin-bottom: 3rem; }
-            .stats-container { gap: 1rem; }
-            .stat-item { padding: 1.5rem; }
-            .stat-number { font-size: 2rem; }
-            .service-card { padding: 1.5rem; }
-            .cta-box { padding: 2rem; }
+            .page-header { margin-top: 60px; padding: 3rem 5%; }
+            .content-container { padding: 2rem 5%; }
+            .vacantes-section, .requisitos-container, .canales-section { padding: 2rem; }
             .footer-grid { gap: 2rem; }
         }
 
         @media (max-width: 480px) {
             .logo-img { width: 35px; height: 35px; }
             .logo-text { font-size: 0.85rem; }
-            .service-header h1 { font-size: 1.8rem; }
-            .service-header p { font-size: 0.9rem; }
-            .stats-container { grid-template-columns: repeat(2, 1fr); }
-            .stat-number { font-size: 1.5rem; }
-            .stat-label { font-size: 0.75rem; }
-            .service-card h3 { font-size: 1.2rem; }
-            .features-list li { font-size: 0.85rem; }
-            .certification-badge p { font-size: 0.85rem; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-header p { font-size: 0.9rem; }
+            .welcome-section p { font-size: 0.95rem; }
+            .beneficio-card { padding: 1.5rem; }
+            .beneficio-icon { width: 60px; height: 60px; font-size: 1.8rem; }
+            .vacante-card, .requisito-item, .canal-card { padding: 1.2rem; }
             .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
             .footer-col h4 { font-size: 1rem; }
             .footer-col p { font-size: 0.85rem; }
             .social-link { width: 38px; height: 38px; font-size: 1rem; }
         }
-
-        @media (max-width: 360px) {
-            .stats-container { grid-template-columns: 1fr; }
-            .service-grid { grid-template-columns: 1fr; }
-            .two-column-grid { grid-template-columns: 1fr; }
-            .breed-grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
-
 <body>
     <div class="nav-overlay"></div>
+
     <nav class="navbar">
         <div class="menu-toggle">
             <span></span>
@@ -671,183 +761,227 @@
             <span></span>
         </div>
         <div class="logo-container">
-            <a href="../index.html">
-                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+            <a href="index.html">
+                <img src="images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
                 <span class="logo-text">VIGITECOL LTDA</span>
             </a>
         </div>
         <div class="nav-links">
-            <div class="nav-item"><a href="../index.html">Inicio</a></div>
+            <div class="nav-item"><a href="index.html">Inicio</a></div>
             <div class="nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="../QuienesS/principios.html">Principios Orientadores</a>
-                    <a href="../QuienesS/mision.html">Misión</a>
-                    <a href="../QuienesS/vision.html">Visión</a>
-                    <a href="../QuienesS/valores.html">Valores</a>
-                    <a href="../QuienesS/deberes.html">Deberes y Derechos</a>
+                    <a href="QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="QuienesS/mision.html">Misión</a>
+                    <a href="QuienesS/vision.html">Visión</a>
+                    <a href="QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
                 </div>
             </div>
             <div class="nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
-                    <a href="vigilanciaCanina.html">Vigilancia Canina</a>
-                    <a href="vigilanciaElectronica.html">Vigilancia Electrónica</a>
-                    <a href="vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
-                    <a href="estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
+                    <a href="Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="Servicios/vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="Servicios/vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="Servicios/estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
                 </div>
             </div>
             <div class="nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
-                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
-                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
-                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
-                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                    <a href="beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="beneficios/descuentos.html">Descuentos especiales</a>
                 </div>
             </div>
-            <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
-            <div class="nav-item"><a href="../envia.html">Trabaja con Nosotros</a></div>
+            <div class="nav-item"><a href="contacto.html">Contacto</a></div>
+            <div class="nav-item"><a href="envia.html">Trabaja con Nosotros</a></div>
         </div>
     </nav>
 
-    <div class="service-header">
-        <div class="service-header-content">
-            <h1>Vigilancia <span>Canina</span></h1>
-            <p>Servicio altamente especializado con perros adiestrados en Defensa Controlada, Detección de Explosivos, Detección de Narcóticos y Búsqueda y Localización de Personas. Contamos con criadero propio, centro de entrenamiento profesional e instalaciones especializadas.</p>
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>¿Quieres hacer parte de <span>la familia VIGITECOL</span>?</h1>
+            <p>Únete a un equipo comprometido con la excelencia, la seguridad y el servicio. En VIGITECOL LTDA valoramos el talento humano y ofrecemos oportunidades de crecimiento profesional.</p>
         </div>
     </div>
 
-    <div class="service-container">
-        <div class="certification-badge">
-            <p>✓ Proceso certificado bajo las normas NTC ISO 9001, ISO 28000 e ISO 45001</p>
-            <p>✓ Amplia experiencia en el área canina con conocimiento técnico especializado</p>
-            <p>✓ Criadero de propiedad y centro de entrenamiento profesional a cargo de expertos</p>
-            <p>✓ Instalaciones adecuadas y especializadas para el cuidado integral de unidades caninas</p>
-            <p>✓ Compromiso con el bienestar animal y la excelencia operativa</p>
+    <div class="content-container">
+        <!-- Bienvenida -->
+        <div class="welcome-section">
+            <h2>¡Sé parte de <span>nuestro equipo</span>!</h2>
+            <p>En VIGITECOL LTDA creemos que el éxito de nuestra empresa se construye con el talento, la dedicación y el compromiso de nuestros colaboradores. Por eso, buscamos personas íntegras, apasionadas por la seguridad y con ganas de crecer profesionalmente.</p>
         </div>
 
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">+85</div>
-                <div class="stat-label">Unidades caninas activas</div>
+        <!-- Beneficios de trabajar con nosotros -->
+        <div class="beneficios-grid">
+            <div class="beneficio-card">
+                <div class="beneficio-icon">🏆</div>
+                <h3>Ambiente Laboral Excelente</h3>
+                <p>Trabaja en un entorno colaborativo donde se valoran tus ideas y se fomenta el trabajo en equipo.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-label">Razas especializadas</div>
+            <div class="beneficio-card">
+                <div class="beneficio-icon">📈</div>
+                <h3>Crecimiento Profesional</h3>
+                <p>Oportunidades de ascenso y desarrollo dentro de la organización a través de programas de formación.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Efectividad comprobada</div>
+            <div class="beneficio-card">
+                <div class="beneficio-icon">🎓</div>
+                <h3>Capacitación Continua</h3>
+                <p>Acceso a cursos, talleres y certificaciones en seguridad, primeros auxilios y manejo de emergencias.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">15+ años</div>
-                <div class="stat-label">Experiencia canina</div>
+            <div class="beneficio-card">
+                <div class="beneficio-icon">💼</div>
+                <h3>Estabilidad Laboral</h3>
+                <p>Contratación formal con todas las prestaciones de ley y oportunidades de permanencia.</p>
+            </div>
+            <div class="beneficio-card">
+                <div class="beneficio-icon">🛡️</div>
+                <h3>Seguridad y Bienestar</h3>
+                <p>Programas de bienestar laboral, seguro de vida y condiciones óptimas de trabajo.</p>
+            </div>
+            <div class="beneficio-card">
+                <div class="beneficio-icon">🌟</div>
+                <h3>Reconocimiento al Mérito</h3>
+                <p>Programas de incentivos y reconocimiento por desempeño destacado y años de servicio.</p>
             </div>
         </div>
 
-        <div class="image-placeholder">
-            <img src="https://drive.google.com/thumbnail?id=1pXb9isAXee0lWx3ydB4SkfHss2NzYcO7&sz=w1000" alt="Vigilancia Canina">
+        <!-- Imagen destacada -->
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=500&fit=crop" alt="Equipo VIGITECOL">
         </div>
 
-        <div class="service-section">
-            <h2>Especialidades Caninas Certificadas</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-                    <h3>Defensa Controlada</h3>
-                    <p>Perros entrenados para protección de personas e instalaciones con respuesta inmediata ante amenazas y control absoluto.</p>
-                    <ul class="features-list">
-                        <li>Protección de perímetros industriales y residenciales</li>
-                        <li>Apoyo táctico a guardas de seguridad</li>
-                        <li>Control absoluto con comandos de voz y silbato</li>
-                        <li>Respuesta selectiva entre amenaza real y controlada</li>
-                        <li>Entrenamiento en agresividad controlada</li>
-                    </ul>
+        <!-- Vacantes disponibles -->
+        <div class="vacantes-section">
+            <h3>Vacantes <span>Disponibles</span></h3>
+            <div class="vacantes-grid">
+                <div class="vacante-card">
+                    <h4>Guardas de Seguridad</h4>
+                    <p>Experiencia en vigilancia, disponibilidad para turnos rotativos, certificado de curso de vigilancia vigente.</p>
+                    <span class="vacante-tag">Manizales, Pereira, Bogotá</span>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💣</div>
-                    <h3>Detección de Explosivos</h3>
-                    <p>Unidades especializadas en identificación de materiales explosivos para eventos masivos, aeropuertos e infraestructura crítica.</p>
-                    <ul class="features-list">
-                        <li>Detección de C-4, Semtex, TNT, dinamita</li>
-                        <li>Inspección vehicular y de carga pesada</li>
-                        <li>Barrido de edificios y centros comerciales</li>
-                        <li>Protocolos antiterrorismo certificados</li>
-                        <li>Certificación anual con muestras reales</li>
-                    </ul>
+                <div class="vacante-card">
+                    <h4>Manejadores Caninos</h4>
+                    <p>Experiencia en manejo de perros de trabajo, certificación en manejo canino, disponibilidad para desplazamientos.</p>
+                    <span class="vacante-tag">Nacional</span>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">❄️</div>
-                    <h3>Detección de Narcóticos</h3>
-                    <p>Perros entrenados para detección de estupefacientes en instalaciones, bodegas y zonas logísticas.</p>
-                    <ul class="features-list">
-                        <li>Detección de cocaína, marihuana, heroína, éxtasis</li>
-                        <li>Inspección de carga nacional e internacional</li>
-                        <li>Control en zonas francas y almacenamiento</li>
-                        <li>Apoyo a investigaciones judiciales</li>
-                        <li>Discreción operativa en entornos concurridos</li>
-                    </ul>
+                <div class="vacante-card">
+                    <h4>Técnicos en Seguridad Electrónica</h4>
+                    <p>Instalación y mantenimiento de sistemas CCTV, alarmas y control de acceso, conocimiento técnico.</p>
+                    <span class="vacante-tag">Manizales, Pereira</span>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>Búsqueda y Localización</h3>
-                    <p>Perros entrenados en rastreo y localización de personas desaparecidas o en situaciones de emergencia.</p>
-                    <ul class="features-list">
-                        <li>Rastreo en terreno abierto y rural</li>
-                        <li>Búsqueda en estructuras colapsadas</li>
-                        <li>Localización de personas extraviadas</li>
-                        <li>Apoyo en emergencias con bomberos</li>
-                        <li>Capacidad de rastreo post-mortem</li>
-                    </ul>
+                <div class="vacante-card">
+                    <h4>Supervisores de Seguridad</h4>
+                    <p>Experiencia en supervisión de equipos, liderazgo, conocimientos en normativa de seguridad.</p>
+                    <span class="vacante-tag">Manizales</span>
+                </div>
+                <div class="vacante-card">
+                    <h4>Operadores de Monitoreo</h4>
+                    <p>Experiencia en centrales de monitoreo, manejo de sistemas Avante, Cyrus, disponibilidad turnos.</p>
+                    <span class="vacante-tag">Manizales, Pereira</span>
+                </div>
+                <div class="vacante-card">
+                    <h4>Asesores Comerciales</h4>
+                    <p>Experiencia en ventas de servicios de seguridad, habilidades comerciales, orientación a resultados.</p>
+                    <span class="vacante-tag">Manizales, Pereira, Cali</span>
                 </div>
             </div>
         </div>
 
-        <div class="service-section">
-            <h2>Infraestructura Canina de Propiedad</h2>
-            <div class="two-column-grid">
-                <div class="service-card">
-                    <h3>🏡 Criadero Canino Especializado</h3>
-                    <ul class="features-list">
-                        <li>Más de 2,000 m² de área construida</li>
-                        <li>Programa de cría selectiva de razas</li>
-                        <li>Veterinarios especializados 24/7</li>
-                        <li>Nutrición balanceada personalizada</li>
-                        <li>Control genealógico y registro de linajes</li>
-                    </ul>
+        <!-- Requisitos -->
+        <div class="requisitos-container">
+            <h3>Requisitos <span>para Postularse</span></h3>
+            <div class="requisitos-grid">
+                <div class="requisito-item">
+                    <div class="requisito-icon">📄</div>
+                    <div class="requisito-text">
+                        <h4>Hoja de Vida Actualizada</h4>
+                        <p>Incluir experiencia laboral, formación académica y referencias personales.</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <h3>🏋️ Centro de Entrenamiento Profesional</h3>
-                    <ul class="features-list">
-                        <li>Pistas de obstáculos y simulación urbana</li>
-                        <li>Instructores certificados en técnicas modernas</li>
-                        <li>Entrenamiento desde cachorros (imprinting)</li>
-                        <li>Evaluación semestral de rendimiento</li>
-                        <li>Actualización constante en técnicas de detección</li>
-                    </ul>
+                <div class="requisito-item">
+                    <div class="requisito-icon">🆔</div>
+                    <div class="requisito-text">
+                        <h4>Documentos de Identidad</h4>
+                        <p>Cédula de ciudadanía ampliada al 150% y certificado de antecedentes disciplinarios.</p>
+                    </div>
+                </div>
+                <div class="requisito-item">
+                    <div class="requisito-icon">📜</div>
+                    <div class="requisito-text">
+                        <h4>Certificaciones</h4>
+                        <p>Certificados de estudios, cursos de vigilancia, primeros auxilios o especializaciones.</p>
+                    </div>
+                </div>
+                <div class="requisito-item">
+                    <div class="requisito-icon">🩺</div>
+                    <div class="requisito-text">
+                        <h4>Exámenes Médicos</h4>
+                        <p>Examen médico ocupacional vigente (aptitud física y psicológica).</p>
+                    </div>
+                </div>
+                <div class="requisito-item">
+                    <div class="requisito-icon">🎯</div>
+                    <div class="requisito-text">
+                        <h4>Disponibilidad</h4>
+                        <p>Disponibilidad para trabajar en turnos rotativos y desplazamientos según el cargo.</p>
+                    </div>
+                </div>
+                <div class="requisito-item">
+                    <div class="requisito-icon">⭐</div>
+                    <div class="requisito-text">
+                        <h4>Actitud y Valores</h4>
+                        <p>Honestidad, responsabilidad, trabajo en equipo y compromiso con la misión de la empresa.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="service-section">
-            <h2>Razas Especializadas</h2>
-            <div class="breed-grid">
-                <div class="breed-item"><strong>Pastor Alemán</strong><br>Versatilidad, inteligencia</div>
-                <div class="breed-item"><strong>Belga Malinois</strong><br>Agilidad, alta motivación</div>
-                <div class="breed-item"><strong>Rottweiler</strong><br>Fuerza, defensa controlada</div>
-                <div class="breed-item"><strong>Labrador Retriever</strong><br>Detección de narcóticos</div>
-                <div class="breed-item"><strong>Golden Retriever</strong><br>Búsqueda de personas</div>
-                <div class="breed-item"><strong>Doberman</strong><br>Velocidad, protección</div>
+        <!-- Canales para enviar hoja de vida -->
+        <div class="canales-section">
+            <h3>¿Cómo enviar tu hoja de vida?</h3>
+            <div class="canales-grid">
+                <div class="canal-card">
+                    <div class="canal-icon">📧</div>
+                    <h4>Correo Electrónico</h4>
+                    <p>Envía tu hoja de vida al correo:</p>
+                    <div class="detalle">talento-humano@vigitecol.com</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Asunto: Postulación - [Cargo deseado]</p>
+                </div>
+                <div class="canal-card">
+                    <div class="canal-icon">📞</div>
+                    <h4>Teléfono</h4>
+                    <p>Comunícate con nuestra área de Talento Humano:</p>
+                    <div class="detalle">(606) 881 3121</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Extensión 1108 - Líder Talento Humano</p>
+                </div>
+                <div class="canal-card">
+                    <div class="canal-icon">🏢</div>
+                    <h4>Oficinas</h4>
+                    <p>Acércate a nuestras oficinas en:</p>
+                    <div class="detalle">Manizales: Carrera 23 N° 43-12</div>
+                    <div class="detalle">Pereira: Carrera 10 N° 44-49</div>
+                </div>
+                <div class="canal-card">
+                    <div class="canal-icon">📱</div>
+                    <h4>WhatsApp</h4>
+                    <p>Envía tu hoja de vida por WhatsApp:</p>
+                    <div class="detalle">+57 315 123 4567</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Indica tu nombre y cargo de interés</p>
+                </div>
             </div>
         </div>
 
-        <div class="cta-box">
-            <h3>Seguridad con el mejor aliado: el perro entrenado</h3>
-            <p>Contamos con el mejor centro canino del país. Solicite una demostración de nuestras unidades caninas en sus instalaciones sin costo.</p>
-            <a href="../contacto.html" class="cta-button">Solicitar Asesoría Canina Especializada</a>
+        <!-- CTA Final -->
+        <div class="cta-final">
+            <h3>¡Únete a nuestro equipo de profesionales!</h3>
+            <p>En VIGITECOL LTDA encontrarás un ambiente de trabajo positivo, oportunidades de crecimiento y la posibilidad de desarrollar tu carrera en el sector de la seguridad.</p>
+            <a href="#footer" class="cta-button">Contáctanos ahora</a>
         </div>
     </div>
 
@@ -948,8 +1082,12 @@
             });
         });
 
-        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
+        fetch("/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            })
+            .catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
-
 </html>

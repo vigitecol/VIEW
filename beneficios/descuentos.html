@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -217,13 +218,18 @@
             right: -50%;
             width: 100%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .page-header-content {
@@ -438,7 +444,7 @@
 
         .fidelidad-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .fidelidad-card h3 {
@@ -762,10 +768,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .navbar { padding: 0.6rem 5%; }
-            .logo-img { width: 40px; height: 40px; }
-            .logo-text { font-size: 1rem; }
-            .menu-toggle { display: flex; }
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
                 display: flex;
                 position: fixed;
@@ -783,15 +802,26 @@
                 z-index: 999;
                 overflow-y: auto;
             }
-            .nav-links.active { right: 0; }
-            .nav-item { width: 100%; }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
             .nav-item>a {
                 font-size: 1rem;
                 padding: 0.8rem 0;
                 justify-content: space-between;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
-            .nav-item>a::after { display: none; }
+
+            .nav-item>a::after {
+                display: none;
+            }
+
             .dropdown {
                 position: static;
                 opacity: 1;
@@ -807,36 +837,102 @@
                 transition: max-height 0.4s ease;
                 width: 100%;
             }
+
             .nav-item.active .dropdown {
                 max-height: 500px;
                 padding: 0.8rem 0;
                 margin-top: 0.5rem;
             }
-            .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
-            .page-header { margin-top: 60px; padding: 3rem 5%; }
-            .content-container { padding: 2rem 5%; }
-            .section { margin-bottom: 3rem; }
-            .discount-banner, .fidelidad-card, .paquete-card, .descuento-card { padding: 1.5rem; }
-            .cta-box { padding: 2rem; }
-            .footer-grid { gap: 2rem; }
-            .paquete-card.popular { transform: scale(1); }
+
+            .dropdown a {
+                padding: 0.7rem 1rem 0.7rem 2rem;
+            }
+
+            .page-header {
+                margin-top: 60px;
+                padding: 3rem 5%;
+            }
+
+            .content-container {
+                padding: 2rem 5%;
+            }
+
+            .section {
+                margin-bottom: 3rem;
+            }
+
+            .discount-banner,
+            .fidelidad-card,
+            .paquete-card,
+            .descuento-card {
+                padding: 1.5rem;
+            }
+
+            .cta-box {
+                padding: 2rem;
+            }
+
+            .footer-grid {
+                gap: 2rem;
+            }
+
+            .paquete-card.popular {
+                transform: scale(1);
+            }
         }
 
         @media (max-width: 480px) {
-            .logo-img { width: 35px; height: 35px; }
-            .logo-text { font-size: 0.85rem; }
-            .page-header h1 { font-size: 1.8rem; }
-            .page-header p { font-size: 0.9rem; }
-            .stat-number { font-size: 2rem; }
-            .descuento-valor { font-size: 1.5rem; }
-            .paquete-precio { font-size: 1.4rem; }
-            .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
-            .footer-col h4 { font-size: 1rem; }
-            .footer-col p { font-size: 0.85rem; }
-            .social-link { width: 38px; height: 38px; font-size: 1rem; }
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 0.85rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .descuento-valor {
+                font-size: 1.5rem;
+            }
+
+            .paquete-precio {
+                font-size: 1.4rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-col h4 {
+                font-size: 1rem;
+            }
+
+            .footer-col p {
+                font-size: 0.85rem;
+            }
+
+            .social-link {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="nav-overlay"></div>
 
@@ -885,13 +981,15 @@
                 </div>
             </div>
             <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
+            <div class="nav-item"><a href="../envia.html">Trabaja con Nosotros</a></div>
         </div>
     </nav>
 
     <div class="page-header">
         <div class="page-header-content">
             <h1>Descuentos <span>Especiales</span></h1>
-            <p>En VIGITECOL premiamos su confianza con descuentos exclusivos por fidelidad, convenios corporativos y promociones especiales durante todo el año.</p>
+            <p>En VIGITECOL premiamos su confianza con descuentos exclusivos por fidelidad, convenios corporativos y
+                promociones especiales durante todo el año.</p>
         </div>
     </div>
 
@@ -905,19 +1003,58 @@
 
         <!-- Estadísticas -->
         <div class="discount-stats">
-            <div class="stat-card"><div class="stat-number">30%</div><div class="stat-label">Máximo descuento</div></div>
-            <div class="stat-card"><div class="stat-number">+500</div><div class="stat-label">Clientes beneficiados</div></div>
-            <div class="stat-card"><div class="stat-number">15</div><div class="stat-label">Convenios activos</div></div>
-            <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Promociones al año</div></div>
+            <div class="stat-card">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">Máximo descuento</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">+500</div>
+                <div class="stat-label">Clientes beneficiados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Convenios activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Promociones al año</div>
+            </div>
         </div>
 
         <!-- Tipos de descuentos -->
         <div class="section">
             <h2>Descuentos por Fidelidad</h2>
             <div class="fidelidad-grid">
-                <div class="fidelidad-card"><h3>Bronce</h3><div class="beneficio">10% DESCUENTO</div><ul><li>1 año de antigüedad</li><li>Descuento en servicios adicionales</li><li>Prioridad en soporte</li></ul></div>
-                <div class="fidelidad-card"><h3>Plata</h3><div class="beneficio">15% DESCUENTO</div><ul><li>3 años de antigüedad</li><li>Descuento en todos los servicios</li><li>Soporte VIP</li><li>2 meses gratis al año</li></ul></div>
-                <div class="fidelidad-card"><h3>Oro</h3><div class="beneficio">20% DESCUENTO</div><ul><li>5+ años de antigüedad</li><li>Descuento máximo garantizado</li><li>Soporte prioritario 24/7</li><li>3 meses gratis al año</li><li>Actualizaciones preferenciales</li></ul></div>
+                <div class="fidelidad-card">
+                    <h3>Bronce</h3>
+                    <div class="beneficio">10% DESCUENTO</div>
+                    <ul>
+                        <li>1 año de antigüedad</li>
+                        <li>Descuento en servicios adicionales</li>
+                        <li>Prioridad en soporte</li>
+                    </ul>
+                </div>
+                <div class="fidelidad-card">
+                    <h3>Plata</h3>
+                    <div class="beneficio">15% DESCUENTO</div>
+                    <ul>
+                        <li>3 años de antigüedad</li>
+                        <li>Descuento en todos los servicios</li>
+                        <li>Soporte VIP</li>
+                        <li>2 meses gratis al año</li>
+                    </ul>
+                </div>
+                <div class="fidelidad-card">
+                    <h3>Oro</h3>
+                    <div class="beneficio">20% DESCUENTO</div>
+                    <ul>
+                        <li>5+ años de antigüedad</li>
+                        <li>Descuento máximo garantizado</li>
+                        <li>Soporte prioritario 24/7</li>
+                        <li>3 meses gratis al año</li>
+                        <li>Actualizaciones preferenciales</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -925,9 +1062,42 @@
         <div class="section">
             <h2>Paquetes Especiales</h2>
             <div class="paquetes-grid">
-                <div class="paquete-card"><div class="paquete-nombre">Básico</div><div class="paquete-precio">$199.900</div><div class="paquete-descuento">15% ahorro</div><ul><li>2 cámaras HD</li><li>DVR 1TB</li><li>Instalación incluida</li><li>App móvil</li></ul><a href="../contacto.html" class="paquete-button">Contratar</a></div>
-                <div class="paquete-card popular"><div class="popular-tag">MÁS VENDIDO</div><div class="paquete-nombre">Profesional</div><div class="paquete-precio">$349.900</div><div class="paquete-descuento">25% ahorro</div><ul><li>4 cámaras 4K</li><li>NVR 2TB</li><li>Instalación profesional</li><li>App con IA</li><li>Monitoreo 3 meses gratis</li></ul><a href="../contacto.html" class="paquete-button">Contratar</a></div>
-                <div class="paquete-card"><div class="paquete-nombre">Empresarial</div><div class="paquete-precio">$599.900</div><div class="paquete-descuento">30% ahorro</div><ul><li>8 cámaras 4K</li><li>NVR 4TB</li><li>Control de acceso</li><li>Monitoreo 24/7 incluido</li><li>6 meses de soporte VIP</li></ul><a href="../contacto.html" class="paquete-button">Contratar</a></div>
+                <div class="paquete-card">
+                    <div class="paquete-nombre">Básico</div>
+                    <div class="paquete-precio">$199.900</div>
+                    <div class="paquete-descuento">15% ahorro</div>
+                    <ul>
+                        <li>2 cámaras HD</li>
+                        <li>DVR 1TB</li>
+                        <li>Instalación incluida</li>
+                        <li>App móvil</li>
+                    </ul><a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
+                <div class="paquete-card popular">
+                    <div class="popular-tag">MÁS VENDIDO</div>
+                    <div class="paquete-nombre">Profesional</div>
+                    <div class="paquete-precio">$349.900</div>
+                    <div class="paquete-descuento">25% ahorro</div>
+                    <ul>
+                        <li>4 cámaras 4K</li>
+                        <li>NVR 2TB</li>
+                        <li>Instalación profesional</li>
+                        <li>App con IA</li>
+                        <li>Monitoreo 3 meses gratis</li>
+                    </ul><a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
+                <div class="paquete-card">
+                    <div class="paquete-nombre">Empresarial</div>
+                    <div class="paquete-precio">$599.900</div>
+                    <div class="paquete-descuento">30% ahorro</div>
+                    <ul>
+                        <li>8 cámaras 4K</li>
+                        <li>NVR 4TB</li>
+                        <li>Control de acceso</li>
+                        <li>Monitoreo 24/7 incluido</li>
+                        <li>6 meses de soporte VIP</li>
+                    </ul><a href="../contacto.html" class="paquete-button">Contratar</a>
+                </div>
             </div>
         </div>
 
@@ -935,9 +1105,27 @@
         <div class="section">
             <h2>Descuentos por Volumen</h2>
             <div class="descuentos-grid">
-                <div class="descuento-card"><div class="descuento-icon">🏢</div><h3>Múltiples Sedes</h3><p>Descuento progresivo por cada sede adicional que contrate nuestros servicios.</p><div class="descuento-valor">Hasta 25%</div><div class="descuento-condiciones">Válido para empresas</div></div>
-                <div class="descuento-card"><div class="descuento-icon">👥</div><h3>Grupos Empresariales</h3><p>Descuento especial para grupos económicos que contraten para múltiples empresas.</p><div class="descuento-valor">Hasta 30%</div><div class="descuento-condiciones">Mínimo 3 empresas</div></div>
-                <div class="descuento-card"><div class="descuento-icon">🏘️</div><h3>Conjuntos Residenciales</h3><p>Tarifas preferenciales para propiedades horizontales y conjuntos cerrados.</p><div class="descuento-valor">Hasta 20%</div><div class="descuento-condiciones">Por unidad residencial</div></div>
+                <div class="descuento-card">
+                    <div class="descuento-icon">🏢</div>
+                    <h3>Múltiples Sedes</h3>
+                    <p>Descuento progresivo por cada sede adicional que contrate nuestros servicios.</p>
+                    <div class="descuento-valor">Hasta 25%</div>
+                    <div class="descuento-condiciones">Válido para empresas</div>
+                </div>
+                <div class="descuento-card">
+                    <div class="descuento-icon">👥</div>
+                    <h3>Grupos Empresariales</h3>
+                    <p>Descuento especial para grupos económicos que contraten para múltiples empresas.</p>
+                    <div class="descuento-valor">Hasta 30%</div>
+                    <div class="descuento-condiciones">Mínimo 3 empresas</div>
+                </div>
+                <div class="descuento-card">
+                    <div class="descuento-icon">🏘️</div>
+                    <h3>Conjuntos Residenciales</h3>
+                    <p>Tarifas preferenciales para propiedades horizontales y conjuntos cerrados.</p>
+                    <div class="descuento-valor">Hasta 20%</div>
+                    <div class="descuento-condiciones">Por unidad residencial</div>
+                </div>
             </div>
         </div>
 
@@ -945,10 +1133,26 @@
         <div class="section">
             <h2>Convenios Especiales</h2>
             <div class="convenios-grid">
-                <div class="convenio-item"><h4>Pólizas de Seguro</h4><div class="convenio-descuento">15%</div><p>Clientes de aseguradoras aliadas</p></div>
-                <div class="convenio-item"><h4>Tarjetas de Crédito</h4><div class="convenio-descuento">10%</div><p>Pago con bancos aliados</p></div>
-                <div class="convenio-item"><h4>Cámaras de Comercio</h4><div class="convenio-descuento">12%</div><p>Afiliados a cámaras</p></div>
-                <div class="convenio-item"><h4>Asociaciones</h4><div class="convenio-descuento">15%</div><p>Miembros de asociaciones</p></div>
+                <div class="convenio-item">
+                    <h4>Pólizas de Seguro</h4>
+                    <div class="convenio-descuento">15%</div>
+                    <p>Clientes de aseguradoras aliadas</p>
+                </div>
+                <div class="convenio-item">
+                    <h4>Tarjetas de Crédito</h4>
+                    <div class="convenio-descuento">10%</div>
+                    <p>Pago con bancos aliados</p>
+                </div>
+                <div class="convenio-item">
+                    <h4>Cámaras de Comercio</h4>
+                    <div class="convenio-descuento">12%</div>
+                    <p>Afiliados a cámaras</p>
+                </div>
+                <div class="convenio-item">
+                    <h4>Asociaciones</h4>
+                    <div class="convenio-descuento">15%</div>
+                    <p>Miembros de asociaciones</p>
+                </div>
             </div>
         </div>
 
@@ -966,7 +1170,8 @@
         <!-- Call to Action -->
         <div class="cta-box">
             <h3>¡Aproveche estos descuentos!</h3>
-            <p>Contáctenos hoy mismo y obtenga el mejor precio en seguridad. Nuestro equipo le asesorará para encontrar el plan que mejor se ajuste a sus necesidades.</p>
+            <p>Contáctenos hoy mismo y obtenga el mejor precio en seguridad. Nuestro equipo le asesorará para encontrar
+                el plan que mejor se ajuste a sus necesidades.</p>
             <a href="../contacto.html" class="cta-button">Solicitar cotización</a>
         </div>
     </div>
@@ -974,7 +1179,7 @@
     <div id="footer"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             const overlay = document.querySelector('.nav-overlay');
@@ -1020,4 +1225,5 @@
         fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
+
 </html>
