@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Vigilancia Canina - VIGITECOL LTDA</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
+        /* ========== MISMO ESTILO QUE EL ANTERIOR ========== */
         * {
             margin: 0;
             padding: 0;
@@ -14,12 +14,197 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow-x: hidden;
+            background: #ffffff;
         }
 
+        /* Navbar (mismo código que en vigilanciaHumanaArmada.html) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-item>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item>a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 10px;
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f5f5f5;
+            color: #FFD700;
+            padding-left: 2rem;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Service Header */
         .service-header {
-            margin-top: 100px;
+            margin-top: 70px;
             padding: 4rem 5%;
             background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
             color: white;
@@ -39,13 +224,8 @@
         }
 
         @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .service-header-content {
@@ -56,7 +236,7 @@
         }
 
         .service-header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
         }
 
@@ -65,7 +245,7 @@
         }
 
         .service-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: #ccc;
             max-width: 800px;
             line-height: 1.8;
@@ -82,7 +262,7 @@
         }
 
         .service-section h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 2rem;
             position: relative;
             display: inline-block;
@@ -100,7 +280,7 @@
 
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -111,6 +291,7 @@
             padding: 2rem;
             transition: all 0.4s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
         }
 
         .service-card:hover {
@@ -147,11 +328,12 @@
         }
 
         .features-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
             position: relative;
             color: #555;
             line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .features-list li::before {
@@ -160,12 +342,12 @@
             font-weight: bold;
             position: absolute;
             left: 0;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin: 4rem 0;
             text-align: center;
@@ -175,6 +357,12 @@
             padding: 2rem;
             background: #f8f8f8;
             border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
         }
 
         .stat-number {
@@ -186,62 +374,63 @@
         .stat-label {
             color: #666;
             margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .image-placeholder {
             width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            height: auto;
+            min-height: 400px;
             border-radius: 20px;
             margin: 3rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2rem;
-            border: 2px dashed #FFD700;
+            overflow: hidden;
         }
 
-        .image{
+        .image-placeholder img {
             width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            height: auto;
+            object-fit: cover;
             border-radius: 20px;
-            margin: 3rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .image-placeholder img:hover {
+            transform: scale(1.02);
         }
 
         .cta-box {
             background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
             border-radius: 30px;
-            padding: 4rem;
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
             margin-top: 4rem;
         }
 
         .cta-box h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             color: #000;
             margin-bottom: 1.5rem;
         }
 
         .cta-box p {
             color: #333;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2.5rem;
             background: #000;
             color: #FFD700;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .cta-button:hover {
@@ -261,19 +450,20 @@
 
         .certification-badge p {
             color: #333;
-            font-weight: 600;
+            font-weight: 500;
             margin: 0.5rem 0;
+            font-size: 0.95rem;
         }
 
         .two-column-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .breed-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
@@ -292,179 +482,182 @@
             transform: scale(1.02);
         }
 
-        @media (max-width: 1024px) {
-
-            .service-grid,
-            .stats-container,
-            .two-column-grid,
-            .breed-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Footer (mismo código) */
+        .footer-new {
+            background: #000000;
+            color: #fff;
+            padding: 4rem 5% 2rem;
+            margin-top: auto;
+            border-top: 3px solid #FFD700;
         }
 
-        @media (max-width: 768px) {
-            .service-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .service-grid,
-            .stats-container,
-            .two-column-grid,
-            .breed-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-box {
-                padding: 2rem;
-            }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .logo-container a {
-            text-decoration: none;
+        .footer-col {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .logo-img {
-            height: 50px;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #000;
-        }
-
-        .menu-toggle {
-            display: none;
             flex-direction: column;
-            cursor: pointer;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #000;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-item>a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-item>a:hover {
+        .footer-col h4 {
             color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        .dropdown {
+        .footer-col h4::after {
+            content: '';
             position: absolute;
-            top: 100%;
+            bottom: 0;
             left: 0;
-            background: white;
-            min-width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 100;
+            width: 50px;
+            height: 2px;
+            background: #FFD700;
         }
 
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
         }
 
-        .dropdown a {
-            display: block;
-            padding: 0.8rem 1.5rem;
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
-        .dropdown a:hover {
+        .social-link:hover {
             background: #FFD700;
             color: #000;
-            padding-left: 2rem;
+            transform: translateY(-5px);
         }
 
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+        .copyright-new {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
+            .navbar { padding: 0.6rem 5%; }
+            .logo-img { width: 40px; height: 40px; }
+            .logo-text { font-size: 1rem; }
+            .menu-toggle { display: flex; }
             .nav-links {
+                display: flex;
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                height: 100%;
+                width: 85%;
+                max-width: 350px;
+                height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 2rem 2rem;
-                transition: 0.3s;
-                z-index: 1000;
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
             }
-
-            .nav-links.active {
-                right: 0;
+            .nav-links.active { right: 0; }
+            .nav-item { width: 100%; }
+            .nav-item>a {
+                font-size: 1rem;
+                padding: 0.8rem 0;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
-
+            .nav-item>a::after { display: none; }
             .dropdown {
                 position: static;
                 opacity: 1;
                 visibility: visible;
+                transform: none;
                 box-shadow: none;
-                display: none;
+                padding: 0;
+                margin: 0;
+                background: #f8f8f8;
+                border-radius: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                width: 100%;
             }
-
             .nav-item.active .dropdown {
-                display: block;
+                max-height: 500px;
+                padding: 0.8rem 0;
+                margin-top: 0.5rem;
             }
+            .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
+            .service-header { margin-top: 60px; padding: 3rem 5%; }
+            .service-container { padding: 2rem 5%; }
+            .service-section { margin-bottom: 3rem; }
+            .stats-container { gap: 1rem; }
+            .stat-item { padding: 1.5rem; }
+            .stat-number { font-size: 2rem; }
+            .service-card { padding: 1.5rem; }
+            .cta-box { padding: 2rem; }
+            .footer-grid { gap: 2rem; }
+        }
 
-            .nav-overlay.active {
-                display: block;
-            }
+        @media (max-width: 480px) {
+            .logo-img { width: 35px; height: 35px; }
+            .logo-text { font-size: 0.85rem; }
+            .service-header h1 { font-size: 1.8rem; }
+            .service-header p { font-size: 0.9rem; }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .stat-number { font-size: 1.5rem; }
+            .stat-label { font-size: 0.75rem; }
+            .service-card h3 { font-size: 1.2rem; }
+            .features-list li { font-size: 0.85rem; }
+            .certification-badge p { font-size: 0.85rem; }
+            .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
+            .footer-col h4 { font-size: 1rem; }
+            .footer-col p { font-size: 0.85rem; }
+            .social-link { width: 38px; height: 38px; font-size: 1rem; }
+        }
+
+        @media (max-width: 360px) {
+            .stats-container { grid-template-columns: 1fr; }
+            .service-grid { grid-template-columns: 1fr; }
+            .two-column-grid { grid-template-columns: 1fr; }
+            .breed-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -472,17 +665,21 @@
 <body>
     <div class="nav-overlay"></div>
     <nav class="navbar">
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="logo-container">
             <a href="../index.html">
                 <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
                 <span class="logo-text">VIGITECOL LTDA</span>
             </a>
         </div>
-        <div class="menu-toggle"><span></span><span></span><span></span></div>
         <div class="nav-links">
             <div class="nav-item"><a href="../index.html">Inicio</a></div>
             <div class="nav-item">
-                <a href="#">Quienes Somos ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../QuienesS/principios.html">Principios Orientadores</a>
                     <a href="../QuienesS/mision.html">Misión</a>
@@ -492,7 +689,7 @@
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Servicios ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="vigilanciaCanina.html">Vigilancia Canina</a>
@@ -502,7 +699,7 @@
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Beneficios ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../beneficios/garantia.html">Garantía de calidad</a>
                     <a href="../beneficios/soporte.html">Soporte 24/7</a>
@@ -518,10 +715,7 @@
     <div class="service-header">
         <div class="service-header-content">
             <h1>Vigilancia <span>Canina</span></h1>
-            <p>Servicio altamente especializado con perros adiestrados en Defensa Controlada, Detección de Explosivos,
-                Detección de Narcóticos y Búsqueda y Localización de Personas. Contamos con criadero propio, centro de
-                entrenamiento profesional e instalaciones especializadas para el cuidado integral de nuestras unidades
-                caninas.</p>
+            <p>Servicio altamente especializado con perros adiestrados en Defensa Controlada, Detección de Explosivos, Detección de Narcóticos y Búsqueda y Localización de Personas. Contamos con criadero propio, centro de entrenamiento profesional e instalaciones especializadas.</p>
         </div>
     </div>
 
@@ -554,7 +748,7 @@
         </div>
 
         <div class="image-placeholder">
-            <img src="https://drive.google.com/thumbnail?id=1pXb9isAXee0lWx3ydB4SkfHss2NzYcO7&sz=w1000" class="image">
+            <img src="https://drive.google.com/thumbnail?id=1pXb9isAXee0lWx3ydB4SkfHss2NzYcO7&sz=w1000" alt="Vigilancia Canina">
         </div>
 
         <div class="service-section">
@@ -563,73 +757,49 @@
                 <div class="service-card">
                     <div class="service-icon">🛡️</div>
                     <h3>Defensa Controlada</h3>
-                    <p>Perros entrenados para protección de personas e instalaciones con respuesta inmediata ante
-                        amenazas y control absoluto por parte del guía especializado.</p>
+                    <p>Perros entrenados para protección de personas e instalaciones con respuesta inmediata ante amenazas y control absoluto.</p>
                     <ul class="features-list">
-                        <li><strong>Protección de perímetros:</strong> Disuasión efectiva de intrusos en instalaciones
-                            industriales, residenciales y comerciales</li>
-                        <li><strong>Apoyo táctico:</strong> Refuerzo a guardas de seguridad en situaciones de alto
-                            riesgo</li>
-                        <li><strong>Control absoluto:</strong> Obediencia rigurosa con comandos de voz y silbato,
-                            liberación y recuperación inmediata</li>
-                        <li><strong>Respuesta selectiva:</strong> Capacidad de distinguir entre amenaza real y situación
-                            controlada</li>
-                        <li><strong>Entrenamiento en agresividad controlada:</strong> Activación y desactivación bajo
-                            mando del guía certificado</li>
+                        <li>Protección de perímetros industriales y residenciales</li>
+                        <li>Apoyo táctico a guardas de seguridad</li>
+                        <li>Control absoluto con comandos de voz y silbato</li>
+                        <li>Respuesta selectiva entre amenaza real y controlada</li>
+                        <li>Entrenamiento en agresividad controlada</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">💣</div>
                     <h3>Detección de Explosivos</h3>
-                    <p>Unidades especializadas en identificación de materiales explosivos, ideal para eventos masivos,
-                        aeropuertos, infraestructura crítica y zonas de alto riesgo.</p>
+                    <p>Unidades especializadas en identificación de materiales explosivos para eventos masivos, aeropuertos e infraestructura crítica.</p>
                     <ul class="features-list">
-                        <li><strong>Detección de explosivos plásticos:</strong> C-4, Semtex, TNT, dinamita y explosivos
-                            militares</li>
-                        <li><strong>Inspección vehicular:</strong> Revisión de automóviles, camiones, contenedores y
-                            carga pesada</li>
-                        <li><strong>Barrido de áreas:</strong> Inspección de edificios, estadios, centros comerciales y
-                            sedes gubernamentales</li>
-                        <li><strong>Protocolos antiterrorismo:</strong> Certificación en estándares internacionales de
-                            seguridad</li>
-                        <li><strong>Certificación anual:</strong> Evaluación periódica con muestras reales de explosivos
-                        </li>
+                        <li>Detección de C-4, Semtex, TNT, dinamita</li>
+                        <li>Inspección vehicular y de carga pesada</li>
+                        <li>Barrido de edificios y centros comerciales</li>
+                        <li>Protocolos antiterrorismo certificados</li>
+                        <li>Certificación anual con muestras reales</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">❄️</div>
                     <h3>Detección de Narcóticos</h3>
-                    <p>Perros entrenados para la detección de estupefacientes en instalaciones, bodegas, vehículos,
-                        paquetería y zonas logísticas.</p>
+                    <p>Perros entrenados para detección de estupefacientes en instalaciones, bodegas y zonas logísticas.</p>
                     <ul class="features-list">
-                        <li><strong>Detección de sustancias:</strong> Cocaína, marihuana, heroína, éxtasis,
-                            metanfetaminas y derivados</li>
-                        <li><strong>Inspección de carga:</strong> Revisión de envíos nacionales e internacionales en
-                            centros logísticos</li>
-                        <li><strong>Control en zonas francas:</strong> Operativos de prevención en áreas de
-                            almacenamiento y tránsito</li>
-                        <li><strong>Apoyo a investigaciones:</strong> Colaboración con autoridades judiciales en
-                            operativos especiales</li>
-                        <li><strong>Discreción operativa:</strong> Capacidad de trabajo en entornos de alta concurrencia
-                            sin alterar operaciones</li>
+                        <li>Detección de cocaína, marihuana, heroína, éxtasis</li>
+                        <li>Inspección de carga nacional e internacional</li>
+                        <li>Control en zonas francas y almacenamiento</li>
+                        <li>Apoyo a investigaciones judiciales</li>
+                        <li>Discreción operativa en entornos concurridos</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔍</div>
-                    <h3>Búsqueda y Localización de Personas</h3>
-                    <p>Perros entrenados en rastreo y localización de personas desaparecidas, extraviadas o en
-                        situaciones de emergencia.</p>
+                    <h3>Búsqueda y Localización</h3>
+                    <p>Perros entrenados en rastreo y localización de personas desaparecidas o en situaciones de emergencia.</p>
                     <ul class="features-list">
-                        <li><strong>Rastreo en terreno abierto:</strong> Búsqueda en zonas rurales, bosques, montañas y
-                            áreas extensas</li>
-                        <li><strong>Búsqueda en estructuras colapsadas:</strong> Localización de víctimas en derrumbes,
-                            terremotos y desastres naturales</li>
-                        <li><strong>Localización de personas extraviadas:</strong> Especialidad en rastreo de adultos
-                            mayores, niños y personas con condiciones especiales</li>
-                        <li><strong>Apoyo en emergencias:</strong> Coordinación con unidades de rescate, bomberos y
-                            defensa civil</li>
-                        <li><strong>Capacidad de rastreo post-mortem:</strong> Localización de cuerpos en escenarios de
-                            desastre</li>
+                        <li>Rastreo en terreno abierto y rural</li>
+                        <li>Búsqueda en estructuras colapsadas</li>
+                        <li>Localización de personas extraviadas</li>
+                        <li>Apoyo en emergencias con bomberos</li>
+                        <li>Capacidad de rastreo post-mortem</li>
                     </ul>
                 </div>
             </div>
@@ -641,31 +811,21 @@
                 <div class="service-card">
                     <h3>🏡 Criadero Canino Especializado</h3>
                     <ul class="features-list">
-                        <li><strong>Instalaciones de propiedad:</strong> Más de 2,000 m² de área construida con
-                            condiciones óptimas de bienestar</li>
-                        <li><strong>Programa de cría selectiva:</strong> Reproducción controlada de razas pastor alemán,
-                            belga malinois, rottweiler y labrador</li>
-                        <li><strong>Veterinarios especializados:</strong> Atención médica preventiva 24/7 con plan de
-                            vacunación y desparasitación riguroso</li>
-                        <li><strong>Nutrición balanceada:</strong> Dietas personalizadas según etapa de desarrollo y
-                            exigencia operativa</li>
-                        <li><strong>Control genealógico:</strong> Registro de linajes para garantizar temperamento,
-                            salud y aptitudes laborales</li>
+                        <li>Más de 2,000 m² de área construida</li>
+                        <li>Programa de cría selectiva de razas</li>
+                        <li>Veterinarios especializados 24/7</li>
+                        <li>Nutrición balanceada personalizada</li>
+                        <li>Control genealógico y registro de linajes</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>🏋️ Centro de Entrenamiento Profesional</h3>
                     <ul class="features-list">
-                        <li><strong>Instalaciones especializadas:</strong> Pistas de obstáculos, áreas de simulación
-                            urbana, terrenos de rastreo y zonas de agilidad</li>
-                        <li><strong>Instructores certificados:</strong> Personal con formación en técnicas modernas de
-                            adiestramiento canino</li>
-                        <li><strong>Entrenamiento desde cachorros:</strong> Programa de imprinting y socialización
-                            temprana</li>
-                        <li><strong>Evaluación periódica:</strong> Certificaciones semestrales de rendimiento operativo
-                        </li>
-                        <li><strong>Actualización constante:</strong> Capacitación continua en nuevas técnicas de
-                            detección y defensa</li>
+                        <li>Pistas de obstáculos y simulación urbana</li>
+                        <li>Instructores certificados en técnicas modernas</li>
+                        <li>Entrenamiento desde cachorros (imprinting)</li>
+                        <li>Evaluación semestral de rendimiento</li>
+                        <li>Actualización constante en técnicas de detección</li>
                     </ul>
                 </div>
             </div>
@@ -674,183 +834,120 @@
         <div class="service-section">
             <h2>Razas Especializadas</h2>
             <div class="breed-grid">
-                <div class="breed-item"><strong>Pastor Alemán</strong><br>Versatilidad, inteligencia, lealtad</div>
-                <div class="breed-item"><strong>Belga Malinois</strong><br>Agilidad, velocidad, alta motivación</div>
-                <div class="breed-item"><strong>Rottweiler</strong><br>Fuerza, potencia, defensa controlada</div>
-                <div class="breed-item"><strong>Labrador Retriever</strong><br>Detección de narcóticos, olfato
-                    excepcional</div>
-                <div class="breed-item"><strong>Golden Retriever</strong><br>Búsqueda de personas, temperamento dócil
-                </div>
-                <div class="breed-item"><strong>Doberman</strong><br>Velocidad, reacción, protección</div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Programa de Entrenamiento y Certificación</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>Fase 1: Socialización (2-4 meses)</h3>
-                    <ul class="features-list">
-                        <li>Exposición controlada a entornos, personas y estímulos diversos</li>
-                        <li>Desarrollo de confianza y manejo de estrés ambiental</li>
-                        <li>Juego estructurado para desarrollar presa y motivación</li>
-                        <li>Evaluación de temperamento y aptitudes tempranas</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Fase 2: Entrenamiento Básico (4-12 meses)</h3>
-                    <ul class="features-list">
-                        <li>Obediencia básica: sentado, echado, quieto, junto, ven</li>
-                        <li>Control de impulsos y respuesta a comandos verbales</li>
-                        <li>Introducción a olfatos específicos según especialidad</li>
-                        <li>Desarrollo de agilidad y capacidad física</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Fase 3: Especialización (12-24 meses)</h3>
-                    <ul class="features-list">
-                        <li>Entrenamiento intensivo en especialidad asignada</li>
-                        <li>Simulacros con escenarios reales y distractores</li>
-                        <li>Certificación con estándares internacionales</li>
-                        <li>Evaluación de desempeño con guía asignado</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Fase 4: Mantenimiento Continuo</h3>
-                    <ul class="features-list">
-                        <li>Entrenamiento diario de 2 horas mínimo</li>
-                        <li>Recertificación semestral obligatoria</li>
-                        <li>Evaluaciones sorpresa de calidad operativa</li>
-                        <li>Actualización en técnicas y procedimientos</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>El Binomio Humano - Canino</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">👤</div>
-                    <h3>Guías Especializados</h3>
-                    <ul class="features-list">
-                        <li>Certificación en manejo canino por entidad reconocida</li>
-                        <li>Experiencia mínima de 3 años en operaciones de campo</li>
-                        <li>Capacitación continua en primeros auxilios caninos</li>
-                        <li>Vínculo afectivo profesional con la unidad asignada</li>
-                        <li>Evaluaciones psicológicas periódicas de idoneidad</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🐕</div>
-                    <h3>Cuidados y Bienestar Animal</h3>
-                    <ul class="features-list">
-                        <li>Descanso programado de 8 horas diarias en instalaciones climatizadas</li>
-                        <li>Control veterinario semanal con registros detallados</li>
-                        <li>Plan de vacunación completo y desparasitación trimestral</li>
-                        <li>Evaluación de estrés y fatiga operativa</li>
-                        <li>Jubilación anticipada con hogar de retiro garantizado</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Aplicaciones por Sector</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏭</div>
-                    <h3>Sector Industrial</h3>
-                    <p>Protección de bodegas, plantas de producción, zonas de almacenamiento de alto valor, patrullaje
-                        nocturno en perímetros extensos.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏘️</div>
-                    <h3>Conjuntos Residenciales</h3>
-                    <p>Seguridad perimetral con patrullaje canino nocturno, disuasión de intrusos, rondas en zonas
-                        comunes y áreas verdes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎵</div>
-                    <h3>Eventos Masivos</h3>
-                    <p>Conciertos, festivales, eventos deportivos: detección de explosivos, control de accesos, manejo
-                        de multitudes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✈️</div>
-                    <h3>Transporte y Logística</h3>
-                    <p>Aeropuertos, puertos, terminales terrestres: inspección de carga, paquetería, equipaje y zonas de
-                        tránsito.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏦</div>
-                    <h3>Entidades Financieras</h3>
-                    <p>Protección de valores en tránsito, seguridad perimetral en sedes bancarias, detección de
-                        elementos sospechosos.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏛️</div>
-                    <h3>Sector Público</h3>
-                    <p>Seguridad en sedes gubernamentales, palacios de justicia, embajadas, espacios públicos de alta
-                        concurrencia.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Ventajas Competitivas</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>Propiedad de Activos</h3>
-                    <ul class="features-list">
-                        <li>Criadero canino de propiedad, no subcontratado</li>
-                        <li>Centro de entrenamiento exclusivo con infraestructura propia</li>
-                        <li>Control total de la cadena de valor operativa</li>
-                        <li>Garantía de continuidad y calidad del servicio</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Excelencia Operativa</h3>
-                    <ul class="features-list">
-                        <li>Certificaciones ISO 9001, ISO 28000 e ISO 45001</li>
-                        <li>Protocolos de seguridad avalados por la Superintendencia</li>
-                        <li>Personal altamente calificado y en formación continua</li>
-                        <li>Actualización tecnológica en equipos de comunicación</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Bienestar Animal</h3>
-                    <ul class="features-list">
-                        <li>Instalaciones con estándares internacionales de bienestar</li>
-                        <li>Programa de retiro y adopción responsable</li>
-                        <li>Atención veterinaria 24/7 con especialistas</li>
-                        <li>Política de ética animal institucional</li>
-                    </ul>
-                </div>
+                <div class="breed-item"><strong>Pastor Alemán</strong><br>Versatilidad, inteligencia</div>
+                <div class="breed-item"><strong>Belga Malinois</strong><br>Agilidad, alta motivación</div>
+                <div class="breed-item"><strong>Rottweiler</strong><br>Fuerza, defensa controlada</div>
+                <div class="breed-item"><strong>Labrador Retriever</strong><br>Detección de narcóticos</div>
+                <div class="breed-item"><strong>Golden Retriever</strong><br>Búsqueda de personas</div>
+                <div class="breed-item"><strong>Doberman</strong><br>Velocidad, protección</div>
             </div>
         </div>
 
         <div class="cta-box">
             <h3>Seguridad con el mejor aliado: el perro entrenado</h3>
-            <p>Contamos con el mejor centro canino del país. Solicite una demostración de nuestras unidades caninas en
-                sus instalaciones sin costo. Nuestros especialistas evaluarán sus necesidades y diseñarán la solución
-                canina más efectiva para su protección.</p>
+            <p>Contamos con el mejor centro canino del país. Solicite una demostración de nuestras unidades caninas en sus instalaciones sin costo.</p>
             <a href="../contacto.html" class="cta-button">Solicitar Asesoría Canina Especializada</a>
         </div>
     </div>
 
     <div id="footer"></div>
+
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const overlay = document.querySelector('.nav-overlay');
-        const navItems = document.querySelectorAll('.nav-item');
-        function toggleMenu() { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); overlay.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; }
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
-        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
-        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; });
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
+
+            function toggleMenu(force) {
+                const isActive = navLinks.classList.contains('active');
+                if (force !== undefined) {
+                    if (force && !isActive) {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    } else if (!force && isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    }
+                } else {
+                    if (isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    } else {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+            if (overlay) overlay.addEventListener('click', () => toggleMenu(false));
+
+            function handleMobileDropdowns() {
+                const isMobile = window.innerWidth <= 768;
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    const parentItem = toggle.closest('.nav-item');
+                    const dropdown = parentItem.querySelector('.dropdown');
+                    if (dropdown) {
+                        const newToggle = toggle.cloneNode(true);
+                        toggle.parentNode.replaceChild(newToggle, toggle);
+                        if (isMobile) {
+                            newToggle.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                document.querySelectorAll('.nav-item').forEach(item => {
+                                    if (item !== parentItem && item.classList.contains('active')) item.classList.remove('active');
+                                });
+                                parentItem.classList.toggle('active');
+                            });
+                        } else {
+                            newToggle.addEventListener('click', (e) => {
+                                const href = newToggle.getAttribute('href');
+                                if (href && href !== 'javascript:void(0)' && href !== '#') return;
+                                e.preventDefault();
+                            });
+                        }
+                    }
+                });
+            }
+
+            handleMobileDropdowns();
+            window.addEventListener('resize', () => {
+                handleMobileDropdowns();
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    navItems.forEach(item => item.classList.remove('active'));
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
 

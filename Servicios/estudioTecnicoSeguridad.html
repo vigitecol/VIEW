@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Estudio Técnico en Seguridad - VIGITECOL LTDA</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
+        /* MISMO ESTILO QUE LOS ANTERIORES */
         * {
             margin: 0;
             padding: 0;
@@ -14,12 +14,197 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow-x: hidden;
+            background: #ffffff;
         }
 
+        /* Navbar (mismo código) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-item>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item>a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 10px;
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f5f5f5;
+            color: #FFD700;
+            padding-left: 2rem;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Service Header */
         .service-header {
-            margin-top: 100px;
+            margin-top: 70px;
             padding: 4rem 5%;
             background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
             color: white;
@@ -39,13 +224,8 @@
         }
 
         @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .service-header-content {
@@ -56,7 +236,7 @@
         }
 
         .service-header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
         }
 
@@ -65,7 +245,7 @@
         }
 
         .service-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: #ccc;
             max-width: 800px;
             line-height: 1.8;
@@ -82,7 +262,7 @@
         }
 
         .service-section h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 2rem;
             position: relative;
             display: inline-block;
@@ -100,7 +280,7 @@
 
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -111,6 +291,7 @@
             padding: 2rem;
             transition: all 0.4s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
         }
 
         .service-card:hover {
@@ -147,11 +328,12 @@
         }
 
         .features-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
             position: relative;
             color: #555;
             line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .features-list li::before {
@@ -160,12 +342,12 @@
             font-weight: bold;
             position: absolute;
             left: 0;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin: 4rem 0;
             text-align: center;
@@ -175,6 +357,12 @@
             padding: 2rem;
             background: #f8f8f8;
             border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
         }
 
         .stat-number {
@@ -186,61 +374,63 @@
         .stat-label {
             color: #666;
             margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .image-placeholder {
             width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            height: auto;
+            min-height: 400px;
             border-radius: 20px;
             margin: 3rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2rem;
-            border: 2px dashed #FFD700;
+            overflow: hidden;
         }
-        
-        .image{
-width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+
+        .image-placeholder img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
             border-radius: 20px;
-            margin: 3rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: transform 0.5s ease;
         }
+
+        .image-placeholder img:hover {
+            transform: scale(1.02);
+        }
+
         .cta-box {
             background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
             border-radius: 30px;
-            padding: 4rem;
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
             margin-top: 4rem;
         }
 
         .cta-box h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             color: #000;
             margin-bottom: 1.5rem;
         }
 
         .cta-box p {
             color: #333;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2.5rem;
             background: #000;
             color: #FFD700;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .cta-button:hover {
@@ -260,15 +450,22 @@ width: 100%;
 
         .certification-badge p {
             color: #333;
-            font-weight: 600;
+            font-weight: 500;
             margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .methodology-step {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             padding: 1rem;
             background: white;
             border-radius: 12px;
@@ -294,198 +491,181 @@ width: 100%;
             flex-shrink: 0;
         }
 
-        .two-column-grid {
+        /* Footer */
+        .footer-new {
+            background: #000000;
+            color: #fff;
+            padding: 4rem 5% 2rem;
+            margin-top: auto;
+            border-top: 3px solid #FFD700;
+        }
+
+        .footer-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .risk-matrix {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .risk-level {
+        .footer-col {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 1024px) {
-
-            .service-grid,
-            .stats-container,
-            .two-column-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .service-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .service-grid,
-            .stats-container,
-            .two-column-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-box {
-                padding: 2rem;
-            }
-        }
-
-        .logo-container a {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .logo-img {
-            height: 50px;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #000;
-        }
-
-        .menu-toggle {
-            display: none;
             flex-direction: column;
-            cursor: pointer;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #000;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-item>a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-item>a:hover {
+        .footer-col h4 {
             color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        .dropdown {
+        .footer-col h4::after {
+            content: '';
             position: absolute;
-            top: 100%;
+            bottom: 0;
             left: 0;
-            background: white;
-            min-width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 100;
+            width: 50px;
+            height: 2px;
+            background: #FFD700;
         }
 
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
         }
 
-        .dropdown a {
-            display: block;
-            padding: 0.8rem 1.5rem;
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
-        .dropdown a:hover {
+        .social-link:hover {
             background: #FFD700;
             color: #000;
-            padding-left: 2rem;
+            transform: translateY(-5px);
         }
 
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+        .copyright-new {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
+            .navbar { padding: 0.6rem 5%; }
+            .logo-img { width: 40px; height: 40px; }
+            .logo-text { font-size: 1rem; }
+            .menu-toggle { display: flex; }
             .nav-links {
+                display: flex;
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                height: 100%;
+                width: 85%;
+                max-width: 350px;
+                height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 2rem 2rem;
-                transition: 0.3s;
-                z-index: 1000;
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
             }
-
-            .nav-links.active {
-                right: 0;
+            .nav-links.active { right: 0; }
+            .nav-item { width: 100%; }
+            .nav-item>a {
+                font-size: 1rem;
+                padding: 0.8rem 0;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
-
+            .nav-item>a::after { display: none; }
             .dropdown {
                 position: static;
                 opacity: 1;
                 visibility: visible;
+                transform: none;
                 box-shadow: none;
-                display: none;
+                padding: 0;
+                margin: 0;
+                background: #f8f8f8;
+                border-radius: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                width: 100%;
             }
-
             .nav-item.active .dropdown {
-                display: block;
+                max-height: 500px;
+                padding: 0.8rem 0;
+                margin-top: 0.5rem;
             }
+            .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
+            .service-header { margin-top: 60px; padding: 3rem 5%; }
+            .service-container { padding: 2rem 5%; }
+            .service-section { margin-bottom: 3rem; }
+            .stats-container { gap: 1rem; }
+            .stat-item { padding: 1.5rem; }
+            .stat-number { font-size: 2rem; }
+            .service-card { padding: 1.5rem; }
+            .cta-box { padding: 2rem; }
+            .footer-grid { gap: 2rem; }
+        }
 
-            .nav-overlay.active {
-                display: block;
-            }
+        @media (max-width: 480px) {
+            .logo-img { width: 35px; height: 35px; }
+            .logo-text { font-size: 0.85rem; }
+            .service-header h1 { font-size: 1.8rem; }
+            .service-header p { font-size: 0.9rem; }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .stat-number { font-size: 1.5rem; }
+            .stat-label { font-size: 0.75rem; }
+            .service-card h3 { font-size: 1.2rem; }
+            .features-list li { font-size: 0.85rem; }
+            .certification-badge p { font-size: 0.85rem; }
+            .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
+            .footer-col h4 { font-size: 1rem; }
+            .footer-col p { font-size: 0.85rem; }
+            .social-link { width: 38px; height: 38px; font-size: 1rem; }
+        }
+
+        @media (max-width: 360px) {
+            .stats-container { grid-template-columns: 1fr; }
+            .service-grid { grid-template-columns: 1fr; }
+            .two-column-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -493,17 +673,21 @@ width: 100%;
 <body>
     <div class="nav-overlay"></div>
     <nav class="navbar">
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="logo-container">
             <a href="../index.html">
                 <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
                 <span class="logo-text">VIGITECOL LTDA</span>
             </a>
         </div>
-        <div class="menu-toggle"><span></span><span></span><span></span></div>
         <div class="nav-links">
             <div class="nav-item"><a href="../index.html">Inicio</a></div>
             <div class="nav-item">
-                <a href="#">Quienes Somos ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../QuienesS/principios.html">Principios Orientadores</a>
                     <a href="../QuienesS/mision.html">Misión</a>
@@ -513,7 +697,7 @@ width: 100%;
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Servicios ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="vigilanciaCanina.html">Vigilancia Canina</a>
@@ -523,7 +707,7 @@ width: 100%;
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#">Beneficios ▼</a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../beneficios/garantia.html">Garantía de calidad</a>
                     <a href="../beneficios/soporte.html">Soporte 24/7</a>
@@ -539,10 +723,7 @@ width: 100%;
     <div class="service-header">
         <div class="service-header-content">
             <h1>Estudio Técnico en <span>Seguridad</span></h1>
-            <p>Análisis integral de vulnerabilidades, evaluación de riesgos y diseño de planes de seguridad
-                personalizados. Realizamos estudios técnicos de seguridad de acuerdo al contexto de su organización,
-                identificando amenazas y proponiendo soluciones efectivas para la protección óptima de sus
-                instalaciones, bienes y personal.</p>
+            <p>Análisis integral de vulnerabilidades, evaluación de riesgos y diseño de planes de seguridad personalizados. Realizamos estudios técnicos de seguridad de acuerdo al contexto de su organización, identificando amenazas y proponiendo soluciones efectivas para la protección óptima de sus instalaciones, bienes y personal.</p>
         </div>
     </div>
 
@@ -575,7 +756,7 @@ width: 100%;
         </div>
 
         <div class="image-placeholder">
-            <img src="https://drive.google.com/thumbnail?id=1xDlhv_uiNbCLTBQoTsCPs-LinB7QFrMo&sz=w1000" class="image">
+            <img src="https://drive.google.com/thumbnail?id=1xDlhv_uiNbCLTBQoTsCPs-LinB7QFrMo&sz=w1000" alt="Estudio Técnico en Seguridad">
         </div>
 
         <div class="service-section">
@@ -584,109 +765,37 @@ width: 100%;
                 <div class="service-card">
                     <div class="service-icon">🔍</div>
                     <h3>Análisis de Vulnerabilidades</h3>
-                    <p>Evaluación exhaustiva de sus instalaciones para identificar puntos débiles, fallas en los
-                        sistemas de seguridad existentes y riesgos potenciales.</p>
+                    <p>Evaluación exhaustiva de sus instalaciones para identificar puntos débiles y riesgos potenciales.</p>
                     <ul class="features-list">
-                        <li><strong>Inspección de perímetros:</strong> Evaluación de cercas, muros, puertas, barreras
-                            físicas y puntos de acceso no controlado</li>
-                        <li><strong>Evaluación de accesos:</strong> Análisis de puntos de ingreso, controles existentes
-                            y flujos de personal/vehículos</li>
-                        <li><strong>Análisis de riesgos operativos:</strong> Identificación de procesos críticos que
-                            pueden ser blanco de amenazas</li>
-                        <li><strong>Identificación de amenazas:</strong> Evaluación del entorno, índices delictivos,
-                            antecedentes y contexto de la organización</li>
-                        <li><strong>Evaluación de sistemas existentes:</strong> Diagnóstico de equipos de seguridad, su
-                            estado y efectividad</li>
+                        <li>Inspección de perímetros y barreras físicas</li>
+                        <li>Evaluación de accesos y flujos de personal</li>
+                        <li>Análisis de riesgos operativos críticos</li>
+                        <li>Identificación de amenazas del entorno</li>
+                        <li>Evaluación de sistemas existentes</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📋</div>
                     <h3>Diseño de Planes de Seguridad</h3>
-                    <p>Desarrollo de planes de seguridad personalizados según las necesidades específicas de su empresa,
-                        residencia o institución.</p>
+                    <p>Desarrollo de planes de seguridad personalizados según las necesidades específicas.</p>
                     <ul class="features-list">
-                        <li><strong>Plan de seguridad física:</strong> Diseño de barreras, controles de acceso, rutas de
-                            evacuación y puntos de concentración</li>
-                        <li><strong>Plan de seguridad electrónica:</strong> Especificación técnica de sistemas CCTV,
-                            alarmas, control de acceso y monitoreo</li>
-                        <li><strong>Protocolos de emergencia:</strong> Procedimientos para atención de incendios,
-                            atracos, amenazas de bomba y desastres naturales</li>
-                        <li><strong>Planes de evacuación:</strong> Diseño de rutas, señalización, puntos de encuentro y
-                            simulacros programados</li>
-                        <li><strong>Plan de continuidad del negocio:</strong> Estrategias para mantener operaciones ante
-                            incidentes de seguridad</li>
+                        <li>Plan de seguridad física y perimetral</li>
+                        <li>Plan de seguridad electrónica integrada</li>
+                        <li>Protocolos de emergencia y evacuación</li>
+                        <li>Planes de continuidad del negocio</li>
+                        <li>Manuales y procedimientos operativos</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📊</div>
                     <h3>Evaluación de Riesgos</h3>
-                    <p>Identificación, análisis y cuantificación de riesgos para priorizar las inversiones en seguridad
-                        y optimizar recursos.</p>
+                    <p>Identificación, análisis y cuantificación de riesgos para priorizar inversiones.</p>
                     <ul class="features-list">
-                        <li><strong>Matriz de riesgos:</strong> Identificación de amenazas, probabilidad de ocurrencia e
-                            impacto potencial</li>
-                        <li><strong>Valoración de amenazas:</strong> Análisis de amenazas externas e internas según
-                            perfil de la organización</li>
-                        <li><strong>Análisis de impacto:</strong> Cuantificación de pérdidas potenciales en términos
-                            financieros y reputacionales</li>
-                        <li><strong>Recomendaciones priorizadas:</strong> Plan de acción con niveles de criticidad y
-                            plazos de implementación</li>
-                        <li><strong>Riesgos de operación:</strong> Evaluación de riesgos en procesos productivos y
-                            logísticos</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏛️</div>
-                    <h3>Asesoría en Normativa y Cumplimiento</h3>
-                    <p>Orientación especializada sobre cumplimiento de normativas de seguridad vigentes según Decreto
-                        356 y requisitos de la Superintendencia de Vigilancia y Seguridad Privada.</p>
-                    <ul class="features-list">
-                        <li><strong>Actualización normativa:</strong> Análisis de cambios en la legislación de seguridad
-                            privada</li>
-                        <li><strong>Requisitos legales:</strong> Verificación de cumplimiento de obligaciones ante
-                            Superintendencia</li>
-                        <li><strong>Certificaciones requeridas:</strong> Asesoría para obtención de certificaciones ISO
-                            9001, ISO 28000 e ISO 45001</li>
-                        <li><strong>Documentación necesaria:</strong> Elaboración de manuales de seguridad,
-                            procedimientos y políticas</li>
-                        <li><strong>Auditorías de cumplimiento:</strong> Verificación periódica del cumplimiento
-                            normativo</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👥</div>
-                    <h3>Capacitación y Formación</h3>
-                    <p>Programas de entrenamiento para personal de seguridad y colaboradores en temas de prevención,
-                        respuesta y cultura de seguridad.</p>
-                    <ul class="features-list">
-                        <li><strong>Capacitación a guardas:</strong> Entrenamiento en técnicas de vigilancia, manejo de
-                            crisis y uso de equipos</li>
-                        <li><strong>Charlas a colaboradores:</strong> Sensibilización en seguridad personal, prevención
-                            de riesgos y respuesta ante emergencias</li>
-                        <li><strong>Simulacros de emergencia:</strong> Ejercicios prácticos de evacuación, atención de
-                            incendios y respuesta ante atracos</li>
-                        <li><strong>Entrenamiento específico:</strong> Capacitación según sector: industrial, comercial,
-                            residencial, institucional</li>
-                        <li><strong>Programas de cultura de seguridad:</strong> Desarrollo de competencias en prevención
-                            y autocuidado</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>Auditorías de Seguridad</h3>
-                    <p>Verificación periódica del cumplimiento de los planes de seguridad y efectividad de las medidas
-                        implementadas.</p>
-                    <ul class="features-list">
-                        <li><strong>Auditorías programadas:</strong> Evaluaciones semestrales y anuales de los sistemas
-                            de seguridad</li>
-                        <li><strong>Verificación de cumplimiento:</strong> Comprobación de la ejecución de
-                            recomendaciones previas</li>
-                        <li><strong>Informes de gestión:</strong> Reportes detallados con indicadores de efectividad y
-                            áreas de mejora</li>
-                        <li><strong>Recomendaciones de mejora:</strong> Actualización de planes basada en cambios del
-                            entorno y la organización</li>
-                        <li><strong>Pruebas de penetración:</strong> Evaluación de efectividad mediante simulaciones de
-                            intentos de intrusión</li>
+                        <li>Matriz de riesgos completa</li>
+                        <li>Valoración de amenazas internas/externas</li>
+                        <li>Análisis de impacto financiero</li>
+                        <li>Recomendaciones priorizadas</li>
+                        <li>Plan de tratamiento de riesgos</li>
                     </ul>
                 </div>
             </div>
@@ -699,207 +808,41 @@ width: 100%;
                     <h3>📋 Proceso Metodológico</h3>
                     <div class="methodology-step">
                         <div class="step-number">1</div>
-                        <div><strong>Diagnóstico Inicial</strong><br>Reunión de información, inspección de
-                            instalaciones, levantamiento de datos históricos de incidentes y entrevistas con personal
-                            clave.</div>
+                        <div><strong>Diagnóstico Inicial</strong><br>Inspección de instalaciones y levantamiento de información</div>
                     </div>
                     <div class="methodology-step">
                         <div class="step-number">2</div>
-                        <div><strong>Análisis de Riesgos</strong><br>Identificación de amenazas, evaluación de
-                            vulnerabilidades, análisis de impacto y cuantificación de riesgos con metodología Magerit.
-                        </div>
+                        <div><strong>Análisis de Riesgos</strong><br>Identificación de amenazas y vulnerabilidades</div>
                     </div>
                     <div class="methodology-step">
                         <div class="step-number">3</div>
-                        <div><strong>Diseño de Soluciones</strong><br>Propuesta de medidas de seguridad personalizadas:
-                            físicas, electrónicas, humanas y procedimentales con priorización por criticidad.</div>
+                        <div><strong>Diseño de Soluciones</strong><br>Propuesta de medidas de seguridad personalizadas</div>
                     </div>
                     <div class="methodology-step">
                         <div class="step-number">4</div>
-                        <div><strong>Implementación</strong><br>Acompañamiento en la ejecución de las medidas
-                            propuestas, gestión de proveedores y supervisión de instalaciones.</div>
+                        <div><strong>Implementación</strong><br>Acompañamiento en ejecución de medidas</div>
                     </div>
                     <div class="methodology-step">
                         <div class="step-number">5</div>
-                        <div><strong>Seguimiento y Mejora Continua</strong><br>Evaluación de resultados, ajustes
-                            periódicos, actualización de planes según cambios del entorno y retroalimentación del
-                            cliente.</div>
+                        <div><strong>Seguimiento</strong><br>Evaluación de resultados y mejora continua</div>
                     </div>
                 </div>
                 <div class="service-card">
                     <h3>📄 Entregables</h3>
                     <ul class="features-list">
-                        <li><strong>Informe ejecutivo de diagnóstico:</strong> Resumen ejecutivo con hallazgos clave y
-                            conclusiones</li>
-                        <li><strong>Matriz de riesgos y vulnerabilidades:</strong> Identificación detallada de amenazas,
-                            probabilidad e impacto</li>
-                        <li><strong>Plan de seguridad personalizado:</strong> Documento completo con medidas de
-                            seguridad por área y prioridad</li>
-                        <li><strong>Presupuesto de implementación:</strong> Detalle de inversiones necesarias con costos
-                            estimados</li>
-                        <li><strong>Cronograma de actividades:</strong> Plan de acción con fechas y responsables</li>
-                        <li><strong>Informes de seguimiento:</strong> Reportes periódicos de avance y efectividad</li>
-                        <li><strong>Manuales y procedimientos:</strong> Documentación operativa para personal de
-                            seguridad y colaboradores</li>
+                        <li>Informe ejecutivo de diagnóstico</li>
+                        <li>Matriz de riesgos y vulnerabilidades</li>
+                        <li>Plan de seguridad personalizado</li>
+                        <li>Presupuesto de implementación</li>
+                        <li>Cronograma de actividades</li>
+                        <li>Informes de seguimiento periódicos</li>
+                        <li>Manuales y procedimientos operativos</li>
                     </ul>
                     <h3 style="margin-top: 1.5rem;">⏱️ Plazos de Entrega</h3>
                     <ul class="features-list">
-                        <li><strong>Estudio básico:</strong> 5 - 8 días hábiles (instalaciones pequeñas, residencial)
-                        </li>
-                        <li><strong>Estudio integral:</strong> 10 - 15 días hábiles (empresas medianas, industria)</li>
-                        <li><strong>Estudio corporativo:</strong> 20 - 30 días hábiles (múltiples sedes, gran escala)
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Áreas de Especialización</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>Seguridad Corporativa</h3>
-                    <p>Empresas, oficinas corporativas, sedes administrativas, centros empresariales, parques
-                        tecnológicos.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏭</div>
-                    <h3>Seguridad Industrial</h3>
-                    <p>Plantas de producción, bodegas logísticas, zonas francas, centros de distribución, minería,
-                        energía.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏘️</div>
-                    <h3>Seguridad Residencial</h3>
-                    <p>Conjuntos cerrados, condominios, urbanizaciones, edificios de apartamentos, viviendas
-                        unifamiliares.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏪</div>
-                    <h3>Seguridad Comercial</h3>
-                    <p>Centros comerciales, grandes superficies, retail, locales comerciales, franquicias.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏥</div>
-                    <h3>Seguridad Institucional</h3>
-                    <p>Hospitales, clínicas, centros de salud, universidades, colegios, instituciones educativas.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏛️</div>
-                    <h3>Seguridad Gubernamental</h3>
-                    <p>Entidades públicas, sedes gubernamentales, embajadas, consulados, infraestructura crítica.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Componentes del Estudio Técnico</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>🔒 Seguridad Física</h3>
-                    <ul class="features-list">
-                        <li>Análisis de perímetros y barreras físicas</li>
-                        <li>Evaluación de cerramientos, puertas y accesos</li>
-                        <li>Análisis de iluminación y zonas oscuras</li>
-                        <li>Evaluación de puntos de control y casetas de vigilancia</li>
-                        <li>Diseño de rutas de evacuación y señalización</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>📡 Seguridad Electrónica</h3>
-                    <ul class="features-list">
-                        <li>Diseño de sistemas CCTV y ubicación de cámaras</li>
-                        <li>Especificación de sistemas de alarma y sensores</li>
-                        <li>Control de accesos biométrico y tarjetas de proximidad</li>
-                        <li>Sistemas de detección temprana (humo, gas, incendio)</li>
-                        <li>Central de monitoreo y protocolos de respuesta</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>👥 Seguridad Humana</h3>
-                    <ul class="features-list">
-                        <li>Determinación de número de guardas requeridos</li>
-                        <li>Perfilación de personal según necesidades</li>
-                        <li>Horarios y turnos óptimos por sector</li>
-                        <li>Protocolos de actuación y rondas</li>
-                        <li>Capacitación específica por tipo de instalación</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>📋 Seguridad Procedimental</h3>
-                    <ul class="features-list">
-                        <li>Diseño de políticas y procedimientos de seguridad</li>
-                        <li>Protocolos de atención de emergencias</li>
-                        <li>Planes de continuidad del negocio</li>
-                        <li>Manuales de seguridad para colaboradores</li>
-                        <li>Programas de inducción y capacitación</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>🔥 Protección contra Incendios</h3>
-                    <ul class="features-list">
-                        <li>Análisis de riesgos en sistemas de protección contra incendios</li>
-                        <li>Evaluación de detectores, rociadores y extintores</li>
-                        <li>Diseño de rutas de evacuación y puntos de encuentro</li>
-                        <li>Simulacros y capacitación en manejo de emergencias</li>
-                        <li>Cumplimiento de normativa RETIE y NSR-10</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>📊 Matriz de Riesgos</h3>
-                    <ul class="features-list">
-                        <li>Identificación de amenazas externas e internas</li>
-                        <li>Evaluación de probabilidad y severidad</li>
-                        <li>Clasificación de riesgos por nivel de criticidad</li>
-                        <li>Plan de tratamiento de riesgos priorizado</li>
-                        <li>Indicadores de gestión de riesgos</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Beneficios de Realizar un Estudio Técnico</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Identificación Proactiva</h3>
-                    <ul class="features-list">
-                        <li>Detección de vulnerabilidades antes de que sean explotadas</li>
-                        <li>Anticipación a amenazas emergentes</li>
-                        <li>Reducción de incidentes de seguridad hasta en un 75%</li>
-                        <li>Protección de activos críticos e información sensible</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>Optimización de Inversiones</h3>
-                    <ul class="features-list">
-                        <li>Inversiones focalizadas en riesgos reales</li>
-                        <li>Reducción de costos operativos en seguridad hasta 30%</li>
-                        <li>Evitación de inversiones innecesarias o sobredimensionadas</li>
-                        <li>Mejor relación costo-beneficio en medidas de seguridad</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚖️</div>
-                    <h3>Cumplimiento Normativo</h3>
-                    <ul class="features-list">
-                        <li>Acreditación ante Superintendencia de Vigilancia</li>
-                        <li>Cumplimiento de requisitos legales y evitación de sanciones</li>
-                        <li>Certificación en normas ISO 9001, ISO 28000 e ISO 45001</li>
-                        <li>Reducción de responsabilidad civil y penal</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">😌</div>
-                    <h3>Tranquilidad para Directivos</h3>
-                    <ul class="features-list">
-                        <li>Conocimiento real del estado de seguridad</li>
-                        <li>Plan de acción claro y priorizado</li>
-                        <li>Respaldos técnicos para toma de decisiones</li>
-                        <li>Mayor confianza de inversores y stakeholders</li>
+                        <li><strong>Estudio básico:</strong> 5 - 8 días hábiles</li>
+                        <li><strong>Estudio integral:</strong> 10 - 15 días hábiles</li>
+                        <li><strong>Estudio corporativo:</strong> 20 - 30 días hábiles</li>
                     </ul>
                 </div>
             </div>
@@ -907,25 +850,109 @@ width: 100%;
 
         <div class="cta-box">
             <h3>Conozca el estado real de su seguridad</h3>
-            <p>Solicite un estudio técnico gratuito y reciba un diagnóstico inicial de las vulnerabilidades de sus
-                instalaciones. Nuestros especialistas evaluarán sus necesidades y presentarán una propuesta de plan de
-                seguridad personalizado sin compromiso.</p>
+            <p>Solicite un estudio técnico gratuito y reciba un diagnóstico inicial de las vulnerabilidades de sus instalaciones. Nuestros especialistas evaluarán sus necesidades y presentarán una propuesta de plan de seguridad personalizado sin compromiso.</p>
             <a href="../contacto.html" class="cta-button">Solicitar Estudio Técnico Gratuito</a>
         </div>
     </div>
 
     <div id="footer"></div>
+
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const overlay = document.querySelector('.nav-overlay');
-        const navItems = document.querySelectorAll('.nav-item');
-        function toggleMenu() { navLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); overlay.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; }
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        if (window.innerWidth <= 768) { navItems.forEach(item => { const link = item.querySelector('a'); const dropdown = item.querySelector('.dropdown'); if (dropdown) { link.addEventListener('click', (e) => { e.preventDefault(); item.classList.toggle('active'); }); } }); }
-        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.95)'; navbar.style.boxShadow = 'none'; } });
-        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; });
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
+
+            function toggleMenu(force) {
+                const isActive = navLinks.classList.contains('active');
+                if (force !== undefined) {
+                    if (force && !isActive) {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    } else if (!force && isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    }
+                } else {
+                    if (isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    } else {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+            if (overlay) overlay.addEventListener('click', () => toggleMenu(false));
+
+            function handleMobileDropdowns() {
+                const isMobile = window.innerWidth <= 768;
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    const parentItem = toggle.closest('.nav-item');
+                    const dropdown = parentItem.querySelector('.dropdown');
+                    if (dropdown) {
+                        const newToggle = toggle.cloneNode(true);
+                        toggle.parentNode.replaceChild(newToggle, toggle);
+                        if (isMobile) {
+                            newToggle.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                document.querySelectorAll('.nav-item').forEach(item => {
+                                    if (item !== parentItem && item.classList.contains('active')) item.classList.remove('active');
+                                });
+                                parentItem.classList.toggle('active');
+                            });
+                        } else {
+                            newToggle.addEventListener('click', (e) => {
+                                const href = newToggle.getAttribute('href');
+                                if (href && href !== 'javascript:void(0)' && href !== '#') return;
+                                e.preventDefault();
+                            });
+                        }
+                    }
+                });
+            }
+
+            handleMobileDropdowns();
+            window.addEventListener('resize', () => {
+                handleMobileDropdowns();
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    navItems.forEach(item => item.classList.remove('active'));
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
 

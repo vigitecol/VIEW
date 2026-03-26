@@ -180,6 +180,7 @@
         .arrow {
             font-size: 0.7rem;
             transition: transform 0.3s ease;
+            display: inline-block;
         }
 
         .nav-item:hover .arrow {
@@ -1145,7 +1146,7 @@
             </div>
 
             <div class="nav-item">
-                <a href="#quienes-somos" class="has-dropdown">Quienes Somos <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="QuienesS/principios.html">Principios Orientadores</a>
                     <a href="QuienesS/mision.html">Misión</a>
@@ -1156,7 +1157,7 @@
             </div>
 
             <div class="nav-item">
-                <a href="#servicios" class="has-dropdown">Servicios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="/Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="/Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
@@ -1167,7 +1168,7 @@
             </div>
 
             <div class="nav-item">
-                <a href="#beneficios" class="has-dropdown">Beneficios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="beneficios/garantia.html">Garantía de calidad</a>
                     <a href="beneficios/soporte.html">Soporte 24/7</a>
@@ -1468,7 +1469,7 @@
 
         function updateMiniCarousel() {
             if (miniCards.length === 0) return;
-            const cardWidth = miniCards[0].offsetWidth + 24; // width + gap
+            const cardWidth = miniCards[0].offsetWidth + 24;
             miniCarousel.style.transform = `translateX(-${miniIndex * cardWidth}px)`;
 
             const centerIndex = miniIndex + Math.floor(cardsToShow / 2);
@@ -1479,7 +1480,6 @@
                 }
             });
 
-            // Reset infinito
             if (miniIndex >= totalMiniCards - cardsToShow) {
                 setTimeout(() => {
                     miniCarousel.style.transition = 'none';
@@ -1551,7 +1551,6 @@
 
             moveCarousel();
 
-            // Pausar en hover
             const container = document.getElementById('aliadosCarousel');
             let animating = true;
             
@@ -1595,68 +1594,55 @@
             overlay.addEventListener('click', toggleMenu);
         }
 
-        // Función para manejar los dropdowns en móvil
-        function setupMobileDropdowns() {
+        // Función específica para manejar los dropdowns en móvil
+        function handleMobileDropdowns() {
             const isMobile = window.innerWidth <= 768;
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
             
-            navItems.forEach(item => {
-                const link = item.querySelector('> a');
-                const dropdown = item.querySelector('.dropdown');
+            dropdownToggles.forEach(toggle => {
+                // Remover eventos anteriores
+                const newToggle = toggle.cloneNode(true);
+                toggle.parentNode.replaceChild(newToggle, toggle);
                 
-                // Remover event listeners anteriores
-                const newLink = link.cloneNode(true);
-                link.parentNode.replaceChild(newLink, link);
+                const parentItem = newToggle.closest('.nav-item');
+                const dropdown = parentItem.querySelector('.dropdown');
                 
-                const updatedLink = item.querySelector('> a');
-                
-                if (dropdown && isMobile) {
-                    // En móvil: click para abrir/cerrar dropdown
-                    updatedLink.addEventListener('click', (e) => {
+                if (isMobile && dropdown) {
+                    // En móvil: prevenir comportamiento por defecto y toggle dropdown
+                    newToggle.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
                         // Cerrar otros dropdowns abiertos
-                        navItems.forEach(otherItem => {
-                            if (otherItem !== item && otherItem.classList.contains('active')) {
-                                otherItem.classList.remove('active');
+                        document.querySelectorAll('.nav-item').forEach(item => {
+                            if (item !== parentItem && item.classList.contains('active')) {
+                                item.classList.remove('active');
                             }
                         });
                         
                         // Toggle el actual
-                        item.classList.toggle('active');
+                        parentItem.classList.toggle('active');
                     });
-                } else if (dropdown && !isMobile) {
-                    // En desktop: solo enlace normal (el hover maneja el dropdown)
-                    updatedLink.addEventListener('click', (e) => {
-                        // Si el href es un ancla, hacer scroll suave
-                        const href = updatedLink.getAttribute('href');
-                        if (href && href !== '#' && href.startsWith('#')) {
-                            e.preventDefault();
-                            const target = document.querySelector(href);
-                            if (target) {
-                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
+                } else if (!isMobile && dropdown) {
+                    // En desktop: mantener hover, pero también permitir enlace si tiene href
+                    newToggle.addEventListener('click', function(e) {
+                        // Si tiene un href válido, permitir navegación
+                        const href = newToggle.getAttribute('href');
+                        if (href && href !== 'javascript:void(0)' && href !== '#') {
+                            // Permitir la navegación normal
+                            return;
                         }
-                    });
-                } else {
-                    // Items sin dropdown
-                    updatedLink.addEventListener('click', (e) => {
-                        const href = updatedLink.getAttribute('href');
-                        if (href && href !== '#' && (href.startsWith('#') || href === 'index.html')) {
-                            if (navLinks.classList.contains('active')) {
-                                toggleMenu();
-                            }
-                        }
+                        e.preventDefault();
                     });
                 }
             });
         }
 
         // Ejecutar al cargar y al cambiar tamaño
-        setupMobileDropdowns();
+        handleMobileDropdowns();
         
         window.addEventListener('resize', () => {
-            setupMobileDropdowns();
+            handleMobileDropdowns();
             
             // Cerrar menú y dropdowns al cambiar a desktop
             if (window.innerWidth > 768) {
@@ -1668,8 +1654,8 @@
             }
         });
 
-        // Smooth scroll para enlaces con ancla
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scroll para enlaces con ancla (solo para los que tienen ancla)
+        document.querySelectorAll('a[href^="#"]:not(.dropdown-toggle)').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href && href !== '#') {

@@ -2,19 +2,214 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Actualizaciones Gratis - VIGITECOL LTDA</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* ========== NAVBAR MEJORADA ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-item>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item>a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 10px;
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f5f5f5;
+            color: #FFD700;
+            padding-left: 2rem;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ========== PAGE HEADER ========== */
         .page-header {
-            margin-top: 100px;
+            margin-top: 70px;
             padding: 4rem 5%;
             background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
             color: white;
             position: relative;
             overflow: hidden;
         }
-        
+
         .page-header::before {
             content: '';
             position: absolute;
@@ -25,47 +220,52 @@
             background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
-        
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .page-header-content {
             position: relative;
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .page-header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
         }
-        
+
         .page-header h1 span {
             color: #FFD700;
         }
-        
+
         .page-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: #ccc;
             max-width: 800px;
             line-height: 1.8;
         }
-        
+
         .content-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 5%;
         }
-        
+
         .section {
             margin-bottom: 5rem;
         }
-        
+
         .section h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 2rem;
             position: relative;
             display: inline-block;
         }
-        
+
         .section h2::after {
             content: '';
             position: absolute;
@@ -75,176 +275,145 @@
             height: 4px;
             background: #FFD700;
         }
-        
+
         /* Estadísticas */
         .updates-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
             margin: 4rem 0;
         }
-        
+
         .stat-card {
             background: #f8f8f8;
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         .stat-card:hover {
             background: #FFD700;
             transform: translateY(-10px);
         }
-        
+
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #000;
             margin-bottom: 0.5rem;
         }
-        
+
         .stat-label {
             color: #666;
         }
-        
+
         .stat-card:hover .stat-label {
             color: #000;
         }
-        
+
         /* Tipos de actualizaciones */
         .actualizaciones-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-        
+
         .actualizacion-card {
             background: #f8f8f8;
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 2rem;
             transition: all 0.4s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .actualizacion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #000);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .actualizacion-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .actualizacion-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             box-shadow: 0 30px 50px rgba(255, 215, 0, 0.15);
-            border-color: #FFD700;
         }
-        
+
         .actualizacion-icon {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             background: #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
         }
-        
+
         .actualizacion-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
             color: #000;
             text-align: center;
         }
-        
+
         .actualizacion-card p {
             color: #666;
             line-height: 1.7;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
-        
+
         .update-badge {
             display: inline-block;
             background: #000;
             color: #FFD700;
             padding: 0.5rem 1rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        /* Roadmap de actualizaciones */
-        .roadmap-container {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .roadmap-timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-        
-        .roadmap-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: #FFD700;
-        }
-        
-        .timeline-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .timeline-left {
-            width: 45%;
-            text-align: right;
-            padding-right: 2rem;
-        }
-        
-        .timeline-right {
-            width: 45%;
-            padding-left: 2rem;
-        }
-        
-        .timeline-date {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #FFD700;
-        }
-        
-        .timeline-content {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-        
-        .timeline-content h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #000;
-        }
-        
-        .timeline-content p {
-            color: #666;
-        }
-        
+
         /* Ciclo de actualización */
         .ciclo-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-        
+
         .ciclo-item {
             text-align: center;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
-        
+
+        .ciclo-item:hover {
+            background: #FFD700;
+            transform: translateY(-5px);
+        }
+
         .ciclo-numero {
             width: 60px;
             height: 60px;
@@ -258,17 +427,95 @@
             font-weight: 700;
             color: #000;
         }
-        
-        .ciclo-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+
+        .ciclo-item:hover .ciclo-numero {
+            background: #000;
+            color: #FFD700;
         }
-        
+
+        .ciclo-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
         .ciclo-item p {
             color: #666;
             font-size: 0.9rem;
         }
-        
+
+        .ciclo-item:hover p {
+            color: #000;
+        }
+
+        /* Roadmap */
+        .roadmap-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #FFD700;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .timeline-left, .timeline-right {
+            width: 45%;
+        }
+
+        .timeline-left {
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .timeline-right {
+            padding-left: 2rem;
+        }
+
+        .timeline-date {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 15px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         /* Historial de versiones */
         .versiones-container {
             background: #f8f8f8;
@@ -276,475 +523,292 @@
             padding: 2rem;
             margin-top: 3rem;
         }
-        
+
         .version-item {
             background: white;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             margin-bottom: 1rem;
             border-left: 4px solid #FFD700;
+            transition: all 0.3s ease;
         }
-        
+
+        .version-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .version-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
-        
+
         .version-numero {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #FFD700;
         }
-        
+
         .version-fecha {
             color: #999;
+            font-size: 0.85rem;
         }
-        
+
         .version-features {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
-        
+
         .feature-tag {
             background: #f0f0f0;
             padding: 0.3rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            color: #555;
         }
-        
-        /* Call to Action */
+
+        /* CTA */
         .cta-box {
             background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
             border-radius: 30px;
-            padding: 4rem;
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
             margin-top: 4rem;
         }
-        
+
         .cta-box h3 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             color: #000;
             margin-bottom: 1.5rem;
         }
-        
+
         .cta-box p {
             color: #333;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
+
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2.5rem;
             background: #000;
             color: #FFD700;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
-        
+
         .cta-button:hover {
             background: #333;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
-        @media (max-width: 1024px) {
-            .updates-stats,
-            .actualizaciones-grid,
-            .ciclo-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .roadmap-timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                flex-direction: column;
-            }
-            
-            .timeline-left,
-            .timeline-right {
-                width: 100%;
-                text-align: left;
-                padding-left: 50px;
-            }
+
+        /* Footer */
+        .footer-new {
+            background: #000000;
+            color: #fff;
+            padding: 4rem 5% 2rem;
+            margin-top: auto;
+            border-top: 3px solid #FFD700;
         }
-        
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-col h4 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #FFD700;
+        }
+
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: #FFD700;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .copyright-new {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
+            .navbar { padding: 0.6rem 5%; }
+            .logo-img { width: 40px; height: 40px; }
+            .logo-text { font-size: 1rem; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 350px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
             }
-            
-            .updates-stats,
-            .actualizaciones-grid,
-            .ciclo-grid {
-                grid-template-columns: 1fr;
+            .nav-links.active { right: 0; }
+            .nav-item { width: 100%; }
+            .nav-item>a {
+                font-size: 1rem;
+                padding: 0.8rem 0;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
-            
-            .cta-box {
-                padding: 2rem;
+            .nav-item>a::after { display: none; }
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                background: #f8f8f8;
+                border-radius: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                width: 100%;
             }
+            .nav-item.active .dropdown {
+                max-height: 500px;
+                padding: 0.8rem 0;
+                margin-top: 0.5rem;
+            }
+            .dropdown a { padding: 0.7rem 1rem 0.7rem 2rem; }
+            .page-header { margin-top: 60px; padding: 3rem 5%; }
+            .content-container { padding: 2rem 5%; }
+            .section { margin-bottom: 3rem; }
+            .roadmap-timeline::before { left: 20px; }
+            .timeline-item { flex-direction: column; }
+            .timeline-left, .timeline-right { width: 100%; text-align: left; padding-left: 40px; margin-bottom: 1rem; }
+            .timeline-left { text-align: left; }
+            .timeline-right { padding-left: 40px; }
+            .actualizacion-card, .ciclo-item { padding: 1.5rem; }
+            .cta-box { padding: 2rem; }
+            .footer-grid { gap: 2rem; }
         }
 
-        .logo-container a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+        @media (max-width: 480px) {
+            .logo-img { width: 35px; height: 35px; }
+            .logo-text { font-size: 0.85rem; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-header p { font-size: 0.9rem; }
+            .stat-number { font-size: 2rem; }
+            .actualizacion-card h3 { font-size: 1.2rem; }
+            .timeline-date { font-size: 1.1rem; }
+            .version-header { flex-direction: column; }
+            .cta-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
+            .footer-col h4 { font-size: 1rem; }
+            .footer-col p { font-size: 0.85rem; }
+            .social-link { width: 38px; height: 38px; font-size: 1rem; }
+        }
 
-/* ========== FOOTER MEJORADO - SIN CAMBIAR CONTENIDO ========== */
-.footer-new {
-    background: #000000;
-    color: #fff;
-    padding: 4rem 5% 2rem;
-    margin-top: auto;
-    border-top: 3px solid #FFD700;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-bottom: 3rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.footer-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-col h4 {
-    color: #FFD700;
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    position: relative;
-    padding-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 2px;
-    background: #FFD700;
-}
-
-.footer-col p {
-    color: #ccc;
-    line-height: 1.6;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    font-size: 0.95rem;
-}
-
-.footer-col i {
-    color: #FFD700;
-    width: 20px;
-    font-style: normal;
-    font-size: 1rem;
-    flex-shrink: 0;
-}
-
-/* Horarios */
-.horario-item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.horario-item:last-child {
-    border-bottom: none;
-}
-
-.horario-item span:first-child {
-    color: #FFD700;
-    font-weight: 500;
-    margin-bottom: 0.3rem;
-}
-
-.horario-item span:last-child {
-    color: #ccc;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-/* Certificaciones */
-.iso-container {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0 1.5rem;
-    flex-wrap: wrap;
-}
-
-.iso-container {
-    display: flex;
-    justify-content: flex-start; 
-    margin: 2rem 0;
-}
-
-.iso-badge {
-    width: 350px;              
-    height: 350px;
-    background: #000;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    transition: all 0.4s ease;
-}
-
-.iso-badge img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;       
-}
-
-
-
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 768px) {
-    .iso-container {
-        justify-content: center;   /* centrada en tablet */
-    }
-
-    .iso-badge {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .iso-badge {
-        width: 150px;
-        height: 150px;
-    }
-}
-
-/* Ajustar el tamaño del ISO */
-.iso-container {
-    display: flex;
-    justify-content: flex-start; 
-    margin: 0 0 1.5rem 0; /* Reducido el margen */
-}
-
-.iso-badge {
-    width: 292px; /* Reducido de 350px */
-    height: 290px; /* Reducido de 350px */
-    background: #000;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    transition: all 0.4s ease;
-}
-
-/* Responsive del ISO */
-@media (max-width: 768px) {
-    .iso-container {
-        justify-content: center;
-    }
-
-    .iso-badge {
-        width: 150px;
-        height: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    .iso-badge {
-        width: 130px;
-        height: 130px;
-    }
-}
-
-
-/* Redes Sociales */
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.social-link {
-    width: 45px;
-    height: 45px;
-    background: #222;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-.social-link:hover {
-    background: #FFD700;
-    color: #000;
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-}
-
-/* Copyright */
-.copyright-new {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid #333;
-    color: #888;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-}
-
-/* Línea de Supervigilados */
-.footer-col p:last-of-type {
-    margin-top: 1rem;
-    color: #FFD700;
-    font-size: 0.85rem;
-    font-weight: 500;
-    border-left: 3px solid #FFD700;
-    padding-left: 1rem;
-}
-
-/* ========== RESPONSIVE DEL FOOTER ========== */
-@media (max-width: 1024px) {
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-new {
-        padding: 3rem 5% 2rem;
-    }
-    
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .footer-col {
-        text-align: left;
-    }
-    
-    .footer-col h4 {
-        margin-bottom: 1rem;
-    }
-    
-    .horario-item {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .horario-item span:first-child {
-        margin-bottom: 0;
-        width: 40%;
-    }
-    
-    .horario-item span:last-child {
-        width: 60%;
-        text-align: right;
-    }
-    
-    .iso-container {
-        justify-content: flex-start;
-    }
-    
-    .social-links {
-        justify-content: flex-start;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-grid {
-        gap: 1.5rem;
-    }
-    
-    .footer-col p {
-        font-size: 0.9rem;
-    }
-    
-    .horario-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-    }
-    
-    .horario-item span:first-child,
-    .horario-item span:last-child {
-        width: 100%;
-        text-align: left;
-    }
-    
-    .iso-badge {
-        width: 55px;
-        height: 55px;
-        font-size: 0.7rem;
-    }
-    
-    .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 360px) {
+            .updates-stats, .actualizaciones-grid, .ciclo-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <div class="nav-overlay"></div>
 
-   <nav class="navbar">
-    <div class="logo-container">
-        <a href="../index.html">
-            <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
-            <span class="logo-text">VIGITECOL LTDA</span>
-        </a>
-</div>
-        
+    <nav class="navbar">
         <div class="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
         <div class="nav-links">
+            <div class="nav-item"><a href="../index.html">Inicio</a></div>
             <div class="nav-item">
-                <a href="../index.html">Inicio <span class="arrow"></span></a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../QuienesS/principios.html">Principios Orientadores</a>
                     <a href="../QuienesS/mision.html">Misión</a>
@@ -753,9 +817,8 @@
                     <a href="../QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
                 </div>
             </div>
-
             <div class="nav-item">
-                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="../Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="../Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
@@ -764,9 +827,8 @@
                     <a href="../Servicios/estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
                 </div>
             </div>
-
             <div class="nav-item">
-                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="garantia.html">Garantía de calidad</a>
                     <a href="soporte.html">Soporte 24/7</a>
@@ -775,10 +837,7 @@
                     <a href="descuentos.html">Descuentos especiales</a>
                 </div>
             </div>
-
-            <div class="nav-item">
-                <a href="../contacto.html">Contacto</a>
-            </div>
+            <div class="nav-item"><a href="../contacto.html">Contacto</a></div>
         </div>
     </nav>
 
@@ -792,69 +851,22 @@
     <div class="content-container">
         <!-- Estadísticas -->
         <div class="updates-stats">
-            <div class="stat-card">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Actualizaciones al año</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Sin costo para clientes</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">+50</div>
-                <div class="stat-label">Mejoras implementadas</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Actualizaciones automáticas</div>
-            </div>
+            <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Actualizaciones al año</div></div>
+            <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Sin costo para clientes</div></div>
+            <div class="stat-card"><div class="stat-number">+50</div><div class="stat-label">Mejoras implementadas</div></div>
+            <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Actualizaciones automáticas</div></div>
         </div>
 
         <!-- Tipos de actualizaciones -->
         <div class="section">
             <h2>Actualizaciones Incluidas</h2>
             <div class="actualizaciones-grid">
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">💻</div>
-                    <h3>Software de Monitoreo</h3>
-                    <p>Actualizaciones periódicas de nuestra plataforma de monitoreo con nuevas funcionalidades y mejoras de rendimiento.</p>
-                    <div class="update-badge">Trimestral</div>
-                </div>
-                
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">🤖</div>
-                    <h3>Algoritmos de IA</h3>
-                    <p>Mejoras continuas en los algoritmos de detección, reconocimiento facial y análisis de comportamiento.</p>
-                    <div class="update-badge">Mensual</div>
-                </div>
-                
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">📱</div>
-                    <h3>Aplicaciones Móviles</h3>
-                    <p>Actualizaciones de nuestras apps para iOS y Android con nuevas funcionalidades y mejoras de usabilidad.</p>
-                    <div class="update-badge">Bimestral</div>
-                </div>
-                
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">🔒</div>
-                    <h3>Seguridad y Parches</h3>
-                    <p>Parches de seguridad y actualizaciones críticas para proteger sus sistemas contra nuevas amenazas.</p>
-                    <div class="update-badge">Tiempo real</div>
-                </div>
-                
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">📊</div>
-                    <h3>Reportes y Análisis</h3>
-                    <p>Nuevos formatos de reporte, dashboards personalizados y herramientas de análisis de datos.</p>
-                    <div class="update-badge">Semestral</div>
-                </div>
-                
-                <div class="actualizacion-card">
-                    <div class="actualizacion-icon">⚙️</div>
-                    <h3>Firmware de Equipos</h3>
-                    <p>Actualizaciones de firmware para cámaras, DVR/NVR y controladores de acceso.</p>
-                    <div class="update-badge">Según fabricante</div>
-                </div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">💻</div><h3>Software de Monitoreo</h3><p>Actualizaciones periódicas de nuestra plataforma con nuevas funcionalidades.</p><div class="update-badge">Trimestral</div></div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">🤖</div><h3>Algoritmos de IA</h3><p>Mejoras continuas en detección, reconocimiento facial y análisis.</p><div class="update-badge">Mensual</div></div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">📱</div><h3>Aplicaciones Móviles</h3><p>Actualizaciones de apps iOS y Android con nuevas funcionalidades.</p><div class="update-badge">Bimestral</div></div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">🔒</div><h3>Seguridad y Parches</h3><p>Parches de seguridad críticos contra nuevas amenazas.</p><div class="update-badge">Tiempo real</div></div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">📊</div><h3>Reportes y Análisis</h3><p>Nuevos formatos de reporte y dashboards personalizados.</p><div class="update-badge">Semestral</div></div>
+                <div class="actualizacion-card"><div class="actualizacion-icon">⚙️</div><h3>Firmware de Equipos</h3><p>Actualizaciones para cámaras, DVR/NVR y controladores.</p><div class="update-badge">Según fabricante</div></div>
             </div>
         </div>
 
@@ -862,26 +874,10 @@
         <div class="section">
             <h2>Ciclo de Actualización Permanente</h2>
             <div class="ciclo-grid">
-                <div class="ciclo-item">
-                    <div class="ciclo-numero">1</div>
-                    <h4>Detección</h4>
-                    <p>Identificamos oportunidades de mejora</p>
-                </div>
-                <div class="ciclo-item">
-                    <div class="ciclo-numero">2</div>
-                    <h4>Desarrollo</h4>
-                    <p>Creamos las nuevas funcionalidades</p>
-                </div>
-                <div class="ciclo-item">
-                    <div class="ciclo-numero">3</div>
-                    <h4>Pruebas</h4>
-                    <p>Validamos en entornos controlados</p>
-                </div>
-                <div class="ciclo-item">
-                    <div class="ciclo-numero">4</div>
-                    <h4>Implementación</h4>
-                    <p>Actualizamos sin afectar el servicio</p>
-                </div>
+                <div class="ciclo-item"><div class="ciclo-numero">1</div><h4>Detección</h4><p>Identificamos oportunidades de mejora</p></div>
+                <div class="ciclo-item"><div class="ciclo-numero">2</div><h4>Desarrollo</h4><p>Creamos las nuevas funcionalidades</p></div>
+                <div class="ciclo-item"><div class="ciclo-numero">3</div><h4>Pruebas</h4><p>Validamos en entornos controlados</p></div>
+                <div class="ciclo-item"><div class="ciclo-numero">4</div><h4>Implementación</h4><p>Actualizamos sin afectar el servicio</p></div>
             </div>
         </div>
 
@@ -890,53 +886,10 @@
             <h2>Roadmap de Actualizaciones 2026</h2>
             <div class="roadmap-container">
                 <div class="roadmap-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-date">Q1 2026</div>
-                        </div>
-                        <div class="timeline-right">
-                            <div class="timeline-content">
-                                <h4>IA Avanzada</h4>
-                                <p>Nuevos algoritmos de detección de comportamientos anómalos y reconocimiento facial mejorado.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-date">Q2 2026</div>
-                        </div>
-                        <div class="timeline-right">
-                            <div class="timeline-content">
-                                <h4>App Rediseñada</h4>
-                                <p>Nueva versión de nuestra aplicación móvil con interfaz renovada y más funcionalidades.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-date">Q3 2026</div>
-                        </div>
-                        <div class="timeline-right">
-                            <div class="timeline-content">
-                                <h4>Integración IoT</h4>
-                                <p>Conexión con más dispositivos del hogar inteligente y sensores.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-date">Q4 2026</div>
-                        </div>
-                        <div class="timeline-right">
-                            <div class="timeline-content">
-                                <h4>Reportes Predictivos</h4>
-                                <p>Análisis predictivo basado en IA para anticipar incidentes.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q1 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>IA Avanzada</h4><p>Nuevos algoritmos de detección de comportamientos anómalos y reconocimiento facial mejorado.</p></div></div></div>
+                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q2 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>App Rediseñada</h4><p>Nueva versión de nuestra aplicación móvil con interfaz renovada.</p></div></div></div>
+                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q3 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>Integración IoT</h4><p>Conexión con más dispositivos del hogar inteligente y sensores.</p></div></div></div>
+                    <div class="timeline-item"><div class="timeline-left"><div class="timeline-date">Q4 2026</div></div><div class="timeline-right"><div class="timeline-content"><h4>Reportes Predictivos</h4><p>Análisis predictivo basado en IA para anticipar incidentes.</p></div></div></div>
                 </div>
             </div>
         </div>
@@ -945,43 +898,9 @@
         <div class="section">
             <h2>Últimas Actualizaciones</h2>
             <div class="versiones-container">
-                <div class="version-item">
-                    <div class="version-header">
-                        <span class="version-numero">Versión 5.2.0</span>
-                        <span class="version-fecha">15 Feb 2026</span>
-                    </div>
-                    <div class="version-features">
-                        <span class="feature-tag">Nuevo dashboard</span>
-                        <span class="feature-tag">Alertas en tiempo real</span>
-                        <span class="feature-tag">Exportación de videos</span>
-                        <span class="feature-tag">Corrección de errores</span>
-                    </div>
-                </div>
-                
-                <div class="version-item">
-                    <div class="version-header">
-                        <span class="version-numero">Versión 5.1.0</span>
-                        <span class="version-fecha">10 Ene 2026</span>
-                    </div>
-                    <div class="version-features">
-                        <span class="feature-tag">Reconocimiento facial</span>
-                        <span class="feature-tag">Mejora en detección</span>
-                        <span class="feature-tag">App iOS actualizada</span>
-                    </div>
-                </div>
-                
-                <div class="version-item">
-                    <div class="version-header">
-                        <span class="version-numero">Versión 5.0.0</span>
-                        <span class="version-fecha">5 Dic 2025</span>
-                    </div>
-                    <div class="version-features">
-                        <span class="feature-tag">Rediseño completo</span>
-                        <span class="feature-tag">Nuevo motor de IA</span>
-                        <span class="feature-tag">Integración en la nube</span>
-                        <span class="feature-tag">App Android nueva</span>
-                    </div>
-                </div>
+                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.2.0</span><span class="version-fecha">15 Feb 2026</span></div><div class="version-features"><span class="feature-tag">Nuevo dashboard</span><span class="feature-tag">Alertas en tiempo real</span><span class="feature-tag">Exportación de videos</span><span class="feature-tag">Corrección de errores</span></div></div>
+                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.1.0</span><span class="version-fecha">10 Ene 2026</span></div><div class="version-features"><span class="feature-tag">Reconocimiento facial</span><span class="feature-tag">Mejora en detección</span><span class="feature-tag">App iOS actualizada</span></div></div>
+                <div class="version-item"><div class="version-header"><span class="version-numero">Versión 5.0.0</span><span class="version-fecha">5 Dic 2025</span></div><div class="version-features"><span class="feature-tag">Rediseño completo</span><span class="feature-tag">Nuevo motor de IA</span><span class="feature-tag">Integración en la nube</span><span class="feature-tag">App Android nueva</span></div></div>
             </div>
         </div>
 
@@ -993,7 +912,53 @@
         </div>
     </div>
 
-   <div id="footer"></div>
-    <script src="../js/menu.js"></script>
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
+
+            function toggleMenu(force) {
+                const isActive = navLinks.classList.contains('active');
+                if (force !== undefined) {
+                    if (force && !isActive) { navLinks.classList.add('active'); menuToggle.classList.add('active'); overlay.classList.add('active'); body.style.overflow = 'hidden'; }
+                    else if (!force && isActive) { navLinks.classList.remove('active'); menuToggle.classList.remove('active'); overlay.classList.remove('active'); body.style.overflow = 'auto'; navItems.forEach(item => item.classList.remove('active')); }
+                } else {
+                    if (isActive) { navLinks.classList.remove('active'); menuToggle.classList.remove('active'); overlay.classList.remove('active'); body.style.overflow = 'auto'; navItems.forEach(item => item.classList.remove('active')); }
+                    else { navLinks.classList.add('active'); menuToggle.classList.add('active'); overlay.classList.add('active'); body.style.overflow = 'hidden'; }
+                }
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+            if (overlay) overlay.addEventListener('click', () => toggleMenu(false));
+
+            function handleMobileDropdowns() {
+                const isMobile = window.innerWidth <= 768;
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    const parentItem = toggle.closest('.nav-item');
+                    const dropdown = parentItem.querySelector('.dropdown');
+                    if (dropdown) {
+                        const newToggle = toggle.cloneNode(true);
+                        toggle.parentNode.replaceChild(newToggle, toggle);
+                        if (isMobile) {
+                            newToggle.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); document.querySelectorAll('.nav-item').forEach(item => { if (item !== parentItem && item.classList.contains('active')) item.classList.remove('active'); }); parentItem.classList.toggle('active'); });
+                        } else {
+                            newToggle.addEventListener('click', (e) => { const href = newToggle.getAttribute('href'); if (href && href !== 'javascript:void(0)' && href !== '#') return; e.preventDefault(); });
+                        }
+                    }
+                });
+            }
+
+            handleMobileDropdowns();
+            window.addEventListener('resize', () => { handleMobileDropdowns(); if (window.innerWidth > 768) { navLinks.classList.remove('active'); menuToggle.classList.remove('active'); overlay.classList.remove('active'); body.style.overflow = 'auto'; navItems.forEach(item => item.classList.remove('active')); } });
+            window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)'; } else { navbar.style.background = 'rgba(255, 255, 255, 0.98)'; navbar.style.boxShadow = 'none'; } });
+        });
+        fetch("/footer.html").then(response => response.text()).then(data => { if (data) document.getElementById("footer").innerHTML = data; }).catch(() => console.log('Footer no encontrado'));
+    </script>
 </body>
 </html>

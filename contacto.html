@@ -2,25 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Contacto - VIGITECOL LTDA</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* ===== ESTILOS DEL NAVBAR (COPIADO EXACTAMENTE DEL ARCHIVO DE REFERENCIA) ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: #ffffff;
-            color: #1a1a1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow-x: hidden;
+            background: #ffffff;
         }
 
-        /* Barra de navegación */
+        /* ========== NAVBAR MEJORADA ========== */
         .navbar {
             position: fixed;
             top: 0;
@@ -28,34 +25,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .logo-container a {
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .logo-img {
-            width: 100px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
@@ -63,10 +61,42 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Navegación desktop */
+        /* Menú hamburguesa - IZQUIERDA */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         .nav-item {
@@ -77,12 +107,13 @@
             text-decoration: none;
             color: #1a1a1a;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding: 0.5rem 0;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            cursor: pointer;
         }
 
         .nav-item>a::after {
@@ -104,7 +135,6 @@
             color: #FFD700;
         }
 
-        /* Dropdown menus */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -133,7 +163,7 @@
             padding: 0.7rem 1.5rem;
             color: #333;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -143,45 +173,16 @@
             padding-left: 2rem;
         }
 
-        /* Flecha indicadora de dropdown */
         .arrow {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             transition: transform 0.3s ease;
+            display: inline-block;
         }
 
         .nav-item:hover .arrow {
             transform: rotate(180deg);
         }
 
-        /* Menú hamburguesa */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: #000;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Overlay para móvil */
         .nav-overlay {
             display: none;
             position: fixed;
@@ -200,8 +201,488 @@
             opacity: 1;
         }
 
-        /* ===== RESPONSIVE DEL NAVBAR ===== */
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            margin-top: 70px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .page-header h1 span {
+            color: #FFD700;
+        }
+
+        .page-header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .contacto-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .contacto-section {
+            margin-bottom: 5rem;
+        }
+
+        .contacto-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contacto-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #FFD700;
+        }
+
+        /* ========== OFICINAS ========== */
+        .oficinas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .oficina-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid #FFD700;
+        }
+
+        .oficina-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+        }
+
+        .oficina-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .oficina-icon {
+            width: 55px;
+            height: 55px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .oficina-header h4 {
+            font-size: 1.5rem;
+            color: #000;
+            margin: 0;
+        }
+
+        .oficina-detalle {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .oficina-detalle i {
+            color: #FFD700;
+            width: 24px;
+            font-style: normal;
+            flex-shrink: 0;
+        }
+
+        .oficina-detalle span {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        .oficina-telefono {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            font-weight: 600;
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        /* ========== DIRECTORIO ========== */
+        .directorio-section {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .directorio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .directorio-header h3 {
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        .directorio-header span {
+            background: #FFD700;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .extensiones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .extension-item {
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 3px solid #FFD700;
+        }
+
+        .extension-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.15);
+        }
+
+        .extension-depto {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .extension-numero {
+            background: #FFD700;
+            color: #000;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .extension-total {
+            text-align: right;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #FFD700;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .extension-total strong {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+        }
+
+        /* ========== HORARIOS ========== */
+        .horarios-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .horario-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .horario-row:last-child {
+            border-bottom: none;
+        }
+
+        .horario-row .dia {
+            font-weight: 600;
+            color: #FFD700;
+        }
+
+        .horario-row .hora {
+            color: #333;
+            text-align: right;
+        }
+
+        .emergencia-badge {
+            background: #FFD700;
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* ========== FORMULARIO ========== */
+        .formulario-container {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+            color: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========== MAPA ========== */
+        .mapa-container {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .mapa-placeholder {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1rem;
+            border: 2px dashed #FFD700;
+            border-radius: 20px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer-new {
+            background: #000000;
+            color: #fff;
+            padding: 4rem 5% 2rem;
+            margin-top: auto;
+            border-top: 3px solid #FFD700;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-col h4 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #FFD700;
+        }
+
+        .footer-col p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: #FFD700;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .copyright-new {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
             .menu-toggle {
                 display: flex;
             }
@@ -211,14 +692,14 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 400px;
+                width: 85%;
+                max-width: 350px;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 6rem 2rem 2rem;
-                gap: 1rem;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
                 transition: right 0.3s ease;
                 z-index: 999;
                 overflow-y: auto;
@@ -233,7 +714,7 @@
             }
 
             .nav-item>a {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 padding: 0.8rem 0;
                 justify-content: space-between;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -255,559 +736,193 @@
                 border-radius: 10px;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.4s ease;
+                width: 100%;
             }
 
             .nav-item.active .dropdown {
-                max-height: 300px;
+                max-height: 500px;
                 padding: 0.8rem 0;
                 margin-top: 0.5rem;
             }
 
-            .nav-overlay.active {
-                display: block;
+            .dropdown a {
+                padding: 0.7rem 1rem 0.7rem 2rem;
             }
-        }
 
-        /* ===== TUS ESTILOS DE CONTACTO (sin modificar) ===== */
-        .page-header {
-            margin-top: 100px;
-            padding: 4rem 5%;
-            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-        
-        .page-header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-header h1 span {
-            color: #FFD700;
-        }
-        
-        .page-header p {
-            font-size: 1.2rem;
-            color: #ccc;
-            max-width: 800px;
-            line-height: 1.8;
-        }
-        
-        .contacto-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-        
-        .contacto-section {
-            margin-bottom: 5rem;
-        }
-        
-        .contacto-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .contacto-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: #FFD700;
-        }
-        
-        .contacto-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-        
-        .info-card {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
-        }
-        
-        .info-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #000;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 1rem;
-        }
-        
-        .contact-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .contact-table tr {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .contact-table tr:last-child {
-            border-bottom: none;
-        }
-        
-        .contact-table td {
-            padding: 1.2rem 0.5rem;
-            color: #555;
-        }
-        
-        .contact-table td:first-child {
-            font-weight: 600;
-            color: #FFD700;
-            width: 40%;
-        }
-        
-        .contact-table td:last-child {
-            color: #333;
-        }
-        
-        .directorio-section {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-top: 2rem;
-        }
-        
-        .directorio-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 1rem;
-        }
-        
-        .directorio-header h3 {
-            font-size: 1.8rem;
-            color: #000;
-        }
-        
-        .directorio-header span {
-            background: #FFD700;
-            color: #000;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 600;
-        }
-        
-        .extensiones-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        
-        .extension-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
-            border-left: 3px solid #FFD700;
-        }
-        
-        .extension-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.15);
-        }
-        
-        .extension-depto {
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
-        }
-        
-        .extension-numero {
-            background: #FFD700;
-            color: #000;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .extension-total {
-            grid-column: span 3;
-            text-align: right;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px dashed #FFD700;
-            font-size: 1.2rem;
-            color: #333;
-        }
-        
-        .extension-total strong {
-            color: #FFD700;
-            font-size: 1.5rem;
-            margin-left: 0.5rem;
-        }
-        
-        .oficinas-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .oficina-card {
-            background: #f8f8f8;
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            border-left: 4px solid #FFD700;
-        }
-        
-        .oficina-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
-        }
-        
-        .oficina-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .oficina-icon {
-            width: 50px;
-            height: 50px;
-            background: #FFD700;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .oficina-header h4 {
-            font-size: 1.5rem;
-            color: #000;
-            margin: 0;
-        }
-        
-        .oficina-detalle {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-        }
-        
-        .oficina-detalle i {
-            color: #FFD700;
-            width: 20px;
-            font-style: normal;
-        }
-        
-        .oficina-detalle span {
-            color: #555;
-            line-height: 1.5;
-        }
-        
-        .oficina-telefono {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
-            font-weight: 600;
-            color: #FFD700;
-        }
-        
-        .horarios-container {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 2.5rem;
-        }
-        
-        .horario-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .horario-row:last-child {
-            border-bottom: none;
-        }
-        
-        .horario-row .dia {
-            font-weight: 600;
-            color: #FFD700;
-        }
-        
-        .horario-row .hora {
-            color: #333;
-            text-align: right;
-        }
-        
-        .emergencia-badge {
-            background: #FFD700;
-            color: #000;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 1.5rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .formulario-container {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 2.5rem;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
-        }
-        
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: #FFD700;
-            color: #000;
-            border: none;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            background: #000;
-            color: #FFD700;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .mapa-container {
-            border-radius: 20px;
-            overflow: hidden;
-            margin-top: 3rem;
-        }
-        
-        .mapa-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2rem;
-            border: 2px dashed #FFD700;
-        }
-        
-        .social-grid {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-        
-        .social-large {
-            width: 60px;
-            height: 60px;
-            background: #f8f8f8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #333;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-large:hover {
-            background: #FFD700;
-            transform: translateY(-5px) scale(1.1);
-        }
-        
-        @media (max-width: 1024px) {
-            .extensiones-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .page-header {
+                margin-top: 60px;
+                padding: 3rem 5%;
             }
-            
-            .extension-total {
-                grid-column: span 2;
+
+            .contacto-container {
+                padding: 2rem 5%;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
+
+            .contacto-section {
+                margin-bottom: 3rem;
             }
-            
-            .contacto-grid,
-            .form-grid,
+
             .oficinas-grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
             .form-group.full-width {
                 grid-column: span 1;
             }
-            
+
             .extensiones-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .extension-total {
-                grid-column: span 1;
-            }
-            
+
             .directorio-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1rem;
             }
-            
+
             .horario-row {
                 flex-direction: column;
                 gap: 0.3rem;
             }
-            
+
             .horario-row .hora {
                 text-align: left;
             }
+
+            .mapa-placeholder {
+                height: 250px;
+            }
+
+            .footer-grid {
+                gap: 2rem;
+            }
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
+        @media (max-width: 480px) {
+            .logo-img {
+                width: 35px;
+                height: 35px;
             }
-            to {
-                transform: rotate(360deg);
+
+            .logo-text {
+                font-size: 0.85rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .oficina-card {
+                padding: 1.5rem;
+            }
+
+            .oficina-header h4 {
+                font-size: 1.3rem;
+            }
+
+            .oficina-detalle span {
+                font-size: 0.85rem;
+            }
+
+            .directorio-section {
+                padding: 1.5rem;
+            }
+
+            .directorio-header h3 {
+                font-size: 1.3rem;
+            }
+
+            .extension-depto {
+                font-size: 0.85rem;
+            }
+
+            .extension-numero {
+                font-size: 0.8rem;
+                padding: 0.15rem 0.6rem;
+            }
+
+            .horarios-container {
+                padding: 1.5rem;
+            }
+
+            .formulario-container {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .emergencia-badge {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+                text-align: center;
+                width: 100%;
+            }
+
+            .footer-col h4 {
+                font-size: 1rem;
+            }
+
+            .footer-col p {
+                font-size: 0.85rem;
+            }
+
+            .social-link {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
             }
         }
 
-        /* Al final de tus estilos, después de todo, agrega: */
-#footer {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
+        @media (max-width: 360px) {
+            .extension-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
 
-#footer > * {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* Si el footer tiene un contenedor interno, asegúrate de que ocupe todo el ancho */
-.footer-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 2rem 5%; /* Mantén el padding interno pero el fondo ocupará todo */
-}
+            .extension-total {
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="nav-overlay"></div>
 
     <nav class="navbar">
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="logo-container">
             <a href="index.html">
                 <img src="images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
                 <span class="logo-text">VIGITECOL LTDA</span>
             </a>
         </div>
-        
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
         <div class="nav-links">
+            <div class="nav-item"><a href="index.html">Inicio</a></div>
             <div class="nav-item">
-                <a href="index.html">Inicio <span class="arrow"></span></a>
-            </div>
-
-            <div class="nav-item">
-                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="QuienesS/principios.html">Principios Orientadores</a>
                     <a href="QuienesS/mision.html">Misión</a>
@@ -816,9 +931,8 @@
                     <a href="QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
                 </div>
             </div>
-
             <div class="nav-item">
-                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="/Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="/Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
@@ -827,9 +941,8 @@
                     <a href="/Servicios/estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
                 </div>
             </div>
-
             <div class="nav-item">
-                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="beneficios/garantia.html">Garantía de calidad</a>
                     <a href="beneficios/soporte.html">Soporte 24/7</a>
@@ -838,14 +951,10 @@
                     <a href="beneficios/descuentos.html">Descuentos especiales</a>
                 </div>
             </div>
-
-            <div class="nav-item">
-                <a href="contacto.html">Contacto</a>
-            </div>
+            <div class="nav-item"><a href="contacto.html">Contacto</a></div>
         </div>
     </nav>
 
-    <!-- Resto de tu contenido de contacto... -->
     <div class="page-header">
         <div class="page-header-content">
             <h1>Contacto <span>VIGITECOL</span></h1>
@@ -854,7 +963,7 @@
     </div>
 
     <div class="contacto-container">
-        <!-- Todo el contenido de contacto que ya tenías se mantiene igual -->
+        <!-- Oficinas -->
         <div class="contacto-section">
             <h2>Nuestras Oficinas</h2>
             <div class="oficinas-grid">
@@ -879,7 +988,6 @@
                         Horario: Lun-Vie 8am-12pm y 2pm-6pm | Sáb 8am-12pm
                     </div>
                 </div>
-                
                 <div class="oficina-card">
                     <div class="oficina-header">
                         <div class="oficina-icon">🏢</div>
@@ -904,189 +1012,87 @@
             </div>
         </div>
 
-        <!-- Directorio Interno - Extensiones -->
+        <!-- Directorio Interno -->
         <div class="contacto-section">
             <h2>Directorio Interno - Extensiones</h2>
             <div class="directorio-section">
                 <div class="directorio-header">
                     <h3>📞 Extensiones Telefónicas</h3>
+                    <span>Línea Principal: 881 3121</span>
                 </div>
-                
                 <div class="extensiones-grid">
-                    <!-- Columna 1 -->
-                    <div class="extension-item">
-                        <span class="extension-depto">Gerente general</span>
-                        <span class="extension-numero">1100</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Recepción</span>
-                        <span class="extension-numero">1102-1105</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Sistemas</span>
-                        <span class="extension-numero">1106</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Publicidad</span>
-                        <span class="extension-numero">1107</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Líder Talento Humano</span>
-                        <span class="extension-numero">1108</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Dep. Técnico</span>
-                        <span class="extension-numero">1109</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Nómina</span>
-                        <span class="extension-numero">1110</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Monitoreo Pereira</span>
-                        <span class="extension-numero">1111</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Director Pereira</span>
-                        <span class="extension-numero">1112</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Gerencia Financiera</span>
-                        <span class="extension-numero">1113</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Polígrafo</span>
-                        <span class="extension-numero">1114</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Monitoreo 1</span>
-                        <span class="extension-numero">1115</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Monitoreo 2</span>
-                        <span class="extension-numero">1116</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Gerencia Operativa</span>
-                        <span class="extension-numero">1117</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Cartera</span>
-                        <span class="extension-numero">1118</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Líder Monitoreo</span>
-                        <span class="extension-numero">1121</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Tesorería</span>
-                        <span class="extension-numero">1122</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Facturación</span>
-                        <span class="extension-numero">1123</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Sala de Juntas</span>
-                        <span class="extension-numero">1124</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Auxiliar Talento humano</span>
-                        <span class="extension-numero">1125</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Sistemas de Gestión</span>
-                        <span class="extension-numero">1126</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Auxiliar Operaciones</span>
-                        <span class="extension-numero">1127</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Formando Seguridad Comercial</span>
-                        <span class="extension-numero">1128</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Control Interno</span>
-                        <span class="extension-numero">1130</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Licitaciones</span>
-                        <span class="extension-numero">1131</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Coordinación de operaciones</span>
-                        <span class="extension-numero">1132</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Formando Alturas</span>
-                        <span class="extension-numero">1133</span>
-                    </div>
-                    <div class="extension-item">
-                        <span class="extension-depto">Líder Servicios</span>
-                        <span class="extension-numero">1134</span>
-                    </div>
+                    <div class="extension-item"><span class="extension-depto">Gerente general</span><span class="extension-numero">1100</span></div>
+                    <div class="extension-item"><span class="extension-depto">Recepción</span><span class="extension-numero">1102-1105</span></div>
+                    <div class="extension-item"><span class="extension-depto">Sistemas</span><span class="extension-numero">1106</span></div>
+                    <div class="extension-item"><span class="extension-depto">Publicidad</span><span class="extension-numero">1107</span></div>
+                    <div class="extension-item"><span class="extension-depto">Líder Talento Humano</span><span class="extension-numero">1108</span></div>
+                    <div class="extension-item"><span class="extension-depto">Dep. Técnico</span><span class="extension-numero">1109</span></div>
+                    <div class="extension-item"><span class="extension-depto">Nómina</span><span class="extension-numero">1110</span></div>
+                    <div class="extension-item"><span class="extension-depto">Monitoreo Pereira</span><span class="extension-numero">1111</span></div>
+                    <div class="extension-item"><span class="extension-depto">Director Pereira</span><span class="extension-numero">1112</span></div>
+                    <div class="extension-item"><span class="extension-depto">Gerencia Financiera</span><span class="extension-numero">1113</span></div>
+                    <div class="extension-item"><span class="extension-depto">Polígrafo</span><span class="extension-numero">1114</span></div>
+                    <div class="extension-item"><span class="extension-depto">Monitoreo 1</span><span class="extension-numero">1115</span></div>
+                    <div class="extension-item"><span class="extension-depto">Monitoreo 2</span><span class="extension-numero">1116</span></div>
+                    <div class="extension-item"><span class="extension-depto">Gerencia Operativa</span><span class="extension-numero">1117</span></div>
+                    <div class="extension-item"><span class="extension-depto">Cartera</span><span class="extension-numero">1118</span></div>
+                    <div class="extension-item"><span class="extension-depto">Líder Monitoreo</span><span class="extension-numero">1121</span></div>
+                    <div class="extension-item"><span class="extension-depto">Tesorería</span><span class="extension-numero">1122</span></div>
+                    <div class="extension-item"><span class="extension-depto">Facturación</span><span class="extension-numero">1123</span></div>
+                    <div class="extension-item"><span class="extension-depto">Sala de Juntas</span><span class="extension-numero">1124</span></div>
+                    <div class="extension-item"><span class="extension-depto">Auxiliar Talento humano</span><span class="extension-numero">1125</span></div>
+                    <div class="extension-item"><span class="extension-depto">Sistemas de Gestión</span><span class="extension-numero">1126</span></div>
+                    <div class="extension-item"><span class="extension-depto">Auxiliar Operaciones</span><span class="extension-numero">1127</span></div>
+                    <div class="extension-item"><span class="extension-depto">Formando Seguridad Comercial</span><span class="extension-numero">1128</span></div>
+                    <div class="extension-item"><span class="extension-depto">Control Interno</span><span class="extension-numero">1130</span></div>
+                    <div class="extension-item"><span class="extension-depto">Licitaciones</span><span class="extension-numero">1131</span></div>
+                    <div class="extension-item"><span class="extension-depto">Coordinación de operaciones</span><span class="extension-numero">1132</span></div>
+                    <div class="extension-item"><span class="extension-depto">Formando Alturas</span><span class="extension-numero">1133</span></div>
+                    <div class="extension-item"><span class="extension-depto">Líder Servicios</span><span class="extension-numero">1134</span></div>
                 </div>
-                
                 <div class="extension-total">
                     Total de extensiones: <strong>553T</strong>
                 </div>
             </div>
         </div>
 
-        <!-- Horarios de atención -->
+        <!-- Horarios -->
         <div class="contacto-section">
             <h2>Horarios de Atención</h2>
             <div class="horarios-container">
-                <div class="horario-row">
-                    <span class="dia">Lunes a Viernes:</span>
-                    <span class="hora">8:00 am - 12:00 pm y 2:00 pm - 6:00 pm</span>
-                </div>
-                <div class="horario-row">
-                    <span class="dia">Sábados:</span>
-                    <span class="hora">8:00 am - 12:00 pm</span>
-                </div>
-                <div class="horario-row">
-                    <span class="dia">Domingos y festivos:</span>
-                    <span class="hora">Emergencias 24/7 (Monitoreo)</span>
-                </div>
-                <div class="emergencia-badge">
-                    🚨 Línea de emergencias 24/7: monitoreo@vigitecol.com
-                </div>
+                <div class="horario-row"><span class="dia">Lunes a Viernes:</span><span class="hora">8:00 am - 12:00 pm y 2:00 pm - 6:00 pm</span></div>
+                <div class="horario-row"><span class="dia">Sábados:</span><span class="hora">8:00 am - 12:00 pm</span></div>
+                <div class="horario-row"><span class="dia">Domingos y festivos:</span><span class="hora">Emergencias 24/7 (Monitoreo)</span></div>
+                <div class="emergencia-badge">🚨 Línea de emergencias 24/7: monitoreo@vigitecol.com</div>
             </div>
         </div>
 
-        <!-- Formulario de contacto -->
+        <!-- Formulario -->
         <div class="contacto-section">
             <h2>Envíenos un mensaje</h2>
             <div class="formulario-container">
-                <form>
+                <form id="contactForm">
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Nombre completo *</label>
                             <input type="text" placeholder="Ej: Juan Pérez" required>
                         </div>
-                        
                         <div class="form-group">
                             <label>Empresa</label>
                             <input type="text" placeholder="Ej: Empresa S.A.S.">
                         </div>
-                        
                         <div class="form-group">
                             <label>Correo electrónico *</label>
                             <input type="email" placeholder="Ej: juan@email.com" required>
                         </div>
-                        
                         <div class="form-group">
                             <label>Teléfono *</label>
                             <input type="tel" placeholder="Ej: 300 123 4567" required>
                         </div>
-                        
                         <div class="form-group">
                             <label>Ciudad</label>
                             <input type="text" placeholder="Ej: Manizales">
                         </div>
-                        
                         <div class="form-group">
                             <label>Departamento</label>
                             <select>
@@ -1100,13 +1106,11 @@
                                 <option>PQR</option>
                             </select>
                         </div>
-                        
                         <div class="form-group full-width">
                             <label>Mensaje *</label>
                             <textarea placeholder="Escriba su mensaje aquí..."></textarea>
                         </div>
                     </div>
-                    
                     <button type="submit" class="submit-btn">Enviar mensaje</button>
                 </form>
             </div>
@@ -1121,73 +1125,111 @@
                 </div>
             </div>
         </div>
-
-        </div> 
-    </div> 
+    </div>
 
     <div id="footer"></div>
 
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const overlay = document.querySelector('.nav-overlay');
-        const navItems = document.querySelectorAll('.nav-item');
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
 
-        function toggleMenu() {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-
-        // Mobile dropdown
-        if (window.innerWidth <= 768) {
-            navItems.forEach(item => {
-                const link = item.querySelector('a');
-                const dropdown = item.querySelector('.dropdown');
-                
-                if (dropdown) {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        item.classList.toggle('active');
-                    });
+            function toggleMenu(force) {
+                const isActive = navLinks.classList.contains('active');
+                if (force !== undefined) {
+                    if (force && !isActive) {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    } else if (!force && isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    }
+                } else {
+                    if (isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = 'auto';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    } else {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    }
                 }
-            });
-        }
+            }
 
-        // Resize handler
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+            if (overlay) overlay.addEventListener('click', () => toggleMenu(false));
 
-                navItems.forEach(item => {
-                    item.classList.remove('active');
+            function handleMobileDropdowns() {
+                const isMobile = window.innerWidth <= 768;
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                dropdownToggles.forEach(toggle => {
+                    const parentItem = toggle.closest('.nav-item');
+                    const dropdown = parentItem.querySelector('.dropdown');
+                    if (dropdown) {
+                        const newToggle = toggle.cloneNode(true);
+                        toggle.parentNode.replaceChild(newToggle, toggle);
+                        if (isMobile) {
+                            newToggle.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                document.querySelectorAll('.nav-item').forEach(item => {
+                                    if (item !== parentItem && item.classList.contains('active')) item.classList.remove('active');
+                                });
+                                parentItem.classList.toggle('active');
+                            });
+                        } else {
+                            newToggle.addEventListener('click', (e) => {
+                                const href = newToggle.getAttribute('href');
+                                if (href && href !== 'javascript:void(0)' && href !== '#') return;
+                                e.preventDefault();
+                            });
+                        }
+                    }
                 });
             }
-        });
 
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
+            handleMobileDropdowns();
+            window.addEventListener('resize', () => {
+                handleMobileDropdowns();
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    navItems.forEach(item => item.classList.remove('active'));
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
         });
 
         fetch("/footer.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("footer").innerHTML = data;
-            });
+            })
+            .catch(() => console.log('Footer no encontrado'));
     </script>
 </body>
 </html>
