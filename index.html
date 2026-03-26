@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VIGITECOL LTDA - Seguridad y Vigilancia</title>
     <style>
         * {
             margin: 0;
@@ -26,27 +27,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .logo-img {
-            width: 100px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
@@ -54,10 +63,43 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Navegación desktop */
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         .nav-item {
@@ -68,12 +110,13 @@
             text-decoration: none;
             color: #1a1a1a;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding: 0.5rem 0;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            cursor: pointer;
         }
 
         .nav-item>a::after {
@@ -124,7 +167,7 @@
             padding: 0.7rem 1.5rem;
             color: #333;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -134,42 +177,13 @@
             padding-left: 2rem;
         }
 
-        /* Flecha indicadora de dropdown */
         .arrow {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             transition: transform 0.3s ease;
         }
 
         .nav-item:hover .arrow {
             transform: rotate(180deg);
-        }
-
-        /* Menú hamburguesa */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: #000;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Overlay para móvil */
@@ -193,10 +207,11 @@
 
         /* Carrusel en perspectiva */
         .carousel-container {
-            margin-top: 80px;
+            margin-top: 70px;
             position: relative;
             width: 100%;
-            height: 80vh;
+            height: 70vh;
+            min-height: 400px;
             overflow: hidden;
             background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
         }
@@ -213,8 +228,8 @@
         .carousel-slide {
             position: absolute;
             width: 45%;
-            max-width: 700px;
-            height: 80%;
+            max-width: 600px;
+            height: 75%;
             border-radius: 20px;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
@@ -232,7 +247,7 @@
         }
 
         .carousel-slide:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .carousel-slide[data-position="0"] {
@@ -272,7 +287,7 @@
             right: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             transform: translateY(100%);
             transition: transform 0.5s ease;
         }
@@ -282,12 +297,12 @@
         }
 
         .slide-content h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
         .slide-content p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
 
@@ -295,13 +310,13 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #000;
             transition: all 0.3s ease;
             z-index: 10;
@@ -312,57 +327,43 @@
         .carousel-arrow:hover {
             background: #FFD700;
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
         }
 
         .carousel-arrow.prev {
-            left: 15%;
+            left: 8%;
         }
 
         .carousel-arrow.next {
-            right: 15%;
+            right: 8%;
         }
 
         .carousel-dots {
             position: absolute;
-            bottom: 2rem;
+            bottom: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             z-index: 10;
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
         .dot.active {
             background: #FFD700;
             transform: scale(1.3);
-            border-color: #000;
         }
 
-        .dot:hover {
-            background: #FFD700;
-        }
-
-        /* ========== NUEVAS SECCIONES - MÁS ESPACIADAS ========== */
-
-        /* Sección de Información de Interés - TEXTO */
-        .info-interes-section {
-            padding: 8rem 5%;
-            background: #ffffff;
-        }
-
+        /* Secciones generales */
         .section-subtitle {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #FFD700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -370,9 +371,9 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
             position: relative;
             display: inline-block;
         }
@@ -382,36 +383,41 @@
             position: absolute;
             bottom: -10px;
             left: 0;
-            width: 60px;
+            width: 50px;
             height: 3px;
             background: #FFD700;
+        }
+
+        /* Sección Información de Interés */
+        .info-interes-section {
+            padding: 5rem 5%;
+            background: #ffffff;
         }
 
         .mini-carousel-container {
             position: relative;
             width: 100%;
-            margin: 3rem 0;
+            margin: 2rem 0;
             overflow: hidden;
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
 
         .mini-carousel {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             transition: transform 0.5s ease;
         }
 
         .info-card {
-            min-width: calc(25% - 1.5rem);
+            min-width: calc(25% - 1.125rem);
             background: #f8f8f8;
             border-radius: 20px;
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem;
             transition: all 0.4s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
 
         .info-card::before {
@@ -432,22 +438,20 @@
         }
 
         .info-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
         }
 
         .info-card.active {
             background: #000;
             color: #fff;
-            transform: scale(1.08);
+            transform: scale(1.05);
             box-shadow: 0 40px 70px rgba(255, 215, 0, 0.25);
             border: 2px solid #FFD700;
-            z-index: 5;
         }
 
         .info-card.active .info-icon,
-        .info-card.active h3,
-        .info-card.active p {
+        .info-card.active h3 {
             color: #FFD700;
         }
 
@@ -456,39 +460,34 @@
         }
 
         .info-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: #FFD700;
             border-radius: 15px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #000;
             transition: all 0.3s ease;
         }
 
         .info-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             transition: color 0.3s ease;
         }
 
         .info-card p {
             color: #666;
-            line-height: 1.7;
+            line-height: 1.6;
             transition: color 0.3s ease;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-card.active p {
-            color: #fff;
+            font-size: 0.9rem;
         }
 
         .card-date {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #999;
             margin-top: 1rem;
             display: flex;
@@ -496,25 +495,21 @@
             gap: 0.5rem;
         }
 
-        .card-date i {
-            color: #FFD700;
-        }
-
         .mini-carousel-controls {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-top: 4rem;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .mini-control {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: #f0f0f0;
             border: none;
             cursor: pointer;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             color: #333;
         }
@@ -524,86 +519,85 @@
             transform: scale(1.1);
         }
 
-        /* Sección Conozca más + Video mejorado */
+        /* Sección Conozca más */
         .conozca-section {
-            padding: 8rem 5%;
+            padding: 5rem 5%;
             background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
         }
 
         .conozca-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 3rem;
             align-items: center;
         }
 
-        .conozca-content {
-            padding-right: 2rem;
-        }
-
         .conozca-content h2 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.3;
         }
 
         .conozca-content h2 span {
             color: #FFD700;
             display: block;
-            font-size: 3.2rem;
+            font-size: 2.5rem;
         }
 
         .conozca-content p {
             color: #666;
-            line-height: 1.9;
-            margin-bottom: 2rem;
-            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .stats-mini {
             display: flex;
-            gap: 3rem;
-            margin-top: 2.5rem;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .stat-mini-item {
             text-align: center;
+            flex: 1;
+            min-width: 80px;
         }
 
         .stat-mini-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #FFD700;
         }
 
         .stat-mini-label {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #666;
         }
 
-        /* VIDEO DE INSTAGRAM - MEJORADO */
+        /* Video Instagram */
         .video-instagram-container {
             width: 100%;
             max-width: 400px;
-            height: 500px;
+            height: 450px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 40px 70px rgba(0, 0, 0, 0.25);
             background: #000;
             position: relative;
             margin: 0 auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .video-instagram-container:hover {
             transform: scale(1.02);
-            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.25);
         }
 
         .video-instagram-container video {
             width: 100%;
             height: 100%;
+            object-fit: cover;
             border: none;
             position: absolute;
             top: 0;
@@ -621,40 +615,27 @@
             cursor: pointer;
         }
 
-        /* Sección Beneficios alternada con IMAGEN */
+        /* Sección Beneficios */
         .beneficios-section {
-            padding: 8rem 5%;
+            padding: 5rem 5%;
             background: #ffffff;
         }
 
         .beneficio-item {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 3rem;
             align-items: center;
-            margin-bottom: 6rem;
-        }
-
-        .beneficio-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .beneficio-item.reverse {
-            direction: rtl;
-        }
-
-        .beneficio-item.reverse .beneficio-content {
-            direction: ltr;
         }
 
         .beneficio-content {
-            padding: 2rem;
+            padding: 1rem;
         }
 
         .beneficio-content h3 {
-            font-size: 2.3rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.3;
         }
 
@@ -664,9 +645,9 @@
 
         .beneficio-content p {
             color: #666;
-            line-height: 1.9;
-            margin-bottom: 2rem;
-            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .beneficio-list {
@@ -676,26 +657,25 @@
         .beneficio-list li {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
             color: #555;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .beneficio-list li::before {
             content: '✓';
             color: #FFD700;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
-        /* ESPACIO PARA IMAGEN EN BENEFICIOS */
         .beneficio-imagen {
-            width: 700px;
-            height: 500px;
+            width: 100%;
+            height: 400px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 40px 70px rgba(255, 215, 0, 0.25);
+            box-shadow: 0 40px 70px rgba(255, 215, 0, 0.2);
             position: relative;
         }
 
@@ -706,6 +686,10 @@
             transition: transform 0.5s ease;
         }
 
+        .beneficio-imagen:hover img {
+            transform: scale(1.05);
+        }
+
         .beneficio-imagen .image-caption {
             position: absolute;
             bottom: 0;
@@ -713,9 +697,9 @@
             right: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             color: #FFD700;
-            padding: 1.5rem;
+            padding: 1rem;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transform: translateY(100%);
             transition: transform 0.5s ease;
         }
@@ -726,21 +710,21 @@
 
         /* CTA Section */
         .cta-section {
-            padding: 8rem 5%;
+            padding: 5rem 5%;
             background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
             color: white;
             text-align: center;
         }
 
         .cta-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .cta-content h2 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .cta-content h2 span {
@@ -749,20 +733,20 @@
 
         .cta-content p {
             color: #ccc;
-            line-height: 1.9;
-            margin-bottom: 3rem;
-            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.5rem 4rem;
+            padding: 1.2rem 3rem;
             background: #FFD700;
             color: #000;
             text-decoration: none;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             transition: all 0.4s ease;
             border: 2px solid transparent;
         }
@@ -771,13 +755,12 @@
             background: transparent;
             border-color: #FFD700;
             color: #FFD700;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
         }
 
-        /* Convenios / Aliados con imágenes - MEJORADO */
+        /* Convenios */
         .convenios-section {
-            padding: 8rem 5%;
+            padding: 5rem 5%;
             background: #f8f8f8;
         }
 
@@ -785,36 +768,31 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
         .aliados-track {
             display: flex;
-            gap: 4rem;
+            gap: 2rem;
             width: fit-content;
-            animation: none;
-            /* Desactivamos la animación CSS para usar JS */
         }
 
-        /* Estilo mejorado para los items de aliados */
         .aliado-item {
-            min-width: 250px;
-            height: 150px;
+            min-width: 200px;
+            height: 120px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
             background: white;
-            /* Fondo blanco para imágenes con transparencia */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            /* Espacio interior para que la imagen no quede pegada */
+            padding: 1rem;
         }
 
         .aliado-item:hover {
-            transform: translateY(-8px) scale(1.05);
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
         }
 
@@ -822,54 +800,43 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* Cambiado a contain para que la imagen no se desborde */
             transition: transform 0.3s ease;
         }
 
         .aliado-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        .empresa {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        /* Responsive mejorado */
-        @media (max-width: 1200px) {
-            .info-card {
-                min-width: calc(33.333% - 1.33rem);
-            }
-
-            .conozca-grid,
-            .beneficio-item {
-                gap: 3rem;
-            }
-        }
-
+        /* ========== RESPONSIVE DESIGN MEJORADO ========== */
         @media (max-width: 1024px) {
-            .nav-links {
-                gap: 1.5rem;
+            .info-card {
+                min-width: calc(33.333% - 1rem);
             }
 
-            .section-title {
-                font-size: 2.2rem;
+            .carousel-arrow.prev {
+                left: 5%;
             }
 
-            .conozca-content h2 {
-                font-size: 2.3rem;
-            }
-
-            .conozca-content h2 span {
-                font-size: 2.8rem;
-            }
-
-            .beneficio-content h3 {
-                font-size: 2rem;
+            .carousel-arrow.next {
+                right: 5%;
             }
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            /* Menú hamburguesa visible */
             .menu-toggle {
                 display: flex;
             }
@@ -879,14 +846,14 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 400px;
+                width: 85%;
+                max-width: 350px;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 6rem 2rem 2rem;
-                gap: 1rem;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                padding: 5rem 1.5rem 2rem;
+                gap: 0.5rem;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
                 transition: right 0.3s ease;
                 z-index: 999;
                 overflow-y: auto;
@@ -901,16 +868,18 @@
             }
 
             .nav-item>a {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 padding: 0.8rem 0;
                 justify-content: space-between;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                pointer-events: auto;
             }
 
             .nav-item>a::after {
                 display: none;
             }
 
+            /* Estilos para dropdown en móvil */
             .dropdown {
                 position: static;
                 opacity: 1;
@@ -923,106 +892,230 @@
                 border-radius: 10px;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.4s ease;
+                width: 100%;
             }
 
             .nav-item.active .dropdown {
-                max-height: 300px;
+                max-height: 500px;
                 padding: 0.8rem 0;
                 margin-top: 0.5rem;
+            }
+
+            .dropdown a {
+                padding: 0.7rem 1rem 0.7rem 2rem;
+            }
+
+            .dropdown a:hover {
+                padding-left: 2.5rem;
             }
 
             .nav-overlay.active {
                 display: block;
             }
 
+            /* Carrusel móvil */
             .carousel-container {
-                height: 60vh;
+                height: 50vh;
+                min-height: 350px;
+                margin-top: 60px;
             }
 
             .carousel-slide {
                 width: 70%;
+                height: 70%;
             }
 
-            .carousel-arrow.prev {
-                left: 5%;
+            .carousel-slide[data-position="1"] {
+                transform: translateX(75%) scale(0.7);
             }
 
-            .carousel-arrow.next {
-                right: 5%;
+            .carousel-slide[data-position="-1"] {
+                transform: translateX(-75%) scale(0.7);
             }
 
-            .info-card {
-                min-width: calc(50% - 1rem);
+            .carousel-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
             }
 
+            .slide-content h1 {
+                font-size: 1.2rem;
+            }
+
+            .slide-content p {
+                font-size: 0.8rem;
+            }
+
+            /* Grids */
             .conozca-grid,
             .beneficio-item {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
             .conozca-content {
-                padding-right: 0;
+                text-align: center;
             }
 
-            .beneficio-item.reverse {
-                direction: ltr;
+            .conozca-content h2 {
+                font-size: 1.8rem;
             }
 
-            .video-instagram-container,
-            .beneficio-imagen {
-                height: 400px;
+            .conozca-content h2 span {
+                font-size: 2rem;
+            }
+
+            .beneficio-item {
+                text-align: center;
+            }
+
+            .beneficio-list {
+                text-align: left;
             }
 
             .stats-mini {
                 justify-content: center;
             }
 
+            /* Tarjetas info */
+            .info-card {
+                min-width: calc(50% - 0.75rem);
+                padding: 1.5rem;
+            }
+
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .info-card h3 {
+                font-size: 1.1rem;
+            }
+
+            /* Video */
+            .video-instagram-container {
+                height: 350px;
+                max-width: 100%;
+            }
+
+            /* Beneficio imagen */
+            .beneficio-imagen {
+                height: 300px;
+            }
+
+            /* CTA */
             .cta-content h2 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
 
             .cta-content p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            /* Aliados */
+            .aliado-item {
+                min-width: 150px;
+                height: 100px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
             }
         }
 
         @media (max-width: 480px) {
+            .navbar {
+                padding: 0.5rem 4%;
+            }
+
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 0.85rem;
+            }
+
+            .carousel-container {
+                height: 45vh;
+                min-height: 300px;
+            }
+
+            .carousel-slide {
+                width: 85%;
+                height: 65%;
+            }
+
             .info-card {
                 min-width: 100%;
             }
 
             .stats-mini {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
+                align-items: center;
             }
 
-            .video-instagram-container,
+            .stat-mini-item {
+                width: 100%;
+            }
+
+            .video-instagram-container {
+                height: 300px;
+            }
+
             .beneficio-imagen {
-                height: 350px;
+                height: 250px;
             }
 
-            .cta-button {
-                padding: 1.2rem 2.5rem;
-                font-size: 1.1rem;
+            .beneficio-content h3 {
+                font-size: 1.5rem;
             }
 
             .aliado-item {
-                min-width: 180px;
-                height: 120px;
+                min-width: 120px;
+                height: 80px;
+            }
+
+            .conozca-section,
+            .info-interes-section,
+            .beneficios-section,
+            .cta-section,
+            .convenios-section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .carousel-arrow.prev {
+                left: 2%;
+            }
+
+            .carousel-arrow.next {
+                right: 2%;
             }
         }
 
-        .logo-container a {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        @media (max-width: 360px) {
+            .aliado-item {
+                min-width: 100px;
+                height: 70px;
+            }
 
-        .imgo {
-            height: 300px;
+            .beneficio-imagen {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -1033,37 +1126,37 @@
 
     <!-- Navegación -->
     <nav class="navbar">
-        <div class="logo-container">
-            <a href="/index.html">
-                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
-                <span class="logo-text">VIGITECOL LTDA</span>
-            </a>
-        </div>
-
         <div class="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
+        <div class="logo-container">
+            <a href="#">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+
         <div class="nav-links">
             <div class="nav-item">
-                <a href="/index.html">Inicio <span class="arrow"></span></a>
+                <a href="index.html">Inicio</a>
             </div>
 
             <div class="nav-item">
-                <a href="#quienes-somos">Quienes Somos <span class="arrow">▼</span></a>
+                <a href="#quienes-somos" class="has-dropdown">Quienes Somos <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="/QuienesS/principios.html">Principios Orientadores</a>
-                    <a href="/QuienesS/mision.html">Misión</a>
-                    <a href="/QuienesS/vision.html">Visión</a>
-                    <a href="/QuienesS/valores.html">Valores de la Organización</a>
-                    <a href="/QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="QuienesS/principios.html">Principios Orientadores</a>
+                    <a href="QuienesS/mision.html">Misión</a>
+                    <a href="QuienesS/vision.html">Visión</a>
+                    <a href="QuienesS/valores.html">Valores de la Organización</a>
+                    <a href="QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
                 </div>
             </div>
 
             <div class="nav-item">
-                <a href="#servicios">Servicios <span class="arrow">▼</span></a>
+                <a href="#servicios" class="has-dropdown">Servicios <span class="arrow">▼</span></a>
                 <div class="dropdown">
                     <a href="/Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
                     <a href="/Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
@@ -1074,26 +1167,25 @@
             </div>
 
             <div class="nav-item">
-                <a href="#beneficios">Beneficios <span class="arrow">▼</span></a>
+                <a href="#beneficios" class="has-dropdown">Beneficios <span class="arrow">▼</span></a>
                 <div class="dropdown">
-                    <a href="/beneficios/garantia.html">Garantía de calidad</a>
-                    <a href="/beneficios/soporte.html">Soporte 24/7</a>
-                    <a href="/beneficios/capacitacion.html">Capacitación continua</a>
-                    <a href="/beneficios/actualizaciones.html">Actualizaciones gratis</a>
-                    <a href="/beneficios/descuentos.html">Descuentos especiales</a>
+                    <a href="beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="beneficios/descuentos.html">Descuentos especiales</a>
                 </div>
             </div>
 
             <div class="nav-item">
-                <a href="/contacto.html">Contacto</a>
+                <a href="contacto.html">Contacto</a>
             </div>
         </div>
     </nav>
 
-    <!-- Carrusel principal con 3 imágenes -->
-    <section id="inicio" class="carousel-container">
+    <!-- Carrusel principal -->
+    <section class="carousel-container">
         <div class="carousel" id="carousel">
-            <!-- IMAGEN 1 - Reemplaza la URL -->
             <div class="carousel-slide" data-position="-1">
                 <img src="https://drive.google.com/thumbnail?id=1v0QmbZdSpsiFNJxemkKMHCg8upSms771&sz=w1000"
                     alt="Seguridad Física">
@@ -1102,7 +1194,6 @@
                     <p>Personal altamente capacitado para proteger sus instalaciones</p>
                 </div>
             </div>
-            <!-- IMAGEN 2 - Reemplaza la URL -->
             <div class="carousel-slide" data-position="0">
                 <img src="https://drive.google.com/thumbnail?id=1dYvqY7l5IxbvZ7S2yxm2RFMsIoVE03WM&sz=w1000"
                     alt="Manejador Canino">
@@ -1111,7 +1202,6 @@
                     <p>Unidad K9 especializada en detección y disuasión</p>
                 </div>
             </div>
-            <!-- IMAGEN 3 - Reemplaza la URL -->
             <div class="carousel-slide" data-position="1">
                 <img src="https://drive.google.com/thumbnail?id=1Jasi0XBxg_bns90AZzdQ9VMUkfpdmxqI&sz=w1000" alt="CCTV">
                 <div class="slide-content">
@@ -1131,62 +1221,49 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 1: Información de Interés - TEXTO (SIN IMÁGENES) -->
+    <!-- Sección Información de Interés -->
     <section class="info-interes-section">
         <div class="section-subtitle">Mantente informado</div>
         <h2 class="section-title">Información de Interés</h2>
 
         <div class="mini-carousel-container">
             <div class="mini-carousel" id="miniCarousel">
-                <!-- Tarjetas de texto (sin imágenes) -->
                 <div class="info-card">
                     <div class="info-icon">📹</div>
                     <h3>Nuevo sistema CCTV</h3>
                     <p>Lanzamos nuestro sistema de cámaras con inteligencia artificial para detección de intrusiones.
                     </p>
-                    <div class="card-date">
-                        <i>📅</i> 15 Feb 2026
-                    </div>
+                    <div class="card-date">📅 15 Feb 2026</div>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">🏆</div>
                     <h3>Premio Seguridad 2026</h3>
                     <p>Reconocidos como la mejor empresa de vigilancia del año en Colombia.</p>
-                    <div class="card-date">
-                        <i>📅</i> 10 Ene 2026
-                    </div>
+                    <div class="card-date">📅 10 Ene 2026</div>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">🚔</div>
                     <h3>Alianza con Policía</h3>
                     <p>Nuevo convenio para respuesta inmediata en tiempo real con las autoridades.</p>
-                    <div class="card-date">
-                        <i>📅</i> 5 Dic 2025
-                    </div>
+                    <div class="card-date">📅 5 Dic 2025</div>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">💡</div>
                     <h3>Tecnología biométrica</h3>
                     <p>Implementamos reconocimiento facial en sistemas de control de acceso.</p>
-                    <div class="card-date">
-                        <i>📅</i> 20 Nov 2025
-                    </div>
+                    <div class="card-date">📅 20 Nov 2025</div>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">🌐</div>
                     <h3>Expansión nacional</h3>
                     <p>Llegamos a 8 nuevas ciudades con nuestros servicios de vigilancia.</p>
-                    <div class="card-date">
-                        <i>📅</i> 1 Nov 2025
-                    </div>
+                    <div class="card-date">📅 1 Nov 2025</div>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">🔒</div>
                     <h3>Certificación ISO 27001</h3>
                     <p>Obtenemos la certificación en seguridad de la información.</p>
-                    <div class="card-date">
-                        <i>📅</i> 15 Oct 2025
-                    </div>
+                    <div class="card-date">📅 15 Oct 2025</div>
                 </div>
             </div>
         </div>
@@ -1197,7 +1274,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: Conozca más sobre VIGITECOL + Video de Instagram (MEJORADO) -->
+    <!-- Sección Conozca más -->
     <section class="conozca-section">
         <div class="conozca-grid">
             <div class="conozca-content">
@@ -1232,19 +1309,19 @@
             </div>
 
             <div class="video-instagram-container" id="videoContainer">
-                <video src="https://drive.google.com/file/d/1M_M34clfUxZ42pHgFzGlgZ3elq65RQfZ/preview?autoplay=1&loop=1"
+                <video id="instagramVideo" 
+                    src="https://drive.google.com/file/d/1M_M34clfUxZ42pHgFzGlgZ3elq65RQfZ/preview"
                     width="100%" height="100%" style="border: none; position: absolute; top: 0; left: 0;"
-                    allow="autoplay" allowfullscreen>
+                    allow="autoplay" preload="metadata">
                 </video>
                 <div class="video-overlay"></div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN 3: Beneficios con imagen -->
+    <!-- Sección Beneficios -->
     <section class="beneficios-section">
         <div class="beneficio-item">
-            <!-- IMAGEN DE BENEFICIOS - Reemplaza la URL -->
             <div class="beneficio-imagen">
                 <img src="https://drive.google.com/thumbnail?id=1Yg7VDKql5eK0qcLcfDCa-z1QWSapF4Bb&sz=w1000"
                     alt="Beneficios VIGITECOL">
@@ -1269,7 +1346,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 4: CTA -->
+    <!-- Sección CTA -->
     <section class="cta-section">
         <div class="cta-content">
             <h2>Haz parte de <span>VIGITECOL</span> ya</h2>
@@ -1281,24 +1358,19 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 5: Convenios / Empresas Aliadas con 6 imágenes - MEJORADO -->
+    <!-- Sección Convenios -->
     <section class="convenios-section">
         <div class="section-subtitle">Nuestros Aliados</div>
         <h2 class="section-title">Convenios y Empresas Aliadas</h2>
 
         <div class="aliados-carousel" id="aliadosCarousel">
             <div class="aliados-track" id="aliadosTrack">
-                <!-- 6 IMÁGENES DE ALIADOS - Reemplaza las URLs -->
-                <div class="aliado-item"><img src="/images/liderservicios.png" alt="Lider Servicios" class="empresa">
-                </div>
-                <div class="aliado-item"><img src="/images/allproduction.webp" alt="All Production" class="empresa">
-                </div>
-                <div class="aliado-item"><img src="/images/formandoalturas.webp" alt="Formando Alturas" class="empresa">
-                </div>
-                <div class="aliado-item"><img src="/images/formandosegurida.png" alt="Formando Seguridad"
-                        class="empresa"></div>
-                <div class="aliado-item"><img src="/images/villantonia.webp" alt="Villantonia" class="empresa"></div>
-                <div class="aliado-item"><img src="/images/mineria.webp" alt="Minería" class="empresa"></div>
+                <div class="aliado-item"><img src="/images/liderservicios.png" alt="Lider Servicios"></div>
+                <div class="aliado-item"><img src="/images/allproduction.webp" alt="All Production"></div>
+                <div class="aliado-item"><img src="/images/formandoalturas.webp" alt="Formando Alturas"></div>
+                <div class="aliado-item"><img src="/images/formandosegurida.png" alt="Formando Seguridad"></div>
+                <div class="aliado-item"><img src="/images/villantonia.webp" alt="Villantonia"></div>
+                <div class="aliado-item"><img src="/images/mineria.webp" alt="Minería"></div>
             </div>
         </div>
     </section>
@@ -1306,21 +1378,21 @@
     <div id="footer"></div>
 
     <script>
-        // Script para pausar/reproducir al hacer clic en el video
-        const container = document.getElementById('videoContainer');
-        const video = document.querySelector('#videoContainer video');
+        // Video pausar/reproducir
+        const videoContainer = document.getElementById('videoContainer');
+        const videoElement = document.getElementById('instagramVideo');
 
-        if (video) {
-            container.addEventListener('click', function () {
-                if (video.paused) {
-                    video.play();
+        if (videoContainer && videoElement) {
+            videoContainer.addEventListener('click', function () {
+                if (videoElement.paused) {
+                    videoElement.play().catch(e => console.log('Autoplay prevented:', e));
                 } else {
-                    video.pause();
+                    videoElement.pause();
                 }
             });
         }
 
-        // ========== CARRUSEL PRINCIPAL ==========
+        // Carrusel principal
         let currentIndex = 1;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -1352,61 +1424,63 @@
             updateCarousel();
         }
 
-        setInterval(() => {
+        let autoSlide = setInterval(() => {
             moveSlide(1);
         }, 5000);
 
         updateCarousel();
 
-        // ========== MINI CARRUSEL INFINITO ==========
+        // Pausar auto-slide en hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoSlide = setInterval(() => moveSlide(1), 5000);
+            });
+        }
+
+        // Mini carrusel
         let miniIndex = 0;
         const miniCarousel = document.getElementById('miniCarousel');
-        const miniCards = document.querySelectorAll('.info-card');
-        const miniTotalCards = miniCards.length;
+        let miniCards = document.querySelectorAll('.info-card');
 
-        // Determinar cuántas tarjetas mostrar según el ancho
         function getCardsToShow() {
             if (window.innerWidth <= 480) return 1;
             if (window.innerWidth <= 768) return 2;
-            if (window.innerWidth <= 1200) return 3;
+            if (window.innerWidth <= 1024) return 3;
             return 4;
         }
 
         let cardsToShow = getCardsToShow();
 
-        // Duplicar tarjetas para efecto infinito
+        // Duplicar para efecto infinito
         function setupInfiniteCarousel() {
-            const cards = Array.from(miniCards);
-            cards.forEach(card => {
+            const originalCards = Array.from(miniCards);
+            originalCards.forEach(card => {
                 const clone = card.cloneNode(true);
                 miniCarousel.appendChild(clone);
             });
-
-            // Actualizar la variable global con todas las tarjetas (originales + clones)
-            window.allMiniCards = document.querySelectorAll('.info-card');
+            miniCards = document.querySelectorAll('.info-card');
         }
 
         setupInfiniteCarousel();
-        const allMiniCards = document.querySelectorAll('.info-card');
-        const totalCards = allMiniCards.length;
+        const totalMiniCards = miniCards.length;
 
         function updateMiniCarousel() {
-            const cardWidth = allMiniCards[0].offsetWidth + 32; // width + gap
+            if (miniCards.length === 0) return;
+            const cardWidth = miniCards[0].offsetWidth + 24; // width + gap
             miniCarousel.style.transform = `translateX(-${miniIndex * cardWidth}px)`;
 
-            // Actualizar clase active en la tarjeta central visible
-            const startIndex = miniIndex;
-            const centerIndex = startIndex + Math.floor(cardsToShow / 2);
-
-            allMiniCards.forEach((card, index) => {
+            const centerIndex = miniIndex + Math.floor(cardsToShow / 2);
+            miniCards.forEach((card, idx) => {
                 card.classList.remove('active');
-                if (index === centerIndex) {
+                if (idx === centerIndex && idx < totalMiniCards) {
                     card.classList.add('active');
                 }
             });
 
-            // Reinicio infinito
-            if (miniIndex >= totalCards - cardsToShow) {
+            // Reset infinito
+            if (miniIndex >= totalMiniCards - cardsToShow) {
                 setTimeout(() => {
                     miniCarousel.style.transition = 'none';
                     miniIndex = 0;
@@ -1415,12 +1489,10 @@
                         miniCarousel.style.transition = 'transform 0.5s ease';
                     }, 50);
                 }, 500);
-            }
-
-            if (miniIndex < 0) {
+            } else if (miniIndex < 0) {
                 setTimeout(() => {
                     miniCarousel.style.transition = 'none';
-                    miniIndex = totalCards - cardsToShow - 1;
+                    miniIndex = totalMiniCards - cardsToShow - 1;
                     miniCarousel.style.transform = `translateX(-${miniIndex * cardWidth}px)`;
                     setTimeout(() => {
                         miniCarousel.style.transition = 'transform 0.5s ease';
@@ -1431,78 +1503,79 @@
 
         function moveMiniCarousel(direction) {
             miniIndex += direction;
+            const maxIndex = totalMiniCards - cardsToShow;
 
-            // Límites para el efecto infinito
-            if (miniIndex < 0) {
-                miniIndex = totalCards - cardsToShow - 1;
-            }
-            if (miniIndex > totalCards - cardsToShow) {
+            if (miniIndex > maxIndex) {
                 miniIndex = 0;
+            }
+            if (miniIndex < 0) {
+                miniIndex = maxIndex;
             }
 
             updateMiniCarousel();
         }
 
-        // Actualizar cardsToShow al redimensionar
         window.addEventListener('resize', () => {
             cardsToShow = getCardsToShow();
             miniIndex = 0;
-            updateMiniCarousel();
+            setTimeout(updateMiniCarousel, 100);
         });
 
-        // Inicializar mini carrusel
-        setTimeout(() => {
-            updateMiniCarousel();
-        }, 100);
+        setTimeout(updateMiniCarousel, 200);
 
-        // ========== CARRUSEL DE ALIADOS (CONSTANTE E INFINITO) ==========
+        // Carrusel de aliados infinito
         function initAliadosCarousel() {
             const track = document.getElementById('aliadosTrack');
-            const items = Array.from(track.children);
+            if (!track) return;
 
-            // Clonar todos los items para crear el efecto infinito
-            items.forEach(item => {
+            const items = Array.from(track.children);
+            const originalItems = items.slice();
+
+            originalItems.forEach(item => {
                 const clone = item.cloneNode(true);
                 track.appendChild(clone);
             });
 
             let position = 0;
-            const itemWidth = items[0].offsetWidth + 64; // width + gap (4rem = 64px)
-            const totalWidth = itemWidth * items.length;
+            const itemWidth = originalItems[0]?.offsetWidth + 32 || 200;
+            const totalOriginalWidth = itemWidth * originalItems.length;
 
-            // Configurar la animación
             function moveCarousel() {
-                position -= 0.5; // Velocidad constante (ajusta este valor para más o menos velocidad)
-
-                // Reset cuando llegue a la mitad (donde empiezan los clones)
-                if (Math.abs(position) >= totalWidth) {
+                position -= 0.8;
+                if (Math.abs(position) >= totalOriginalWidth) {
                     position = 0;
                 }
-
                 track.style.transform = `translateX(${position}px)`;
                 requestAnimationFrame(moveCarousel);
             }
 
-            // Iniciar la animación
             moveCarousel();
 
-            // Pausar al hacer hover
-            track.addEventListener('mouseenter', () => {
-                // No necesitamos pausar realmente, pero podemos mantener la funcionalidad
-                // Si quieres pausar, necesitarías una bandera, pero por ahora lo dejamos así
+            // Pausar en hover
+            const container = document.getElementById('aliadosCarousel');
+            let animating = true;
+            
+            container.addEventListener('mouseenter', () => {
+                animating = false;
             });
-
-            track.addEventListener('mouseleave', () => {
-                // Continúa automáticamente
+            
+            container.addEventListener('mouseleave', () => {
+                animating = true;
+                function resume() {
+                    if (animating) {
+                        position -= 0.8;
+                        if (Math.abs(position) >= totalOriginalWidth) {
+                            position = 0;
+                        }
+                        track.style.transform = `translateX(${position}px)`;
+                        requestAnimationFrame(resume);
+                    }
+                }
+                resume();
             });
         }
 
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', () => {
-            initAliadosCarousel();
-        });
-
-        // ========== MENÚ MÓVIL ==========
+        // ========== MENÚ MÓVIL CORREGIDO ==========
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const overlay = document.querySelector('.nav-overlay');
@@ -1515,37 +1588,95 @@
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
         }
 
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleMenu);
+        }
+        if (overlay) {
+            overlay.addEventListener('click', toggleMenu);
+        }
 
-        // Mobile dropdown
-        if (window.innerWidth <= 768) {
+        // Función para manejar los dropdowns en móvil
+        function setupMobileDropdowns() {
+            const isMobile = window.innerWidth <= 768;
+            
             navItems.forEach(item => {
-                const link = item.querySelector('a');
+                const link = item.querySelector('> a');
                 const dropdown = item.querySelector('.dropdown');
-
-                if (dropdown) {
-                    link.addEventListener('click', (e) => {
+                
+                // Remover event listeners anteriores
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+                
+                const updatedLink = item.querySelector('> a');
+                
+                if (dropdown && isMobile) {
+                    // En móvil: click para abrir/cerrar dropdown
+                    updatedLink.addEventListener('click', (e) => {
                         e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Cerrar otros dropdowns abiertos
+                        navItems.forEach(otherItem => {
+                            if (otherItem !== item && otherItem.classList.contains('active')) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle el actual
                         item.classList.toggle('active');
+                    });
+                } else if (dropdown && !isMobile) {
+                    // En desktop: solo enlace normal (el hover maneja el dropdown)
+                    updatedLink.addEventListener('click', (e) => {
+                        // Si el href es un ancla, hacer scroll suave
+                        const href = updatedLink.getAttribute('href');
+                        if (href && href !== '#' && href.startsWith('#')) {
+                            e.preventDefault();
+                            const target = document.querySelector(href);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    });
+                } else {
+                    // Items sin dropdown
+                    updatedLink.addEventListener('click', (e) => {
+                        const href = updatedLink.getAttribute('href');
+                        if (href && href !== '#' && (href.startsWith('#') || href === 'index.html')) {
+                            if (navLinks.classList.contains('active')) {
+                                toggleMenu();
+                            }
+                        }
                     });
                 }
             });
         }
 
-        // Smooth scroll
+        // Ejecutar al cargar y al cambiar tamaño
+        setupMobileDropdowns();
+        
+        window.addEventListener('resize', () => {
+            setupMobileDropdowns();
+            
+            // Cerrar menú y dropdowns al cambiar a desktop
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                navItems.forEach(item => item.classList.remove('active'));
+            }
+        });
+
+        // Smooth scroll para enlaces con ancla
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
+                if (href && href !== '#') {
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         if (navLinks.classList.contains('active')) {
                             toggleMenu();
                         }
@@ -1554,29 +1685,15 @@
             });
         });
 
-        // Navbar scroll
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.style.background = 'rgba(255, 255, 255, 0.98)';
                 navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
                 navbar.style.boxShadow = 'none';
-            }
-        });
-
-        // Resize handler
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                });
             }
         });
 
@@ -1584,8 +1701,13 @@
         fetch("/footer.html")
             .then(response => response.text())
             .then(data => {
-                document.getElementById("footer").innerHTML = data;
-            });
+                const footerDiv = document.getElementById("footer");
+                if (footerDiv) footerDiv.innerHTML = data;
+            })
+            .catch(() => console.log('Footer no encontrado'));
+
+        // Inicializar carrusel de aliados
+        setTimeout(initAliadosCarousel, 100);
     </script>
 </body>
 
