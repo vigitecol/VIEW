@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VIGITECOL LTDA - Código de Ética, Valores y Conducta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-container a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            order: -1;
+            background: transparent;
+            border: none;
+            padding: 10px 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            margin: 3px 0;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Navegación desktop */
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-item>a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item>a:hover::after {
+            width: 100%;
+        }
+
+        .nav-item>a:hover {
+            color: #FFD700;
+        }
+
+        /* Dropdown menus */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 10px;
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: #f5f5f5;
+            color: #FFD700;
+            padding-left: 2rem;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Overlay para móvil */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Responsive móvil */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 5%;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 350px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 5rem 1.5rem 2rem;
+                gap: 0;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-item>a {
+                font-size: 1rem;
+                padding: 0.8rem 0;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-item>a::after {
+                display: none;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                background: #f8f8f8;
+                border-radius: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                width: 100%;
+            }
+
+            .nav-item.active .dropdown {
+                max-height: 500px;
+                padding: 0.8rem 0;
+                margin-top: 0.5rem;
+            }
+
+            .dropdown a {
+                padding: 0.7rem 1rem 0.7rem 2rem;
+            }
+        }
+
+        /* Hero section */
+        .hero-section {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            padding: 4rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title span {
+            color: #FFD700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #FFD700;
+            color: #000;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Secciones generales */
+        .section-container {
+            padding: 4rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #FFD700;
+        }
+
+        /* Tarjetas de contenido */
+        .content-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+            border-left: 4px solid #FFD700;
+            padding-left: 1rem;
+        }
+
+        .content-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .content-card ul,
+        .content-card ol {
+            margin-left: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .content-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .value-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+
+        .value-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #000;
+        }
+
+        .value-item h4 span {
+            color: #FFD700;
+            margin-right: 0.5rem;
+        }
+
+        .value-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .ethics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .ethics-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .ethics-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .ethics-number {
+            width: 40px;
+            height: 40px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .ethics-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .ethics-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .conduct-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .conduct-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .conduct-list li:last-child {
+            border-bottom: none;
+        }
+
+        .conduct-number {
+            width: 28px;
+            height: 28px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .sanctions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .sanction-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #FFD700;
+        }
+
+        .sanction-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .sanction-card ul {
+            margin-left: 1.2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #000000 0%, #1a2a3a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content h2 span {
+            color: #FFD700;
+        }
+
+        .cta-content p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #FFD700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            border-color: #FFD700;
+            color: #FFD700;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: #999;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .sanctions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid,
+            .ethics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section {
+                margin-top: 60px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 2rem 5%;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .section-container {
+                padding: 2rem 5%;
+            }
+
+            .content-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overlay para móvil -->
+    <div class="nav-overlay"></div>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="/images/descarga.webp" alt="Logo VIGITECOL" class="logo-img">
+                <span class="logo-text">VIGITECOL LTDA</span>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="../index.html">Inicio</a>
+            </div>
+
+            <div class="nav-item">
+                <a href="javascript:void(0)" class="dropdown-toggle">Quienes Somos <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="principios.html">Principios Orientadores</a>
+                    <a href="mision.html">Misión</a>
+                    <a href="vision.html">Visión</a>
+                    <a href="valores.html">Valores de la Organización</a>
+                    <a href="deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="codigoeticayconducta.html">Código de Ética y de Conducta</a>
+                    <a href="politicaintegrada.html">Política Integrada de Gestión</a>
+                    <a href="sarlaft.html">SARLAFT</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="javascript:void(0)" class="dropdown-toggle">Servicios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="/Servicios/vigilanciaHumanaArmada.html">Vigilancia Humana Armada</a>
+                    <a href="/Servicios/vigilanciaCanina.html">Vigilancia Canina</a>
+                    <a href="/Servicios/vigilanciaElectronica.html">Vigilancia Electrónica</a>
+                    <a href="/Servicios/vigilanciaReaccionInmediata.html">Vigilancia Reacción Inmediata</a>
+                    <a href="/Servicios/estudioTecnicoSeguridad.html">Estudio Técnico en Seguridad</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="javascript:void(0)" class="dropdown-toggle">Beneficios <span class="arrow">▼</span></a>
+                <div class="dropdown">
+                    <a href="../beneficios/garantia.html">Garantía de calidad</a>
+                    <a href="../beneficios/soporte.html">Soporte 24/7</a>
+                    <a href="../beneficios/capacitacion.html">Capacitación continua</a>
+                    <a href="../beneficios/actualizaciones.html">Actualizaciones gratis</a>
+                    <a href="../beneficios/descuentos.html">Descuentos especiales</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="../contacto.html">Contacto</a>
+            </div>
+            <div class="nav-item"><a href="../envia.html">Trabaja con Nosotros</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Código de <span>Ética, Valores y Conducta</span></h1>
+        <p class="hero-subtitle">VIGILANCIA TÉCNICA DE COLOMBIA LTDA</p>
+        <div class="version-badge">Versión: 2 | Código: GG-RG-02 | Fecha: 31/01/2026</div>
+    </section>
+
+    <!-- Presentación -->
+    <div class="section-container">
+        <div class="content-card">
+            <h3>📖 Presentación</h3>
+            <p>El Código de ética valores y conducta constituye una norma interna que define nuestra cultura corporativa, nuestro propósito, valores y nuestro modelo de liderazgo; este es una guía de nuestra forma de trabajar y cómo gestionamos y desarrollamos las relaciones con nuestros clientes, empleados y la sociedad en general.</p>
+        </div>
+
+        <!-- Objetivo -->
+        <div class="content-card">
+            <h3>🎯 Objetivo</h3>
+            <p>Establecer un marco claro y detallado que guíe el comportamiento y las decisiones de los empleados, directivos y socios de la empresa, así como todas las actividades y decisiones, en el marco del Programa de Transparencia y Ética Empresarial (PTEE), con el fin de:</p>
+            <ol style="margin-top: 1rem;">
+                <li>Proteger la seguridad y el bienestar de los clientes, empleados y la comunidad en general.</li>
+                <li>Mantener la confianza y la credibilidad de la empresa.</li>
+                <li>Cumplir con las leyes y regulaciones aplicables.</li>
+                <li>Fomentar una cultura de integridad, honestidad y transparencia.</li>
+                <li>Establecer estándares de comportamiento profesional y ético.</li>
+                <li>Proteger la información confidencial y personal.</li>
+                <li>Fomentar la cooperación y la colaboración entre los empleados y con otras partes interesadas.</li>
+                <li>Asegurar que la empresa opere de manera ética y responsable.</li>
+            </ol>
+        </div>
+
+        <!-- Disposiciones normativas -->
+        <div class="content-card">
+            <h3>⚖️ Disposiciones normativas</h3>
+            <p><strong>Normas Colombianas en materia de:</strong></p>
+            <ul>
+                <li>Contratación estatal y administración publica</li>
+                <li>Lucha contra la corrupción lavado de activos, financiación del terrorismo y financiación y proliferación de armas de destrucción masiva.</li>
+                <li>Regímenes de responsabilidad fiscal y disciplinaria</li>
+                <li>Competencia desleal</li>
+                <li>Protección de datos personales.</li>
+                <li>Requisitos de la Circular 20251000000035CS y del PTEE</li>
+            </ul>
+        </div>
+
+        <!-- Sanciones -->
+        <div class="content-card">
+            <h3>⚠️ Sanciones</h3>
+            <div class="sanctions-grid">
+                <div class="sanction-card">
+                    <h4>📌 EMPLEADOS</h4>
+                    <ul>
+                        <li>Incumplimiento del código de ética y conducta: sanciones disciplinarias, incluyendo la terminación del contrato.</li>
+                        <li>Incumplimiento de las políticas y procedimientos: sanciones disciplinarias, incluyendo la terminación del contrato.</li>
+                    </ul>
+                </div>
+                <div class="sanction-card">
+                    <h4>📌 CLIENTES, CONTRATISTAS, PROVEEDORES Y TERCEROS</h4>
+                    <p>VIGITECOL LTDA podrá terminar la relación contractual sin lugar a indemnización en los siguientes casos:</p>
+                    <ul>
+                        <li>Si el cliente, contratista, proveedor o tercero es acusado sancionado o incluido en una lista sancionatoria por la violación de las disposiciones normativas.</li>
+                        <li>Si los administradores o socios que tengan más del 5% de participación en la compañía son acusado sancionado o incluido en una lista sancionatoria por la violación de las disposiciones normativas.</li>
+                        <li>Si el cliente, contratista, proveedor o tercero incumple cualquiera de las obligaciones contractuales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores corporativos -->
+        <div class="content-card">
+            <h3>⭐ Valores corporativos</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h4><span>🔹</span> Ética</h4>
+                    <p>Actuamos de manera correcta y responsable en todas nuestras operaciones, rechazando cualquier conducta de corrupción, soborno o uso indebido de nuestra posición como empresa de vigilancia.</p>
+                </div>
+                <div class="value-item">
+                    <h4><span>🔹</span> Honestidad</h4>
+                    <p>Obramos con rectitud y veracidad en el manejo de la información, los recursos, los contratos y la relación con clientes, autoridades y compañeros de trabajo.</p>
+                </div>
+                <div class="value-item">
+                    <h4><span>🔹</span> Respeto</h4>
+                    <p>Reconocemos y protegemos la dignidad de las personas, los derechos humanos y las normas que regulan nuestra actividad, promoviendo un trato justo, seguro y libre de discriminación.</p>
+                </div>
+                <div class="value-item">
+                    <h4><span>🔹</span> Compromiso</h4>
+                    <p>Asumimos con responsabilidad nuestras funciones, cumpliendo los procedimientos, estándares de calidad y seguridad, y aportando al logro de los objetivos de la organización y del sistema integrado de gestión.</p>
+                </div>
+                <div class="value-item">
+                    <h4><span>🔹</span> Transparencia</h4>
+                    <p>Actuamos de forma clara, verificable y trazable en la toma de decisiones, la contratación, la gestión de recursos y la atención de denuncias, facilitando el control interno y externo.</p>
+                </div>
+                <div class="value-item">
+                    <h4><span>🔹</span> Cumplimiento</h4>
+                    <p>Cumplimos estrictamente la ley, los requisitos contractuales, las normas del sector de vigilancia y los lineamientos del Sistema Integrado de Gestión y del PTEE.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Principios éticos -->
+        <div class="content-card">
+            <h3>✨ Principios éticos</h3>
+            <div class="ethics-grid">
+                <div class="ethics-item">
+                    <div class="ethics-number">1</div>
+                    <h4>Confidencialidad</h4>
+                    <p>Manejar con reserva la información obtenida en el desarrollo de las actividades económicas.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">2</div>
+                    <h4>Integridad</h4>
+                    <p>Actuar con honradez, transparencia y coherencia.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">3</div>
+                    <h4>No discriminación</h4>
+                    <p>No discriminar por razones de raza, género, religión, orientación sexual, edad o discapacidad.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">4</div>
+                    <h4>Protección de la seguridad y el bienestar</h4>
+                    <p>Priorizar la seguridad y el bienestar de nuestros clientes, empleados y la comunidad en general.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">5</div>
+                    <h4>Legalidad</h4>
+                    <p>Cumplimiento estricto de la legislación colombiana.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">6</div>
+                    <h4>Diligencia</h4>
+                    <p>Realizar las funciones con profesionalismo, cuidado y responsabilidad.</p>
+                </div>
+                <div class="ethics-item">
+                    <div class="ethics-number">7</div>
+                    <h4>Responsabilidad</h4>
+                    <p>Cumplir con las obligaciones legales, contractuales y éticas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Código de conducta -->
+        <div class="content-card">
+            <h3>📜 Código de conducta</h3>
+            <ul class="conduct-list">
+                <li><span class="conduct-number">1</span> <strong>Comportamiento profesional:</strong> Mantener un comportamiento profesional y respetuoso en todo momento.</li>
+                <li><span class="conduct-number">2</span> <strong>Uso de la fuerza:</strong> Utilizar la fuerza solo cuando sea estrictamente necesario y de acuerdo con las políticas y procedimientos establecidos.</li>
+                <li><span class="conduct-number">3</span> <strong>Confidencialidad:</strong> Mantener la confidencialidad de la información personal y confidencial de nuestros clientes y empleados.</li>
+                <li><span class="conduct-number">4</span> <strong>No aceptar sobornos:</strong> No se toleran las acciones de fraude, soborno y corrupción por parte de ningún asociado de negocio. Se debe denunciar cualquier tipo de corrupción.</li>
+                <li><span class="conduct-number">5</span> <strong>Informar incidentes:</strong> Informar cualquier incidente o anomalía que pueda afectar la seguridad o el servicio.</li>
+                <li><span class="conduct-number">6</span> <strong>Relaciones:</strong> No se debe tener ningún tipo de relación con grupos al margen de la ley.</li>
+            </ul>
+        </div>
+
+        <!-- Conductas y Procedimientos Frente a Situaciones Antiéticas -->
+        <div class="content-card">
+            <h3>🚨 Conductas y Procedimientos Frente a Situaciones Antiéticas</h3>
+            <p><strong>Identificación de conductas antiéticas:</strong> Todo comportamiento contrario a la ley, políticas internas o al código debe ser identificado y reportado.</p>
+            <p><strong>Procedimiento de actuación:</strong></p>
+            <ul>
+                <li>Reportar la conducta a la instancia encargada (Alta dirección, Área de Cumplimiento o Comité de Ética).</li>
+                <li>Registrar y evaluar la situación de forma confidencial.</li>
+                <li>Tomar medidas correctivas y disciplinarias según la gravedad.</li>
+            </ul>
+            <p><strong>Tipos de conductas cubiertas:</strong> Corrupción, fraude, conflicto de intereses, soborno, incumplimiento de políticas, violación de derechos humanos y cualquier conducta que afecte la ética o la reputación de la empresa.</p>
+        </div>
+
+        <!-- Aceptación y Revisión -->
+        <div class="content-card">
+            <h3>📝 Aceptación</h3>
+            <p>Todos los empleados, clientes, contratistas, proveedores y partes interesadas deben leer, entender, aceptar y firmar este código de ética y conducta.</p>
+        </div>
+
+        <div class="content-card">
+            <h3>🔄 Revisión y Actualización</h3>
+            <p>Este código de ética y conducta será revisado y actualizado anualmente, o cuando sea necesario.</p>
+            <p style="margin-top: 1rem;"><strong>Aprobado por:</strong> Oficial de cumplimiento</p>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Haz parte de <span>VIGITECOL</span> ya</h2>
+            <p>Únete a las más de 800 empresas y hogares que ya confían en nosotros para su seguridad. Te ofrecemos soluciones personalizadas y acompañamiento continuo.</p>
+            <a href="https://wa.me/573137166880" class="cta-button" target="_blank">Solicita una cotización</a>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.nav-overlay');
+            const navItems = document.querySelectorAll('.nav-item');
+            const body = document.body;
+
+            // Función para abrir/cerrar menú móvil
+            function toggleMenu(forceClose) {
+                const isActive = navLinks.classList.contains('active');
+                if (forceClose && isActive) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = '';
+                    // Cerrar todos los submenús
+                    navItems.forEach(item => item.classList.remove('active'));
+                } else if (!forceClose) {
+                    if (isActive) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = '';
+                        navItems.forEach(item => item.classList.remove('active'));
+                    } else {
+                        navLinks.classList.add('active');
+                        menuToggle.classList.add('active');
+                        overlay.classList.add('active');
+                        body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            // Evento del botón hamburguesa
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            // Evento del overlay
+            if (overlay) {
+                overlay.addEventListener('click', function() {
+                    toggleMenu(true);
+                });
+            }
+
+            // Manejo de dropdowns en móvil
+            function setupMobileDropdowns() {
+                const isMobile = window.innerWidth <= 768;
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+                dropdownToggles.forEach(toggle => {
+                    // Remover eventos anteriores para evitar duplicados
+                    const newToggle = toggle.cloneNode(true);
+                    toggle.parentNode.replaceChild(newToggle, toggle);
+                    
+                    const parentItem = newToggle.closest('.nav-item');
+                    
+                    if (isMobile) {
+                        // En móvil: toggle del submenú
+                        newToggle.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            // Cerrar otros submenús abiertos
+                            navItems.forEach(item => {
+                                if (item !== parentItem && item.classList.contains('active')) {
+                                    item.classList.remove('active');
+                                }
+                            });
+                            
+                            // Toggle el submenú actual
+                            parentItem.classList.toggle('active');
+                        });
+                    } else {
+                        // En desktop: comportamiento normal (hover)
+                        newToggle.addEventListener('click', function(e) {
+                            // Si tiene href válido, permitir navegación
+                            const href = newToggle.getAttribute('href');
+                            if (href && href !== 'javascript:void(0)' && href !== '#') {
+                                return;
+                            }
+                            e.preventDefault();
+                        });
+                    }
+                });
+            }
+
+            // Cerrar menú al hacer clic en un enlace (submenú o principal)
+            const allLinks = document.querySelectorAll('.nav-links a');
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    // Si es un enlace real (no javascript:void(0))
+                    if (href && href !== 'javascript:void(0)' && href !== '#') {
+                        // Permitir la navegación y cerrar el menú
+                        setTimeout(() => {
+                            toggleMenu(true);
+                        }, 100);
+                    }
+                });
+            });
+
+            // Cerrar menú al redimensionar a desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    toggleMenu(true);
+                } else {
+                    setupMobileDropdowns();
+                }
+            });
+
+            // Inicializar
+            setupMobileDropdowns();
+        });
+
+        fetch("/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            })
+            .catch(() => console.log('Footer no encontrado'));
+    </script>
+</body>
+
+</html>

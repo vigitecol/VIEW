@@ -578,6 +578,195 @@
             border-radius: 20px;
         }
 
+        /* ========== NUEVO: CANAL DE DENUNCIAS SARLAFT/PTEE ========== */
+        .canal-sarlaft {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .canal-sarlaft::before {
+            content: '⚖️';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 5rem;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .canal-sarlaft:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(255, 215, 0, 0.15);
+            border-color: #FFD700;
+        }
+
+        .sarlaft-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sarlaft-icon {
+            width: 60px;
+            height: 60px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .sarlaft-header h3 {
+            font-size: 1.6rem;
+            color: #000;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .sarlaft-header h3 span {
+            color: #FFD700;
+            font-weight: 800;
+        }
+
+        .sarlaft-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .sarlaft-text {
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .sarlaft-text p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .sarlaft-text .small-note {
+            font-size: 0.85rem;
+            color: #777;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .sarlaft-email-box {
+            flex: 1;
+            min-width: 260px;
+            background: white;
+            border-radius: 60px;
+            padding: 0.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+
+        .sarlaft-email-box:hover {
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+            transform: scale(1.01);
+        }
+
+        .email-copy {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+            padding: 0.8rem 1rem;
+            background: transparent;
+            border: none;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: #FFD700;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #000;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-right: 0.3rem;
+        }
+
+        .copy-btn:hover {
+            background: #000;
+            color: #FFD700;
+        }
+
+        .copy-feedback {
+            font-size: 0.7rem;
+            color: #FFD700;
+            margin-left: 0.5rem;
+            font-weight: normal;
+        }
+
+        @media (max-width: 768px) {
+            .sarlaft-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .sarlaft-email-box {
+                flex-direction: column;
+                border-radius: 30px;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+                margin-right: 0;
+            }
+            .email-copy {
+                text-align: center;
+                padding: 0.5rem;
+            }
+            .sarlaft-header h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .canal-sarlaft {
+                padding: 1.5rem;
+            }
+            .sarlaft-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+            .sarlaft-header h3 {
+                font-size: 1.2rem;
+            }
+        }
+
         /* ========== FOOTER ========== */
         .footer-new {
             background: #000000;
@@ -929,6 +1118,9 @@
                     <a href="QuienesS/vision.html">Visión</a>
                     <a href="QuienesS/valores.html">Valores de la Organización</a>
                     <a href="QuienesS/deberes.html">Deberes y Derechos de los asociados</a>
+                    <a href="QuienesS/codigoeticayconducta.html">Código de Ética y de Conducta </a>
+                    <a href="QuienesS/politicaintegrada.html">Política Integrada de Gestión </a>
+                    <a href="QuienesS/sarlaft.html">SARLAFT </a>
                 </div>
             </div>
             <div class="nav-item">
@@ -1117,6 +1309,30 @@
             </div>
         </div>
 
+        <!-- NUEVA SECCIÓN: CANAL DE DENUNCIAS SARLAFT/PTEE -->
+        <div class="contacto-section">
+            <h2>Transparencia y Ética</h2>
+            <div class="canal-sarlaft">
+                <div class="sarlaft-header">
+                    <div class="sarlaft-icon">📢</div>
+                    <h3>Canal de Denuncias <span>SARLAFT / PTEE</span></h3>
+                </div>
+                <div class="sarlaft-content">
+                    <div class="sarlaft-text">
+                        <p>Este canal está habilitado para que colaboradores, clientes, proveedores y terceros reporten de manera confidencial cualquier operación sospechosa, incumplimiento o vulneración relacionada con el Sistema de Administración del Riesgo de Lavado de Activos y Financiación del Terrorismo (SARLAFT) y el Programa de Transparencia y Ética Empresarial (PTEE).</p>
+                        <p>Sus reportes serán atendidos con absoluta reserva y garantía de no represalias.</p>
+                        <div class="small-note">
+                            <span>🔒</span> Comunicación directa con el Oficial de Cumplimiento
+                        </div>
+                    </div>
+                    <div class="sarlaft-email-box">
+                        <span class="email-copy" id="sarlaftEmail">oficialdecumplimiento@vigitecol.com</span>
+                        <button class="copy-btn" id="copyEmailBtn">📋 Copiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Mapa -->
         <div class="contacto-section">
             <h2>Nuestra ubicación principal</h2>
@@ -1223,6 +1439,26 @@
                     navbar.style.boxShadow = 'none';
                 }
             });
+
+            // Funcionalidad copiar email del canal SARLAFT
+            const copyBtn = document.getElementById('copyEmailBtn');
+            const emailSpan = document.getElementById('sarlaftEmail');
+            if (copyBtn && emailSpan) {
+                copyBtn.addEventListener('click', async () => {
+                    const email = emailSpan.innerText;
+                    try {
+                        await navigator.clipboard.writeText(email);
+                        const originalText = copyBtn.innerHTML;
+                        copyBtn.innerHTML = '✓ Copiado';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = originalText;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Error al copiar: ', err);
+                        alert('No se pudo copiar el correo. Puedes seleccionarlo manualmente.');
+                    }
+                });
+            }
         });
 
         fetch("/footer.html")
